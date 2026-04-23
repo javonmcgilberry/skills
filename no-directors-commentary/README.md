@@ -39,11 +39,9 @@ no-directors-commentary/
     └── rewrite-examples.md
 ```
 
-`SKILL.md` is what agents load. Examples live in `references/` so the main file stays short.
-
 ## References
 
-External write-ups and tools (overlapping patterns; not part of this repo’s rules text).
+External write-ups and tools (overlapping patterns; not duplicated in the package rule text).
 
 **Documented AI code and review patterns**
 
@@ -64,7 +62,7 @@ External write-ups and tools (overlapping patterns; not part of this repo’s ru
 - [Juzek & Ward, 2025 — “Why does ChatGPT ‘delve’ so much?” (PDF)](https://aclanthology.org/2025.coling-main.426.pdf)
 - [The Verge — Wikipedia’s AI slop guide (2026)](https://www.theverge.com/news/865627/wikipedia-ai-slop-guide-anthropic-claude-skill)
 
-**Staleness and wrong APIs (correctness, not “voice” — out of scope for _this_ skill, useful adjacent reading)**
+**Staleness and wrong APIs (correctness, not “voice” — out of scope for the prose/comment pass; useful adjacent reading)**
 
 - [Tian Pan — The deprecated API trap (2026)](https://tianpan.co/blog/2026-04-17-deprecated-api-trap-ai-coding-agents)
 - [Pithy Cyborg — Why assistants suggest deprecated APIs](https://www.pithycyborg.com/why-do-ai-coding-assistants-keep-suggesting-deprecated-apis/)
@@ -78,4 +76,4 @@ External write-ups and tools (overlapping patterns; not part of this repo’s ru
 
 - [heavykenny/aislop](https://github.com/heavykenny/aislop) — lint rules, code focus
 - [flamehaven01/AI-SLOP-Detector](https://github.com/flamehaven01/AI-SLOP-Detector) — static checks for empty handlers and placeholder docs
-- [humanizer](https://github.com/tenequm/skills) — long-form prose cleanup (essays, articles); use this skill for code and review copy
+- [humanizer](https://github.com/tenequm/skills) — long-form prose cleanup (essays, articles); use **no-directors-commentary** (above) for code and review copy

@@ -1,6 +1,6 @@
 ---
 name: no-directors-commentary
-description: "Strips AI narration from comments, JSDoc, PR and commit text, and READMEs (this PR meta, process stories, chat-preamble, migration bookkeeping). Trims the same class of code slop as remove-slop in one pass: as any, as unknown as, @ts-ignore noise, and empty defensive try/catch. For meta, slop, or review cleanup."
+description: "Strips AI narration from comments, JSDoc, PR and commit text, and READMEs: PR/file meta, process stories, chat-preamble, migration bookkeeping, redundant docstrings. In the same pass, flags as any, double casts, @ts-ignores, and no-op try/catch. For review and cleanup."
 ---
 
 # No Director's Commentary
@@ -19,9 +19,9 @@ AI coding agents leak a predictable set of narration patterns into the code and 
 - Before/after comparison tables in PR bodies (`| Before | After |`)
 - Transition / migration narration (`"Ported from..."`, `"After the migration..."`)
 - Invented prior history when no predecessor actually existed
-- **Code hygiene in the same diff** (same intent as a minimal `remove-slop` pass): `as any` and double casts to silence types, throwaway `@ts-expect-error` / `@ts-ignore`, try/catch that only logs and rethrows on internal paths, null checks the type system already made impossible, and one-off abstractions that the rest of the file does not use
+- **Code hygiene in the same diff:** `as any` and double casts to silence types, throwaway `@ts-expect-error` / `@ts-ignore`, try/catch that only logs and rethrows on internal paths, null checks the type system already made impossible, and one-off abstractions that the rest of the file does not use
 
-Every narration bullet is the text talking _about_ the work instead of doing it; the code bullets are machinery that _looks_ safe or clever without helping. This skill covers both in one pass.
+Narration is the text talking _about_ the work instead of doing it; the code items are machinery that _looks_ safe or clever without helping. Treat both in one review pass.
 
 A reader six months from now should not need archaeology to understand the code, and should not have to wade through narration about the text to get to the content. If a line only exists because of context from a transition or the text's own existence, it doesn't belong.
 
@@ -43,7 +43,7 @@ Which of these is the copy landing on? The bar is the same across all of them:
 - Error messages
 - Test fixture comments
 
-Commit messages are a lower bar — a one-liner is enough. The skill targets bodies and long-form copy that read like research logs or transition diaries, not a terse subject line.
+Commit messages are a lower bar — a one-liner is enough. Bodies and long-form copy that read like research logs or transition diaries need the full pass; a terse subject line does not.
 
 ### Step 2 — Scan for banned patterns
 
@@ -55,7 +55,7 @@ For each hit, answer:
 
 1. What does this code or file DO right now?
 2. Why is it structured this way? (Only if still relevant — not migration lore, and not "because a lint or audit said so" unless that rule is a real, ongoing contract for callers.)
-3. What should a reader new to this file need, without migration or process backstory?
+3. What should a reader new to the file need, without migration or process backstory?
 
 [How to rewrite](#how-to-rewrite); [references/rewrite-examples.md](references/rewrite-examples.md) for before/after examples.
 
@@ -79,7 +79,7 @@ The text announces its own existence, location, or role instead of delivering th
 - **Process and provenance** — how _this_ deliverable was produced, vetted, or signed off (not a `## References` list to others’ work).
   - e.g. `"Validated against…"`, `"Synthesis of our…"`, `"Culmination of…"` as _our_ story
 - **Keep:** license line, one spec link, `See CONTRIBUTING` when that is the pointer — not _our_ audit narrative.
-- **Citations and bibliographies (keep)** — `## References` / `## Further reading` with **third-party** links (pattern lists, papers, public vendor spec pages). **Strip** self-referential process lines about _this_ artifact _only_ — “we validated…”, “our audits…”, “synthesis of _our_ work…”, not the outward links.
+- **Citations and bibliographies (keep)** — `## References` / `## Further reading` with **third-party** links (pattern lists, papers, public vendor spec pages). **Strip** handoff process lines on the work — “we validated…”, “our audits…”, “synthesis of our work on it…” — not the outward links.
 
 ### 2. Self-important framing in docs, comments, and JSDoc
 
@@ -182,7 +182,7 @@ Talking TO the reader, or narrating the document's own navigation, instead of de
 
 ### 5. Temporal / transition narration
 
-Text that narrates what the system used to be, what it replaced, or how a migration moved — not the separate case of _research methodology_ in §1 (use §1 for "how we wrote/validated this doc").
+Text that narrates what the system used to be, what it replaced, or how a migration moved. Spec-style process provenance belongs under §1, not here.
 
 #### 5a. Transition narration
 
@@ -223,7 +223,7 @@ If something was removed, stop referring to it:
 
 ### 6. Code hygiene (non-narration slop)
 
-Same reviews often mix chatty copy with the mechanical junk below. Overlaps the `remove-slop` checklist: fix the type or the call site instead of papering over it, and match the file’s style.
+The same diffs often mix both. Fix the type or the call site instead of papering over errors, and match the file’s style.
 
 #### 6a. Type workarounds
 
@@ -305,7 +305,7 @@ Narrow and actionable — who unblocks, what changes, or which ticket.
 - Outward link lists (aislop, cc-polymath, Wikipedia, papers, public vendor agent-skills docs)
 - Adjacent topics you do not own (e.g. deprecated-API) as optional reading
 
-Remove only text that only describes **this** file’s or **this** team’s internal vetting — not the reference list.
+Strip process lines that only describe a file’s or a team’s internal vetting on the work — not the reference list.
 
 ### Domain terms that happen to match banned words
 
@@ -325,7 +325,7 @@ DRAFTS=$(git diff main...HEAD)   # or: git diff --cached
 
 # 1. Meta + process/provenance (^\+ = additions only)
 echo "$DRAFTS" | grep -Ei '^\+.*(this (pr|commit|file|document|section|change|function|class|module|handler) (adds|does|contains|covers|handles|is responsible|describes)|in what follows|as mentioned above|earlier we |this document describes)'
-echo "$DRAFTS" | grep -Ei '^\+.*(validated against|a synthesis of|synthesi[sz]ed from|culmination of|grounded in (independent |the )?research|per .* (guidance|best practices|authoring|skill)|parallel (audit|run)s?|Composer [0-9]|N parallel|what got cut during|as part of the (audit|review)|how (this )?skill was (built|develop))'
+echo "$DRAFTS" | grep -Ei '^\+.*(validated against|a synthesis of|synthesi[sz]ed from|culmination of|grounded in (independent |the )?research|per .* (guidance|best practices|authoring)|parallel (audit|run)s?|Composer [0-9]|N parallel|what got cut during|as part of the (audit|review)|how (it|th(e|is) (work|addition|file|package|repo)) was (written|vetted|built|develop))'
 
 # 2. Self-important (comment / markdown line shapes; comma after Clearly/Obviously reduces false positives in code)
 echo "$DRAFTS" | grep -Ei '^\+.*(//|#|/\*|\* |>\s|///).*\b(Note that|It\x27s worth noting|It is worth noting|important to note|As you can see|Remember that|Keep in mind)\b'
@@ -354,7 +354,7 @@ echo "$DRAFTS" | grep -Ei '^\+.*(\| Before \| After \||changed vs the pre-migrat
 echo "$DRAFTS" | grep -Ei '^\+.*(\bas any\b|as unknown as|@ts-(expect-error|ignore|nocheck)\b)'
 ```
 
-**How to read hits:** Candidates, not verdicts. **Provenance** patterns can match **inside a reference URL or title** (e.g. _validated_ in an article about validation) or in **bibliography lines** that only point outward — if the hunk is under `## References` / `## Further reading` and the line is a **third-party** link, keep it. **Provenance** is about **our** process on **this** deliverable, not about listing others’ work. **Migration** can hit runbooks. **`as any` / `@ts-ignore`:** re-read before deleting. **Security copy** (“validated input”) can match _validated_ — context wins.
+**How to read hits:** Candidates, not verdicts. Provenance-style patterns can match **inside a reference URL or title** (e.g. _validated_ in an article about validation) or in **bibliography lines** that only point outward — if the hunk is under `## References` / `## Further reading` and the line is a **third-party** link, keep it. A hit means “author is telling the story of the vetting on the change,” not “citation of someone else’s article.” **Migration** can hit runbooks. **`as any` / `@ts-ignore`:** re-read before deleting. **Security copy** (“validated input”) can match _validated_ — context wins.
 
 **One-liner** (broad; review every line):
 
@@ -362,7 +362,7 @@ echo "$DRAFTS" | grep -Ei '^\+.*(\bas any\b|as unknown as|@ts-(expect-error|igno
 git diff main...HEAD | grep -Ei '^\+.*(this (pr|commit|file) (adds|does|contains)|this document describes|I.ve (added|implemented|updated)|I have (added|implemented|updated)|i have (added|implemented|updated)|ported from|simplified from|after the migration|in this pass|not ported|validated against|a synthesis of|culmination of|synthesi[sz]ed from|as mentioned above|let me walk|Note that,|Composer [0-9])'
 ```
 
-State what the thing **is** or **does** — not how _this_ change was written or signed off, except a license line or a single external spec link when that is the whole point of the line.
+State what the thing **is** or **does** — not the signing-off story, except a license line or a single external spec link when that is the whole point of the line.
 
 ## How to rewrite
 
@@ -370,7 +370,7 @@ When you catch yourself writing narration instead of content, rewrite by answeri
 
 1. What does this code or file DO right now?
 2. Why is it structured this way? (Only if still relevant — not "because we migrated from X" or "because an audit said so.")
-3. What should a reader new to this file need, without migration or process backstory?
+3. What should a reader new to the file need, without migration or process backstory?
 
 For worked rewrites, see [references/rewrite-examples.md](references/rewrite-examples.md).
 
@@ -398,10 +398,10 @@ If you catch yourself about to write any of these, stop and rewrite so the text 
 - "In what follows..." / "As mentioned above..." / "Earlier we discussed..."
 - "This document describes..." / "This file contains..."
 
-**Process and provenance (ours, on this deliverable) — not the same as a `## References` list:**
+**Process and provenance (framing the vetting) — not the same as a `## References` list:**
 
-- "Validated against _our_…" / "Culmination of _this_…" / "N parallel _our_…"
-- A vendor link in References for **reader** use is fine; a sentence that only justifies _this_ README’s structure with _our_ process is not
+- "Validated against _our_…" / "Culmination of _this_…" / "N parallel _our_…" (in the handoff text, not a bibliography line)
+- A vendor link in References for reader use is fine; a sentence that only justifies a README’s layout with internal process is not
 
 **Self-important framing:**
 
@@ -424,7 +424,7 @@ If you catch yourself about to write any of these, stop and rewrite so the text 
 - "Ports <old path> to <new shape>..." / "The old <product> did X"
 - `| Before | After |` tables in PR descriptions
 
-**Code hygiene (remove-slop overlap):**
+**Code hygiene:**
 
 - `as any` / `as unknown as` / wide `@ts-ignore` instead of a real type fix
 - `try`/`catch` on internal calls that only log and rethrow
@@ -432,7 +432,3 @@ If you catch yourself about to write any of these, stop and rewrite so the text 
 - New helpers that wrap a single call when the file is otherwise direct
 
 If a line survives only because of one of the above framings, delete or rewrite until the text describes the thing on its own terms. If a line is a type escape hatch, either fix the types or keep it with a one-line reason another engineer will need.
-
-## Meta-check: this skill itself
-
-Use abstract placeholders in examples — no real product paths or proprietary names. No story in `SKILL.md` about how _this_ skill was built or audited. The repo `README` keeps third-party `## References` lists; strip only _our_-process lines. Pattern examples and grep strings below use literal phrases on purpose.

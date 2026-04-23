@@ -1,6 +1,6 @@
 # Rewrite Examples
 
-Worked before/after rewrites for each category of director's commentary the [no-directors-commentary](../SKILL.md) skill strips.
+Before/after rewrites for each category in [SKILL.md](../SKILL.md).
 
 When you catch yourself writing narration instead of content, rewrite by answering:
 
