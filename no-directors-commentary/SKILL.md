@@ -15,7 +15,7 @@ AI coding agents leak a predictable set of narration patterns into the code and 
 - Generic placeholder TODOs (`// TODO: Add error handling`)
 - Meta-framing in PR descriptions and commits (`"This PR adds..."`, `"This commit fixes..."`)
 - Chat-preamble leaking into delivered artifacts (`"Here's the implementation..."`, `"I've added..."`)
-- Reader-addressing in READMEs and long JSDoc (`"Let me walk you through..."`)
+- Tour-guide and chatty **marketing** or essay READMEs and long JSDoc (`"Let me walk you through..."`) — not the same as signposting in a runbook; see [Calibration by surface](#calibration-by-surface) under Step 1
 - Before/after comparison tables in PR bodies (`| Before | After |`)
 - Transition / migration narration (`"Ported from..."`, `"After the migration..."`)
 - Invented prior history when no predecessor actually existed
@@ -31,7 +31,7 @@ When invoked — either proactively while writing, or reactively while reviewing
 
 ### Step 1 — Identify the surface
 
-Which of these is the copy landing on? The bar is the same across all of them:
+Which of these is the copy landing on?
 
 - File-level JSDoc blocks
 - Inline code comments
@@ -43,11 +43,23 @@ Which of these is the copy landing on? The bar is the same across all of them:
 - Error messages
 - Test fixture comments
 
-Commit messages are a lower bar — a one-liner is enough. Bodies and long-form copy that read like research logs or transition diaries need the full pass; a terse subject line does not.
+### Calibration by surface
+
+The targets are the same (narration that **replaces** substance, template junk, meta handoffs), but **strictness** is not:
+
+| Stricter (cut hard)                          | Lighter (keep useful signposting)                                                                           |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `//` and JSDoc next to code                  | **Runbooks**, install how-tos, **procedural** READMEs                                                       |
+| PR / commit **bodies**                       | Numbered steps, “when to re-run,” “run the following” where it orients a cold reader                        |
+| API docs where the signature already says it | A line of **operational** context (prereq, effect of a flag) that isn’t restating the command line for line |
+
+A cold reader landing on a how-to **needs** steps and, often, a short _why_ or _when_ (e.g. re-generate when atoms change). That is not the same class as **process provenance** (“validated against our synthesis…”), **chat-preamble** (“here’s the implementation…”), or **line-for-line** English-ification of the next line of code. **Do not** greedily compress every “warm” sentence in a runbook — that’s out of scope and makes handoffs worse.
+
+Commit messages: a one-liner is enough. Long commit **bodies** and diary-style handoffs get the stricter pass.
 
 ### Step 2 — Scan for banned patterns
 
-If there's a diff, run the greps in [Pre-commit sweep](#pre-commit-sweep). If you're drafting from scratch, scan the prose against the [Banned patterns](#banned-patterns) categories. Every hit is a candidate for rewriting.
+If there's a diff, run the greps in [Pre-commit sweep](#pre-commit-sweep). If you're drafting from scratch, scan the prose against the [Banned patterns](#banned-patterns) categories. **Apply [Calibration by surface](#calibration-by-surface) before rewriting** — a grep hit in a runbook is often a false positive. Every remaining hit is a candidate for rewriting.
 
 ### Step 3 — Rewrite
 
@@ -85,9 +97,11 @@ The text announces its own existence, location, or role instead of delivering th
 
 Words whose only job is to tell the reader that the next sentence matters. If the sentence matters, say the sentence. If it doesn't, delete it.
 
-- `"Note that..."` / `"It's worth noting that..."` / `"It's important to note that..."`
+- `"Note that..."` / `"It's worth noting that..."` / `"It's important to note that..."` (discourse **hedging** in prose)
 - `"Importantly,"` / `"Crucially,"` / `"Significantly,"`
 - `"Obviously,"` / `"Clearly,"` / `"As you can see..."`
+
+**Runbooks and how-tos:** `Note:` as a **label** for a real constraint or prerequisite (`Note: re-run when atoms change`, `Note: dry-run first`) is not the same as hedging — keep the substance; only cut it if the line is empty throat-clearing.
 
 ### 3. Redundant restatement — the canonical AI code-slop pattern
 
@@ -300,6 +314,13 @@ Narrow and actionable — who unblocks, what changes, or which ticket.
 - `"Add a <feature> behind a <gate> when <condition> is met; see <TICKET>."`
 - `"When <dependency> ships, replace this fallback with a <better path> (blocked until then)."`
 
+### Runbooks, install docs, and procedural READMEs
+
+- Numbered steps, “run the following,” and a **one-line when/why** (when to re-run, what the command affects) so a cold reader can execute safely
+- Operational callouts that are **facts** (prereqs, flags, order-dependent steps) — not process stories about how the doc was written
+
+Still cut: chat-preamble (“here’s the implementation…”), **this PR** in a paste that should be a changelog, and **provenance** (“validated against three passes…”) where it vouches for the **doc** instead of instructing the reader.
+
 ### Bibliographies and third-party source lists
 
 - Outward link lists (aislop, cc-polymath, Wikipedia, papers, public vendor agent-skills docs)
@@ -315,6 +336,7 @@ Third-party vocabulary is fine even when it echoes banned words:
 - `"legacy token"` if the platform's docs call it that
 - `"migration"` as a database term (schema migration, DB migration) — not "migration" meaning "our codebase transition"
 - `"note"` as a product noun (Notes app) — not as framing ("Note that...")
+- A runbook line starting with `Note:` when it states a **constraint** — that is a label, not the `"Note that..."` hedge in §2
 
 ## Pre-commit sweep
 
