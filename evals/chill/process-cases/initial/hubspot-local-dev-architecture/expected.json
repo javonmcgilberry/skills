@@ -1,0 +1,66 @@
+{
+  "case_id": "hubspot-local-dev-architecture",
+  "research_relevant_source_ids": [
+    "DEV-ARCH-2026",
+    "OAUTH-BOUNDARY-2026",
+    "TEAM-LOOP-2026",
+    "SECURITY-REVIEW-2026",
+    "FULL-LOCAL-SETUP-2024",
+    "MIGRATION-TESTING-2026"
+  ],
+  "preferred_citation_source_ids": [
+    "DEV-ARCH-2026",
+    "OAUTH-BOUNDARY-2026",
+    "TEAM-LOOP-2026",
+    "SECURITY-REVIEW-2026"
+  ],
+  "critical_facts": [
+    {
+      "id": "HUB-001",
+      "checks": [
+        ["local(?:ly)?[^.]{0,80}Vite|Vite[^.]{0,80}local"],
+        ["hosted[^.]{0,100}(?:API|backend)|(?:API|backend)[^.]{0,120}(?:hosted|wfdev\\.io)|(?:API|backend)[^.]{0,80}wfdev\\.io"]
+      ]
+    },
+    {
+      "id": "HUB-002",
+      "checks": [
+        ["(?:hosted|wfdev\\.io)[\\s\\S]{0,180}(?:database|OAuth)|(?:database|OAuth)[\\s\\S]{0,180}(?:hosted|wfdev\\.io)"],
+        ["(?:no|neither|does not|doesn't|doesn’t|do not|don't|don’t|not)[^.]{0,100}(?:tunnel|local database|local backend)|tunnel[^.]{0,100}(?:only|unless|when)"]
+      ]
+    },
+    {
+      "id": "HUB-003",
+      "checks": [
+        ["(?:secret|token exchange|provider credentials)[^.]{0,140}(?:hosted|server|wfdev\\.io|stay out|remain)|(?:hosted|server|wfdev\\.io)[^.]{0,140}(?:secret|token exchange|provider credentials)|(?:secret|token|credentials)[^.]{0,100}(?:Vite|browser)[^.]{0,80}(?:never|not|stay out)|(?:never|not|stay out)[^.]{0,100}(?:secret|token|credentials)[^.]{0,100}(?:Vite|browser)"]
+      ]
+    },
+    {
+      "id": "HUB-004",
+      "checks": [
+        ["(?:server behavior|API contract|database migration|schema|OAuth callback|authentication behavior|persistence)[^.]{0,160}(?:local|broader|different|separate|full)|(?:local|broader|different|separate|full)[^.]{0,160}(?:server behavior|API contract|database migration|schema|OAuth callback|authentication behavior|persistence)"]
+      ]
+    }
+  ],
+  "limitation_checks": [
+    ["(?:frontend-only|ordinary|UI-only|day-to-day)"],
+    ["(?:server|database|OAuth|callback)[^.]{0,100}(?:change|changes|changing)"]
+  ],
+  "decision_checks": [
+    ["(?:recommend|supported|default|day-to-day)[^.]{0,120}(?:local|Vite)"]
+  ],
+  "forbidden_claims": [
+    {
+      "id": "HUB-BAD-001",
+      "pattern": "(?:always|default|ordinary)[^.]{0,100}(?:local database|local Postgres|database container)"
+    },
+    {
+      "id": "HUB-BAD-002",
+      "pattern": "(?:recommend|should|must)[^.]{0,80}(?:put|store|place)[^.]{0,80}(?:client secret|refresh token)[^.]{0,80}(?:Vite|browser|client)"
+    },
+    {
+      "id": "HUB-BAD-003",
+      "pattern": "(?:always|required|must)[^.]{0,60}tunnel"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "case_id": "agent-observability-build-buy",
+  "research_relevant_source_ids": [
+    "AX-LIFECYCLE-2026",
+    "CAUSAL-EVIDENCE-2026",
+    "EXISTING-TOOLS-2026",
+    "OUTCOME-SIGNALS-2026",
+    "LICENSE-REVIEW-2026",
+    "BUILD-EVERYTHING-2024"
+  ],
+  "preferred_citation_source_ids": [
+    "AX-LIFECYCLE-2026",
+    "CAUSAL-EVIDENCE-2026",
+    "EXISTING-TOOLS-2026",
+    "OUTCOME-SIGNALS-2026",
+    "LICENSE-REVIEW-2026"
+  ],
+  "critical_facts": [
+    {
+      "id": "OBS-001",
+      "checks": [
+        ["(?:build|differentiat)[\\s\\S]{0,220}(?:intervention|lifecycle|decision loop|control plane)"],
+        ["(?:reuse|integrate)[\\s\\S]{0,500}(?:transcript|search|replay|memory|tracing)"]
+      ]
+    },
+    {
+      "id": "OBS-002",
+      "checks": [
+        ["(?:exact|approved|version)[^.]{0,120}(?:before|available|exposure)"],
+        ["(?:compare|comparison|control|unexposed|alternative group)[^.]{0,120}(?:outcome|session|group)"]
+      ]
+    },
+    {
+      "id": "OBS-003",
+      "checks": [
+        ["(?:search hits|search matches|similar sessions|temporal links|correlation|before-and-after)[\\s\\S]{0,220}(?:correlation|not|only|do not|don't|does not|doesn't|isn't enough|aren't enough)"]
+      ]
+    },
+    {
+      "id": "OBS-004",
+      "checks": [
+        ["AGPL"],
+        ["legal (?:review|approval|approves)|legal[^.]{0,80}approve"]
+      ]
+    }
+  ],
+  "limitation_checks": [
+    ["(?:confound|correlation|does not prove|doesn't prove|not prove)"],
+    ["(?:no single|alone)[^.]{0,80}(?:signal|outcome|metric)|(?:signal|metric)[^.]{0,80}(?:alone|not prove)"]
+  ],
+  "decision_checks": [
+    ["(?:recommend|should|build)[^.]{0,160}(?:lifecycle|intervention|decision loop)"]
+  ],
+  "forbidden_claims": [
+    {
+      "id": "OBS-BAD-001",
+      "pattern": "(?:search hits|similar sessions|temporal links)[^.]{0,100}(?:prove|demonstrate|establish)[^.]{0,60}(?:improvement|caus)"
+    },
+    {
+      "id": "OBS-BAD-002",
+      "pattern": "(?:build|rebuild)[^.]{0,180}(?:transcript storage|search|replay|memory|tracing|cost tracking)[^.]{0,120}(?:all|from scratch|new platform)"
+    },
+    {
+      "id": "OBS-BAD-003",
+      "pattern": "(?:recommend|should|can)[^.]{0,80}(?:copy|operate|deploy)[^.]{0,100}Ax[^.]{0,100}(?:without|no need for)[^.]{0,60}legal"
+    }
+  ]
+}

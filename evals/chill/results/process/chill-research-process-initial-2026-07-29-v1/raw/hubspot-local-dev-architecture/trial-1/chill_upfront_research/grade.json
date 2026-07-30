@@ -1,0 +1,107 @@
+{
+  "case_id": "hubspot-local-dev-architecture",
+  "trial": 1,
+  "arm": "chill_upfront_research",
+  "communication": {
+    "word_count": 233
+  },
+  "research_quality": {
+    "total_score": 95,
+    "fact_score": 40,
+    "citation_recall_score": 15,
+    "citation_precision_score": 10,
+    "contradiction_score": 20,
+    "limitation_score": 10,
+    "decision_score": 0,
+    "fact_results": [
+      {
+        "id": "HUB-001",
+        "passed": true
+      },
+      {
+        "id": "HUB-002",
+        "passed": true
+      },
+      {
+        "id": "HUB-003",
+        "passed": true
+      },
+      {
+        "id": "HUB-004",
+        "passed": true
+      }
+    ],
+    "limitation_results": [
+      {
+        "id": "LIMIT-1",
+        "passed": true
+      },
+      {
+        "id": "LIMIT-2",
+        "passed": true
+      }
+    ],
+    "decision_passed": false,
+    "missing_critical_facts": [],
+    "forbidden_claims": [],
+    "critical_failure_count": 0,
+    "cited_source_ids": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "OAUTH-BOUNDARY-2026",
+      "SECURITY-REVIEW-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "MIGRATION-TESTING-2026"
+    ],
+    "valid_cited_source_ids": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "OAUTH-BOUNDARY-2026",
+      "SECURITY-REVIEW-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "MIGRATION-TESTING-2026"
+    ]
+  },
+  "research_process": {
+    "tool_calls": 10,
+    "research_actions": 10,
+    "list_count": 1,
+    "search_count": 3,
+    "search_queries": [
+      "day-to-day development setup local hosted wfdev.io tunnel OAuth callbacks secrets database",
+      "broader local environment condition database migration integration testing",
+      "stale full local setup guidance"
+    ],
+    "read_count": 6,
+    "unique_sources_opened": 6,
+    "source_open_order": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "OAUTH-BOUNDARY-2026",
+      "SECURITY-REVIEW-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024"
+    ],
+    "repeated_reads": 0,
+    "relevant_sources_opened": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "OAUTH-BOUNDARY-2026",
+      "SECURITY-REVIEW-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024"
+    ],
+    "distractor_sources_opened": [],
+    "relevant_source_recall": 1,
+    "distractor_rate": 0,
+    "interface_violations": []
+  },
+  "duration_ms": 27390,
+  "usage": {
+    "input_tokens": 81581,
+    "cached_input_tokens": 58624,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 999,
+    "reasoning_output_tokens": 165
+  }
+}

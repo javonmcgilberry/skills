@@ -1,0 +1,11 @@
+The smallest credible evaluation is a separate project with a small set of realistic, unseen prompts, a no-skill baseline, deterministic rule checks, and one blind human comparison. This can show whether the skill helps on the sampled cases, but it cannot establish broad reliability without more representative cases and repeated trials. [ANTHROPIC] [OPENAI]
+
+1. **Use a compact fixture set.** Create roughly 8 to 12 representative communication tasks, including straightforward requests and a few cases where the skill should remain inactive. Keep expected properties hidden from the runtime agent and grade the final response without requiring one exact wording or generation path. [VERCEL-DESIGN] [ANTHROPIC]
+
+2. **Run skill and no-skill variants.** Save each output and transcript, then compare the skill against the same model and prompt without the skill. This isolates whether the skill adds value rather than merely producing acceptable output. [SKILL-CREATOR] [VERCEL-DESIGN]
+
+3. **Separate deterministic checks from judgment.** Give stable IDs to concrete rules such as forbidden phrasing, required structure, length limits, or whether activation was appropriate. Score activation and rule compliance separately. Then use blind human review for qualities that exact checks cannot resolve, such as clarity, naturalness, tone, and preference between the skill and control outputs. [VERCEL-DESIGN] [VERCEL-EVAL] Model grading can assist with scale, but it should not be the only subjective judge because model judges can favor position and verbosity. [OPENAI]
+
+Keep the runtime skill lean. Prompts, hidden expectations, graders, control configuration, transcripts, outputs, scores, and review notes belong in a separate evaluation project. Production failures can later be added there as regression fixtures without expanding the skill itself. [VERCEL-EVAL]
+
+A small pilot supports a narrow decision: whether the skill appears useful enough to continue developing and which rules fail most often. It does not justify claims about reliability across domains, models, prompt styles, or repeated runs; those require broader representative coverage, isolated execution, and repeated trials. [ANTHROPIC] [OPENAI]

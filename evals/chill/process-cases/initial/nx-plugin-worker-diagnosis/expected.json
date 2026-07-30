@@ -1,0 +1,68 @@
+{
+  "case_id": "nx-plugin-worker-diagnosis",
+  "research_relevant_source_ids": [
+    "FAILURE-TRACE-2026",
+    "NX-RUNBOOK-2026",
+    "WORKTREE-DEPS-2026",
+    "NODE-POLICY-2026",
+    "MAIN-CHECKOUT-PASS-2026",
+    "REINSTALL-GUIDE-2023",
+    "JEST-FAILURE-CATALOG-2026"
+  ],
+  "preferred_citation_source_ids": [
+    "FAILURE-TRACE-2026",
+    "NX-RUNBOOK-2026",
+    "WORKTREE-DEPS-2026",
+    "NODE-POLICY-2026",
+    "MAIN-CHECKOUT-PASS-2026"
+  ],
+  "critical_facts": [
+    {
+      "id": "NX-001",
+      "checks": [
+        ["(?:Jest|tests?|test runner)[^.]{0,100}(?:did not|didn't|never|before|not start)|(?:before|without)[^.]{0,80}(?:Jest|tests?)"]
+      ]
+    },
+    {
+      "id": "NX-002",
+      "checks": [
+        ["nx reset"],
+        ["(?:retry|rerun)[^.]{0,100}(?:same|exact|focused|unchanged)|(?:same|exact|focused)[^.]{0,100}(?:retry|rerun)"]
+      ]
+    },
+    {
+      "id": "NX-003",
+      "checks": [
+        ["node_modules[^.]{0,100}(?:link|symlink)|(?:link|symlink)[^.]{0,100}node_modules"],
+        ["Node 22|pinned Node"]
+      ]
+    },
+    {
+      "id": "NX-004",
+      "checks": [
+        ["(?:sandbox|restriction)[^.]{0,120}(?:approval|outside|escalat)|(?:approval|escalat)[^.]{0,120}(?:sandbox|restriction)"]
+      ]
+    }
+  ],
+  "limitation_checks": [
+    ["(?:does not|doesn't|cannot|can't)[^.]{0,100}(?:prove|show)[^.]{0,100}(?:code|tests?|package)"],
+    ["main checkout[^.]{0,140}(?:does not|doesn't|not prove|confidence)"]
+  ],
+  "decision_checks": [
+    ["(?:environment|infrastructure|worktree)[^.]{0,100}(?:failure|problem|issue)"]
+  ],
+  "forbidden_claims": [
+    {
+      "id": "NX-BAD-001",
+      "pattern": "(?:result|output|error)[^.]{0,50}(?:proves|shows|means)[^.]{0,80}(?:product|package|unit) (?:code|tests?)[^.]{0,60}(?:failed|broken)"
+    },
+    {
+      "id": "NX-BAD-002",
+      "pattern": "(?:recommend|should|first|start by)[^.]{0,80}(?:delete|remove)[^.]{0,80}(?:lockfile|node_modules)"
+    },
+    {
+      "id": "NX-BAD-003",
+      "pattern": "(?:run|use)[^.]{0,80}(?:full repository|repo-wide|all tests)[^.]{0,80}(?:instead|first)"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "chill-research-timing-eval",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-fixtures.mjs",
+    "plan": "node scripts/plan-pilot.mjs",
+    "pilot": "node scripts/run-pilot.mjs",
+    "summarize": "node scripts/summarize-results.mjs",
+    "process:validate": "node scripts/validate-process-eval.mjs",
+    "process:run": "node scripts/run-process-eval.mjs",
+    "process:grade": "node scripts/grade-process-eval.mjs",
+    "test": "node --test"
+  }
+}

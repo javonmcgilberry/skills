@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "arms": [
+    "normal",
+    "chill_upfront",
+    "chill_afterward"
+  ],
+  "cases": [
+    "cases/research/skill-evaluation-practices.json",
+    "cases/research/agent-observability-decision.json",
+    "cases/planning/shared-styling-contract.json"
+  ]
+}

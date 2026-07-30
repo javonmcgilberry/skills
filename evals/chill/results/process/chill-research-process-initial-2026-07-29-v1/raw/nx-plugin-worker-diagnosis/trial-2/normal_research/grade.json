@@ -1,0 +1,105 @@
+{
+  "case_id": "nx-plugin-worker-diagnosis",
+  "trial": 2,
+  "arm": "normal_research",
+  "communication": {
+    "word_count": 241
+  },
+  "research_quality": {
+    "total_score": 100,
+    "fact_score": 40,
+    "citation_recall_score": 15,
+    "citation_precision_score": 10,
+    "contradiction_score": 20,
+    "limitation_score": 10,
+    "decision_score": 5,
+    "fact_results": [
+      {
+        "id": "NX-001",
+        "passed": true
+      },
+      {
+        "id": "NX-002",
+        "passed": true
+      },
+      {
+        "id": "NX-003",
+        "passed": true
+      },
+      {
+        "id": "NX-004",
+        "passed": true
+      }
+    ],
+    "limitation_results": [
+      {
+        "id": "LIMIT-1",
+        "passed": true
+      },
+      {
+        "id": "LIMIT-2",
+        "passed": true
+      }
+    ],
+    "decision_passed": true,
+    "missing_critical_facts": [],
+    "forbidden_claims": [],
+    "critical_failure_count": 0,
+    "cited_source_ids": [
+      "FAILURE-TRACE-2026",
+      "NODE-POLICY-2026",
+      "WORKTREE-DEPS-2026",
+      "NX-RUNBOOK-2026",
+      "MAIN-CHECKOUT-PASS-2026",
+      "REINSTALL-GUIDE-2023"
+    ],
+    "valid_cited_source_ids": [
+      "FAILURE-TRACE-2026",
+      "NODE-POLICY-2026",
+      "WORKTREE-DEPS-2026",
+      "NX-RUNBOOK-2026",
+      "MAIN-CHECKOUT-PASS-2026",
+      "REINSTALL-GUIDE-2023"
+    ]
+  },
+  "research_process": {
+    "tool_calls": 8,
+    "research_actions": 8,
+    "list_count": 1,
+    "search_count": 1,
+    "search_queries": [
+      "plugin worker environment worktree node_modules Node version sandbox reset exact command"
+    ],
+    "read_count": 6,
+    "unique_sources_opened": 6,
+    "source_open_order": [
+      "FAILURE-TRACE-2026",
+      "WORKTREE-DEPS-2026",
+      "NX-RUNBOOK-2026",
+      "MAIN-CHECKOUT-PASS-2026",
+      "NODE-POLICY-2026",
+      "REINSTALL-GUIDE-2023"
+    ],
+    "repeated_reads": 0,
+    "relevant_sources_opened": [
+      "FAILURE-TRACE-2026",
+      "WORKTREE-DEPS-2026",
+      "NX-RUNBOOK-2026",
+      "MAIN-CHECKOUT-PASS-2026",
+      "NODE-POLICY-2026",
+      "REINSTALL-GUIDE-2023"
+    ],
+    "distractor_sources_opened": [],
+    "relevant_source_recall": 0.857,
+    "distractor_rate": 0,
+    "interface_violations": []
+  },
+  "duration_ms": 64393,
+  "usage": {
+    "input_tokens": 190726,
+    "cached_input_tokens": 142592,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1599,
+    "reasoning_output_tokens": 434
+  }
+}

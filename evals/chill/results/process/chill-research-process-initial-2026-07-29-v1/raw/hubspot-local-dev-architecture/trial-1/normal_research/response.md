@@ -1,0 +1,7 @@
+Run only the Vite client locally with `pnpm dev`, configured to call the development API on `wfdev.io`. Keep the API, database, OAuth exchange, callback handling, and provider credentials hosted because that is the current supported daily workflow [DEV-ARCH-2026] [TEAM-LOOP-2026].
+
+OAuth should begin through the hosted API and return to the registered HTTPS callback on `wfdev.io`. Client secrets, refresh tokens, and database credentials must remain server side and must never appear in Vite variables or browser code [OAUTH-BOUNDARY-2026] [SECURITY-REVIEW-2026].
+
+No tunnel or local database is required for ordinary UI work. The 2024 full local guide predates the shared hosted backend, so its local API, Postgres, callback, and tunnel setup is historical rather than current guidance [FULL-LOCAL-SETUP-2024].
+
+Use a broader isolated environment only when changing API contracts, authentication or server behavior, persistence, migrations, or the callback handler itself [DEV-ARCH-2026] [TEAM-LOOP-2026]. Schema work needs an isolated database for forward and rollback migration testing [MIGRATION-TESTING-2026], while a tunnel is justified specifically when a modified local callback handler must receive provider traffic [OAUTH-BOUNDARY-2026].

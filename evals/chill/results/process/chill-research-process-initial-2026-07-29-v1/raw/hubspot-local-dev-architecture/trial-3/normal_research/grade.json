@@ -1,0 +1,108 @@
+{
+  "case_id": "hubspot-local-dev-architecture",
+  "trial": 3,
+  "arm": "normal_research",
+  "communication": {
+    "word_count": 182
+  },
+  "research_quality": {
+    "total_score": 93.571,
+    "fact_score": 40,
+    "citation_recall_score": 15,
+    "citation_precision_score": 8.571,
+    "contradiction_score": 20,
+    "limitation_score": 10,
+    "decision_score": 0,
+    "fact_results": [
+      {
+        "id": "HUB-001",
+        "passed": true
+      },
+      {
+        "id": "HUB-002",
+        "passed": true
+      },
+      {
+        "id": "HUB-003",
+        "passed": true
+      },
+      {
+        "id": "HUB-004",
+        "passed": true
+      }
+    ],
+    "limitation_results": [
+      {
+        "id": "LIMIT-1",
+        "passed": true
+      },
+      {
+        "id": "LIMIT-2",
+        "passed": true
+      }
+    ],
+    "decision_passed": false,
+    "missing_critical_facts": [],
+    "forbidden_claims": [],
+    "critical_failure_count": 0,
+    "cited_source_ids": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "SECURITY-REVIEW-2026",
+      "OAUTH-BOUNDARY-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "PRODUCTION-DEPLOY-2026"
+    ],
+    "valid_cited_source_ids": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "SECURITY-REVIEW-2026",
+      "OAUTH-BOUNDARY-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "PRODUCTION-DEPLOY-2026"
+    ]
+  },
+  "research_process": {
+    "tool_calls": 8,
+    "research_actions": 8,
+    "list_count": 1,
+    "search_count": 0,
+    "search_queries": [],
+    "read_count": 7,
+    "unique_sources_opened": 7,
+    "source_open_order": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "OAUTH-BOUNDARY-2026",
+      "SECURITY-REVIEW-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "PRODUCTION-DEPLOY-2026"
+    ],
+    "repeated_reads": 0,
+    "relevant_sources_opened": [
+      "DEV-ARCH-2026",
+      "TEAM-LOOP-2026",
+      "OAUTH-BOUNDARY-2026",
+      "SECURITY-REVIEW-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024"
+    ],
+    "distractor_sources_opened": [
+      "PRODUCTION-DEPLOY-2026"
+    ],
+    "relevant_source_recall": 1,
+    "distractor_rate": 0.143,
+    "interface_violations": []
+  },
+  "duration_ms": 48299,
+  "usage": {
+    "input_tokens": 183543,
+    "cached_input_tokens": 137472,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1285,
+    "reasoning_output_tokens": 180
+  }
+}

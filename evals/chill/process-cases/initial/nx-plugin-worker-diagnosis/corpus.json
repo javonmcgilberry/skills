@@ -1,0 +1,50 @@
+[
+  {
+    "id": "FAILURE-TRACE-2026",
+    "title": "Captured package-test failure",
+    "date": "2026-07-21",
+    "content": "The command exits during Nx initialization with Failed to start plugin worker. There is no Jest banner, no test-file path, no assertion output, and no TypeScript diagnostic. The trace therefore proves the test runner did not start; it does not show that the package tests or product code failed."
+  },
+  {
+    "id": "NX-RUNBOOK-2026",
+    "title": "Focused Nx recovery runbook",
+    "date": "2026-07-08",
+    "content": "For Failed to start plugin worker, first run npx nx reset and retry the exact focused command. Keep the test target and flags unchanged so the retry remains comparable. If sandbox restrictions still prevent worker startup, rerun the same focused command with the required approval outside that restriction. Do not widen to a repository-wide test as a substitute."
+  },
+  {
+    "id": "WORKTREE-DEPS-2026",
+    "title": "Dependency setup in worktrees",
+    "date": "2026-06-29",
+    "content": "A worktree that lacks node_modules should link to the main checkout node_modules before invoking repository scripts. NODE_PATH can help resolution, but the symlink matters because scripts call binaries under the worktree node_modules path. If the branch changes the lockfile or dependencies, the shared install may be stale and must be treated as an environment risk."
+  },
+  {
+    "id": "NODE-POLICY-2026",
+    "title": "Supported Node runtime for repository checks",
+    "date": "2026-05-17",
+    "content": "Use the repository-pinned Node 22 runtime for Nx, Jest, and TypeScript checks. Failures during plugin initialization under a newer unsupported Node version are environment evidence, not product-test evidence. Record the active version before changing code."
+  },
+  {
+    "id": "MAIN-CHECKOUT-PASS-2026",
+    "title": "Comparison run in the main checkout",
+    "date": "2026-07-21",
+    "content": "The same focused test target completed in the main checkout with 14 tests passing. This comparison increases confidence that the worktree environment is the immediate problem, but it does not by itself prove that every worktree dependency and configuration matches the main checkout."
+  },
+  {
+    "id": "REINSTALL-GUIDE-2023",
+    "title": "Archived clean-install troubleshooting",
+    "date": "2023-09-02",
+    "content": "This archived generic guide suggests deleting node_modules and the lockfile before reinstalling every dependency. It predates Nx plugin workers and worktree dependency sharing. Repository maintainers no longer use it as the first response to plugin startup failures."
+  },
+  {
+    "id": "JEST-FAILURE-CATALOG-2026",
+    "title": "Common Jest assertion failures",
+    "date": "2026-04-04",
+    "content": "Jest assertion failures include the failing test name, expected and received values, and a stack trace. None of those signals appears when Nx fails before starting its plugin worker."
+  },
+  {
+    "id": "DESIGNER-UI-INCIDENT-2026",
+    "title": "Designer panel rendering incident",
+    "date": "2026-07-10",
+    "content": "A stale browser client caused a Designer panel to render old controls after deployment. The incident was unrelated to Nx workers, worktree dependencies, Node versions, or package tests."
+  }
+]

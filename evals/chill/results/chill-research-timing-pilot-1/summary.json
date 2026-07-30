@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "run_id": "chill-research-timing-pilot-1",
+  "model_calls": 9,
+  "generated_at": "2026-07-29T20:21:59.887Z",
+  "cases": {
+    "skill-evaluation-practices": {
+      "arms": {
+        "normal": {
+          "word_count": 312,
+          "citations": {
+            "[VERCEL-DESIGN]": true,
+            "[VERCEL-EVAL]": true,
+            "[ANTHROPIC]": true,
+            "[OPENAI]": true,
+            "[SKILL-CREATOR]": true
+          }
+        },
+        "chill_upfront": {
+          "word_count": 427,
+          "citations": {
+            "[VERCEL-DESIGN]": true,
+            "[VERCEL-EVAL]": true,
+            "[ANTHROPIC]": true,
+            "[OPENAI]": true,
+            "[SKILL-CREATOR]": true
+          }
+        },
+        "chill_afterward": {
+          "word_count": 346,
+          "citations": {
+            "[VERCEL-DESIGN]": true,
+            "[VERCEL-EVAL]": true,
+            "[ANTHROPIC]": true,
+            "[OPENAI]": true,
+            "[SKILL-CREATOR]": true
+          }
+        }
+      },
+      "afterward_citation_retention": {
+        "present_in_normal": [
+          "[VERCEL-DESIGN]",
+          "[VERCEL-EVAL]",
+          "[ANTHROPIC]",
+          "[OPENAI]",
+          "[SKILL-CREATOR]"
+        ],
+        "retained_count": 5,
+        "dropped": [],
+        "retention_rate": 1
+      }
+    },
+    "agent-observability-decision": {
+      "arms": {
+        "normal": {
+          "word_count": 231,
+          "citations": {
+            "[AX-LIFECYCLE]": true,
+            "[CAUSALITY]": true,
+            "[OUTCOMES]": true,
+            "[REUSE]": true,
+            "[LICENSE]": true
+          }
+        },
+        "chill_upfront": {
+          "word_count": 214,
+          "citations": {
+            "[AX-LIFECYCLE]": true,
+            "[CAUSALITY]": true,
+            "[OUTCOMES]": true,
+            "[REUSE]": true,
+            "[LICENSE]": true
+          }
+        },
+        "chill_afterward": {
+          "word_count": 266,
+          "citations": {
+            "[AX-LIFECYCLE]": true,
+            "[CAUSALITY]": true,
+            "[OUTCOMES]": true,
+            "[REUSE]": true,
+            "[LICENSE]": true
+          }
+        }
+      },
+      "afterward_citation_retention": {
+        "present_in_normal": [
+          "[AX-LIFECYCLE]",
+          "[CAUSALITY]",
+          "[OUTCOMES]",
+          "[REUSE]",
+          "[LICENSE]"
+        ],
+        "retained_count": 5,
+        "dropped": [],
+        "retention_rate": 1
+      }
+    },
+    "shared-styling-contract": {
+      "arms": {
+        "normal": {
+          "word_count": 244,
+          "citations": {
+            "[BASE]": true,
+            "[OPTIONAL]": true,
+            "[STRUCTURE]": true,
+            "[COMPATIBILITY]": true,
+            "[ROLLOUT]": true
+          }
+        },
+        "chill_upfront": {
+          "word_count": 228,
+          "citations": {
+            "[BASE]": true,
+            "[OPTIONAL]": true,
+            "[STRUCTURE]": true,
+            "[COMPATIBILITY]": true,
+            "[ROLLOUT]": true
+          }
+        },
+        "chill_afterward": {
+          "word_count": 240,
+          "citations": {
+            "[BASE]": true,
+            "[OPTIONAL]": true,
+            "[STRUCTURE]": true,
+            "[COMPATIBILITY]": true,
+            "[ROLLOUT]": true
+          }
+        }
+      },
+      "afterward_citation_retention": {
+        "present_in_normal": [
+          "[BASE]",
+          "[OPTIONAL]",
+          "[STRUCTURE]",
+          "[COMPATIBILITY]",
+          "[ROLLOUT]"
+        ],
+        "retained_count": 5,
+        "dropped": [],
+        "retention_rate": 1
+      }
+    }
+  }
+}

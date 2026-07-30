@@ -1,0 +1,50 @@
+[
+  {
+    "id": "OUTCOME-SIGNALS-2026",
+    "title": "Outcome signals for later agent sessions",
+    "date": "2026-07-15",
+    "content": "Useful outcome signals include tests and CI, user corrections, retries, completion time, monetary cost, and later edits or reversions. No single signal proves success. The evaluation should preserve the intervention version, exposure, comparison group, and relevant context."
+  },
+  {
+    "id": "MEMORY-BENCHMARK-2026",
+    "title": "Long-context memory benchmark",
+    "date": "2026-05-25",
+    "content": "The benchmark compares retrieval accuracy across memory stores on synthetic question answering. It does not track approved interventions, exposure, real task outcomes, or licensing."
+  },
+  {
+    "id": "DASHBOARD-STYLE-2026",
+    "title": "Observability dashboard visual guidelines",
+    "date": "2026-06-11",
+    "content": "The dashboard uses a neutral palette, compact tables, and accessible status colors. These visual rules do not determine the observability architecture or evidence model."
+  },
+  {
+    "id": "EXISTING-TOOLS-2026",
+    "title": "Capabilities already available in the toolchain",
+    "date": "2026-07-07",
+    "content": "Existing products already provide transcript capture, search, replay, source tracking, memory, tracing, experiment assignment, and cost accounting. The team can integrate these systems. Rebuilding them would duplicate commodity infrastructure without creating the intervention-to-outcome decision loop."
+  },
+  {
+    "id": "BUILD-EVERYTHING-2024",
+    "title": "Early all-in-one observability proposal",
+    "date": "2024-02-20",
+    "content": "This superseded proposal recommends building transcript storage, search, replay, memory, tracing, experiments, cost tracking, and intervention management in one new platform. It predates the current tool inventory and contains no build-versus-buy analysis."
+  },
+  {
+    "id": "LICENSE-REVIEW-2026",
+    "title": "Licensing review for candidate projects",
+    "date": "2026-07-13",
+    "content": "Ax is licensed under AGPL. Two other reviewed projects add unusual reuse restrictions. Legal review is required before copying code or operating affected code as a network service. Architectural ideas and compatible integrations may still be used, but implementation decisions must respect the licenses."
+  },
+  {
+    "id": "CAUSAL-EVIDENCE-2026",
+    "title": "Evidence requirements for intervention claims",
+    "date": "2026-07-16",
+    "content": "Search hits, similar sessions, and temporal links are useful for discovery but establish correlation only. Before claiming improvement, prove the exact intervention was available before the relevant decision, identify which eligible sessions were exposed, and compare outcomes against an appropriate unexposed or alternative group while addressing plausible confounders."
+  },
+  {
+    "id": "AX-LIFECYCLE-2026",
+    "title": "Ax intervention lifecycle review",
+    "date": "2026-07-12",
+    "content": "Ax's differentiated idea is a versioned intervention lifecycle: connect session evidence to a suggested change, human approval, the exact approved version, later eligible sessions, actual exposure, measured outcomes, and a keep, revise, or rollback decision. This closes the loop between observing a problem and evaluating a specific intervention."
+  }
+]

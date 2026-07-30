@@ -1,0 +1,40 @@
+{
+  "id": "shared-styling-contract",
+  "kind": "planning",
+  "origin": "Sanitized from the earlier shared styling contract fixture.",
+  "task": "Using only the constraints below, propose a small implementation plan for a shared styling contract. Decide what belongs in the base contract, what remains optional, and how adoption should be sequenced. Cite decisions with the exact constraint markers.\n\nConstraints:\n- [BASE] Every consumer needs spacing, typography, foreground color, background color, and disabled-state styling.\n- [OPTIONAL] Borders and shadows are supported by only some consumers and must remain optional.\n- [STRUCTURE] The shared contract should describe style data, not component structure or rendering behavior.\n- [COMPATIBILITY] Existing consumers already have different local shapes. The migration may use explicit adapters at each boundary, but the shared contract must not absorb legacy aliases.\n- [ROLLOUT] The team wants one representative consumer migrated first, followed by focused validation, then the remaining consumers.\n\nKeep the plan concrete. Include the contract boundary, migration order, and validation criteria.",
+  "expected_facts": [
+    {
+      "id": "PLAN-001",
+      "critical": true,
+      "description": "Put the five universally required style categories in the base contract."
+    },
+    {
+      "id": "PLAN-002",
+      "critical": true,
+      "description": "Keep borders and shadows optional."
+    },
+    {
+      "id": "PLAN-003",
+      "critical": true,
+      "description": "Keep component structure and rendering behavior outside the style contract."
+    },
+    {
+      "id": "PLAN-004",
+      "critical": true,
+      "description": "Use explicit adapters without adding legacy aliases to the shared contract."
+    },
+    {
+      "id": "PLAN-005",
+      "critical": false,
+      "description": "Migrate and validate one representative consumer before broader adoption."
+    }
+  ],
+  "citation_tokens": [
+    "[BASE]",
+    "[OPTIONAL]",
+    "[STRUCTURE]",
+    "[COMPATIBILITY]",
+    "[ROLLOUT]"
+  ]
+}

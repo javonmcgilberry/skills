@@ -1,0 +1,83 @@
+{
+  "status": "complete",
+  "duration_ms": 57320,
+  "usage": {
+    "input_tokens": 102884,
+    "cached_input_tokens": 78848,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1570,
+    "reasoning_output_tokens": 406
+  },
+  "research_activity": {
+    "commands": [
+      "/bin/zsh -lc 'node research.mjs list'",
+      "/bin/zsh -lc 'node research.mjs read OUTCOME-SIGNALS-2026'",
+      "/bin/zsh -lc 'node research.mjs read EXISTING-TOOLS-2026'",
+      "/bin/zsh -lc 'node research.mjs read AX-LIFECYCLE-2026'",
+      "/bin/zsh -lc 'node research.mjs read LICENSE-REVIEW-2026'",
+      "/bin/zsh -lc 'node research.mjs read CAUSAL-EVIDENCE-2026'",
+      "/bin/zsh -lc 'node research.mjs search \"randomized experiment intervention exposure confounders later sessions\"'",
+      "/bin/zsh -lc 'node research.mjs search \"licensing AGPL network service integration clean room copy code restrictions\"'",
+      "/bin/zsh -lc 'node research.mjs search \"build reuse observability intervention decision loop transcript tracing replay cost\"'",
+      "/bin/zsh -lc 'node research.mjs search \"minimum data model intervention version approval eligibility exposure outcome rollback\"'",
+      "/bin/zsh -lc 'node research.mjs read BUILD-EVERYTHING-2024'",
+      "/bin/zsh -lc 'node research.mjs read MEMORY-BENCHMARK-2026'",
+      "/bin/zsh -lc 'node research.mjs read DASHBOARD-STYLE-2026'"
+    ],
+    "actions": [
+      {
+        "action": "list",
+        "value": ""
+      },
+      {
+        "action": "read",
+        "value": "OUTCOME-SIGNALS-2026"
+      },
+      {
+        "action": "read",
+        "value": "EXISTING-TOOLS-2026"
+      },
+      {
+        "action": "read",
+        "value": "AX-LIFECYCLE-2026"
+      },
+      {
+        "action": "read",
+        "value": "LICENSE-REVIEW-2026"
+      },
+      {
+        "action": "read",
+        "value": "CAUSAL-EVIDENCE-2026"
+      },
+      {
+        "action": "search",
+        "value": "randomized experiment intervention exposure confounders later sessions"
+      },
+      {
+        "action": "search",
+        "value": "licensing AGPL network service integration clean room copy code restrictions"
+      },
+      {
+        "action": "search",
+        "value": "build reuse observability intervention decision loop transcript tracing replay cost"
+      },
+      {
+        "action": "search",
+        "value": "minimum data model intervention version approval eligibility exposure outcome rollback"
+      },
+      {
+        "action": "read",
+        "value": "BUILD-EVERYTHING-2024"
+      },
+      {
+        "action": "read",
+        "value": "MEMORY-BENCHMARK-2026"
+      },
+      {
+        "action": "read",
+        "value": "DASHBOARD-STYLE-2026"
+      }
+    ],
+    "violations": []
+  }
+}

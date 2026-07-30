@@ -1,0 +1,113 @@
+{
+  "case_id": "agent-observability-build-buy",
+  "trial": 2,
+  "arm": "chill_upfront_research",
+  "communication": {
+    "word_count": 395
+  },
+  "research_quality": {
+    "total_score": 98.333,
+    "fact_score": 40,
+    "citation_recall_score": 15,
+    "citation_precision_score": 8.333,
+    "contradiction_score": 20,
+    "limitation_score": 10,
+    "decision_score": 5,
+    "fact_results": [
+      {
+        "id": "OBS-001",
+        "passed": true
+      },
+      {
+        "id": "OBS-002",
+        "passed": true
+      },
+      {
+        "id": "OBS-003",
+        "passed": true
+      },
+      {
+        "id": "OBS-004",
+        "passed": true
+      }
+    ],
+    "limitation_results": [
+      {
+        "id": "LIMIT-1",
+        "passed": true
+      },
+      {
+        "id": "LIMIT-2",
+        "passed": true
+      }
+    ],
+    "decision_passed": true,
+    "missing_critical_facts": [],
+    "forbidden_claims": [],
+    "critical_failure_count": 0,
+    "cited_source_ids": [
+      "EXISTING-TOOLS-2026",
+      "OUTCOME-SIGNALS-2026",
+      "CAUSAL-EVIDENCE-2026",
+      "AX-LIFECYCLE-2026",
+      "MEMORY-BENCHMARK-2026",
+      "LICENSE-REVIEW-2026"
+    ],
+    "valid_cited_source_ids": [
+      "EXISTING-TOOLS-2026",
+      "OUTCOME-SIGNALS-2026",
+      "CAUSAL-EVIDENCE-2026",
+      "AX-LIFECYCLE-2026",
+      "MEMORY-BENCHMARK-2026",
+      "LICENSE-REVIEW-2026"
+    ]
+  },
+  "research_process": {
+    "tool_calls": 13,
+    "research_actions": 13,
+    "list_count": 1,
+    "search_count": 4,
+    "search_queries": [
+      "agent observability approved interventions later agent work evidence reuse licensing",
+      "existing tools tracing evaluation dashboards capabilities",
+      "licensing constraints candidate projects",
+      "causal evidence intervention claims counterfactual"
+    ],
+    "read_count": 8,
+    "unique_sources_opened": 8,
+    "source_open_order": [
+      "CAUSAL-EVIDENCE-2026",
+      "OUTCOME-SIGNALS-2026",
+      "EXISTING-TOOLS-2026",
+      "LICENSE-REVIEW-2026",
+      "AX-LIFECYCLE-2026",
+      "MEMORY-BENCHMARK-2026",
+      "DASHBOARD-STYLE-2026",
+      "BUILD-EVERYTHING-2024"
+    ],
+    "repeated_reads": 0,
+    "relevant_sources_opened": [
+      "CAUSAL-EVIDENCE-2026",
+      "OUTCOME-SIGNALS-2026",
+      "EXISTING-TOOLS-2026",
+      "LICENSE-REVIEW-2026",
+      "AX-LIFECYCLE-2026",
+      "BUILD-EVERYTHING-2024"
+    ],
+    "distractor_sources_opened": [
+      "MEMORY-BENCHMARK-2026",
+      "DASHBOARD-STYLE-2026"
+    ],
+    "relevant_source_recall": 1,
+    "distractor_rate": 0.25,
+    "interface_violations": []
+  },
+  "duration_ms": 48595,
+  "usage": {
+    "input_tokens": 106111,
+    "cached_input_tokens": 60672,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1553,
+    "reasoning_output_tokens": 385
+  }
+}

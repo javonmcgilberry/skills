@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "run_id": "chill-research-process-initial-2026-07-29-v1",
+  "suite": "initial",
+  "status": "complete",
+  "started_at": "2026-07-29T20:39:44.296Z",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "timeout_ms": 300000,
+  "cases": [
+    "hubspot-local-dev-architecture",
+    "nx-plugin-worker-diagnosis",
+    "agent-observability-build-buy"
+  ],
+  "trials_per_case": 3,
+  "arms": [
+    "normal_research",
+    "chill_upfront_research"
+  ],
+  "pair_plan": [
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 1,
+      "arm_order": [
+        "normal_research",
+        "chill_upfront_research"
+      ],
+      "corpus_order": [
+        "FULL-LOCAL-SETUP-2024",
+        "DEV-ARCH-2026",
+        "SECURITY-REVIEW-2026",
+        "OAUTH-BOUNDARY-2026",
+        "MIGRATION-TESTING-2026",
+        "PRODUCTION-DEPLOY-2026",
+        "FIGMA-SYNC-2026",
+        "TEAM-LOOP-2026"
+      ]
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 2,
+      "arm_order": [
+        "chill_upfront_research",
+        "normal_research"
+      ],
+      "corpus_order": [
+        "DEV-ARCH-2026",
+        "TEAM-LOOP-2026",
+        "SECURITY-REVIEW-2026",
+        "MIGRATION-TESTING-2026",
+        "FULL-LOCAL-SETUP-2024",
+        "FIGMA-SYNC-2026",
+        "PRODUCTION-DEPLOY-2026",
+        "OAUTH-BOUNDARY-2026"
+      ]
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 3,
+      "arm_order": [
+        "chill_upfront_research",
+        "normal_research"
+      ],
+      "corpus_order": [
+        "TEAM-LOOP-2026",
+        "SECURITY-REVIEW-2026",
+        "PRODUCTION-DEPLOY-2026",
+        "DEV-ARCH-2026",
+        "OAUTH-BOUNDARY-2026",
+        "FIGMA-SYNC-2026",
+        "MIGRATION-TESTING-2026",
+        "FULL-LOCAL-SETUP-2024"
+      ]
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 1,
+      "arm_order": [
+        "normal_research",
+        "chill_upfront_research"
+      ],
+      "corpus_order": [
+        "JEST-FAILURE-CATALOG-2026",
+        "MAIN-CHECKOUT-PASS-2026",
+        "WORKTREE-DEPS-2026",
+        "NODE-POLICY-2026",
+        "REINSTALL-GUIDE-2023",
+        "NX-RUNBOOK-2026",
+        "DESIGNER-UI-INCIDENT-2026",
+        "FAILURE-TRACE-2026"
+      ]
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 2,
+      "arm_order": [
+        "chill_upfront_research",
+        "normal_research"
+      ],
+      "corpus_order": [
+        "WORKTREE-DEPS-2026",
+        "JEST-FAILURE-CATALOG-2026",
+        "NX-RUNBOOK-2026",
+        "MAIN-CHECKOUT-PASS-2026",
+        "FAILURE-TRACE-2026",
+        "NODE-POLICY-2026",
+        "REINSTALL-GUIDE-2023",
+        "DESIGNER-UI-INCIDENT-2026"
+      ]
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 3,
+      "arm_order": [
+        "normal_research",
+        "chill_upfront_research"
+      ],
+      "corpus_order": [
+        "REINSTALL-GUIDE-2023",
+        "JEST-FAILURE-CATALOG-2026",
+        "MAIN-CHECKOUT-PASS-2026",
+        "NX-RUNBOOK-2026",
+        "DESIGNER-UI-INCIDENT-2026",
+        "FAILURE-TRACE-2026",
+        "WORKTREE-DEPS-2026",
+        "NODE-POLICY-2026"
+      ]
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 1,
+      "arm_order": [
+        "normal_research",
+        "chill_upfront_research"
+      ],
+      "corpus_order": [
+        "OUTCOME-SIGNALS-2026",
+        "EXISTING-TOOLS-2026",
+        "DASHBOARD-STYLE-2026",
+        "AX-LIFECYCLE-2026",
+        "LICENSE-REVIEW-2026",
+        "CAUSAL-EVIDENCE-2026",
+        "MEMORY-BENCHMARK-2026",
+        "BUILD-EVERYTHING-2024"
+      ]
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 2,
+      "arm_order": [
+        "normal_research",
+        "chill_upfront_research"
+      ],
+      "corpus_order": [
+        "OUTCOME-SIGNALS-2026",
+        "MEMORY-BENCHMARK-2026",
+        "DASHBOARD-STYLE-2026",
+        "EXISTING-TOOLS-2026",
+        "BUILD-EVERYTHING-2024",
+        "LICENSE-REVIEW-2026",
+        "CAUSAL-EVIDENCE-2026",
+        "AX-LIFECYCLE-2026"
+      ]
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 3,
+      "arm_order": [
+        "chill_upfront_research",
+        "normal_research"
+      ],
+      "corpus_order": [
+        "CAUSAL-EVIDENCE-2026",
+        "OUTCOME-SIGNALS-2026",
+        "EXISTING-TOOLS-2026",
+        "DASHBOARD-STYLE-2026",
+        "LICENSE-REVIEW-2026",
+        "MEMORY-BENCHMARK-2026",
+        "BUILD-EVERYTHING-2024",
+        "AX-LIFECYCLE-2026"
+      ]
+    }
+  ],
+  "expected_model_calls": 18,
+  "attempted_model_calls": 18,
+  "completed_model_calls": 18,
+  "skill_sha256": "15cd2d7512628ac9560ec122b360dbba914ece6b6bd44e953ae1d9b912344436",
+  "runtime_skill_path": "../../skills/chill/SKILL.md",
+  "completed_at": "2026-07-29T20:54:22.982Z"
+}

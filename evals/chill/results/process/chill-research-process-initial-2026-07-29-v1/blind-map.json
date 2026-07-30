@@ -1,0 +1,110 @@
+[
+  {
+    "case_id": "hubspot-local-dev-architecture",
+    "trial": 1,
+    "label": "B",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "hubspot-local-dev-architecture",
+    "trial": 1,
+    "label": "A",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "hubspot-local-dev-architecture",
+    "trial": 2,
+    "label": "A",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "hubspot-local-dev-architecture",
+    "trial": 2,
+    "label": "B",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "hubspot-local-dev-architecture",
+    "trial": 3,
+    "label": "A",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "hubspot-local-dev-architecture",
+    "trial": 3,
+    "label": "B",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "nx-plugin-worker-diagnosis",
+    "trial": 1,
+    "label": "A",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "nx-plugin-worker-diagnosis",
+    "trial": 1,
+    "label": "B",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "nx-plugin-worker-diagnosis",
+    "trial": 2,
+    "label": "A",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "nx-plugin-worker-diagnosis",
+    "trial": 2,
+    "label": "B",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "nx-plugin-worker-diagnosis",
+    "trial": 3,
+    "label": "B",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "nx-plugin-worker-diagnosis",
+    "trial": 3,
+    "label": "A",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "agent-observability-build-buy",
+    "trial": 1,
+    "label": "A",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "agent-observability-build-buy",
+    "trial": 1,
+    "label": "B",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "agent-observability-build-buy",
+    "trial": 2,
+    "label": "B",
+    "arm": "chill_upfront_research"
+  },
+  {
+    "case_id": "agent-observability-build-buy",
+    "trial": 2,
+    "label": "A",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "agent-observability-build-buy",
+    "trial": 3,
+    "label": "A",
+    "arm": "normal_research"
+  },
+  {
+    "case_id": "agent-observability-build-buy",
+    "trial": 3,
+    "label": "B",
+    "arm": "chill_upfront_research"
+  }
+]

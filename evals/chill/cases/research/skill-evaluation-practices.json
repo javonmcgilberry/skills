@@ -1,0 +1,40 @@
+{
+  "id": "skill-evaluation-practices",
+  "kind": "research",
+  "origin": "Sanitized from the earlier Chill evaluation research conversation.",
+  "task": "Using only the source packet below, recommend the smallest credible way to evaluate a simple communication skill. Explain what Vercel's work contributes, separate deterministic checks from human judgment, say where evaluation artifacts belong, and state the limits of a small pilot. Cite claims with the exact source markers.\n\nSource packet:\n- [VERCEL-DESIGN] Vercel's product-design work uses unseen fixtures, hidden expected changes, no-skill controls, stable rule IDs, and separate scores for rule compliance and similarity to shipped work. It tests skill activation separately from compliance. Source: https://vercel.com/blog/teaching-agents-product-design-at-vercel\n- [VERCEL-EVAL] Vercel's eval-driven development combines executable checks, model grading, and human review, and turns production failures into future cases. Source: https://vercel.com/blog/eval-driven-development-build-better-ai-faster\n- [ANTHROPIC] Anthropic recommends realistic tasks, repeated trials when making reliability claims, isolated environments, and grading the result without requiring one exact path. Source: https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents\n- [OPENAI] OpenAI recommends representative cases and exact checks where possible, and warns that model judges can have position and verbosity biases. Source: https://developers.openai.com/api/docs/guides/evaluation-best-practices\n- [SKILL-CREATOR] Anthropic's skill-creator compares a skill with a no-skill baseline, saves outputs and transcripts, checks concrete expectations, and supports blind comparison. Source: https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md\n\nKeep the recommendation proportionate to a simple skill. The runtime skill should remain lean; fixtures, graders, and results should live in a separate evaluation project.",
+  "expected_facts": [
+    {
+      "id": "EVAL-001",
+      "critical": true,
+      "description": "Test outputs on the same realistic tasks with and without the skill."
+    },
+    {
+      "id": "EVAL-002",
+      "critical": true,
+      "description": "Use deterministic checks for exact requirements and human review for contextual quality."
+    },
+    {
+      "id": "EVAL-003",
+      "critical": true,
+      "description": "Keep the runtime skill lean and store evaluation artifacts separately."
+    },
+    {
+      "id": "EVAL-004",
+      "critical": false,
+      "description": "Treat a small pilot as directional and avoid broad reliability claims."
+    },
+    {
+      "id": "EVAL-005",
+      "critical": false,
+      "description": "Explain Vercel's use of hidden fixtures, stable rule IDs, controls, and separate activation and compliance testing."
+    }
+  ],
+  "citation_tokens": [
+    "[VERCEL-DESIGN]",
+    "[VERCEL-EVAL]",
+    "[ANTHROPIC]",
+    "[OPENAI]",
+    "[SKILL-CREATOR]"
+  ]
+}

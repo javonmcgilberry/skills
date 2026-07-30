@@ -1,0 +1,53 @@
+{
+  "status": "complete",
+  "duration_ms": 40299,
+  "usage": {
+    "input_tokens": 161970,
+    "cached_input_tokens": 137472,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1372,
+    "reasoning_output_tokens": 308
+  },
+  "research_activity": {
+    "commands": [
+      "/bin/zsh -lc 'node research.mjs list'",
+      "/bin/zsh -lc 'node research.mjs read FAILURE-TRACE-2026'",
+      "/bin/zsh -lc 'node research.mjs read MAIN-CHECKOUT-PASS-2026'",
+      "/bin/zsh -lc 'node research.mjs read WORKTREE-DEPS-2026'",
+      "/bin/zsh -lc 'node research.mjs read NODE-POLICY-2026'",
+      "/bin/zsh -lc 'node research.mjs read NX-RUNBOOK-2026'",
+      "/bin/zsh -lc 'node research.mjs read REINSTALL-GUIDE-2023'"
+    ],
+    "actions": [
+      {
+        "action": "list",
+        "value": ""
+      },
+      {
+        "action": "read",
+        "value": "FAILURE-TRACE-2026"
+      },
+      {
+        "action": "read",
+        "value": "MAIN-CHECKOUT-PASS-2026"
+      },
+      {
+        "action": "read",
+        "value": "WORKTREE-DEPS-2026"
+      },
+      {
+        "action": "read",
+        "value": "NODE-POLICY-2026"
+      },
+      {
+        "action": "read",
+        "value": "NX-RUNBOOK-2026"
+      },
+      {
+        "action": "read",
+        "value": "REINSTALL-GUIDE-2023"
+      }
+    ],
+    "violations": []
+  }
+}

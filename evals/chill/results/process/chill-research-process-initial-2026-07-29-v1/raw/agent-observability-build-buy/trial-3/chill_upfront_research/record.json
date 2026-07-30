@@ -1,0 +1,73 @@
+{
+  "status": "complete",
+  "duration_ms": 55056,
+  "usage": {
+    "input_tokens": 106732,
+    "cached_input_tokens": 82944,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1729,
+    "reasoning_output_tokens": 435
+  },
+  "research_activity": {
+    "commands": [
+      "/bin/zsh -lc 'node research.mjs list'",
+      "/bin/zsh -lc 'node research.mjs read CAUSAL-EVIDENCE-2026'",
+      "/bin/zsh -lc 'node research.mjs read EXISTING-TOOLS-2026'",
+      "/bin/zsh -lc 'node research.mjs read LICENSE-REVIEW-2026'",
+      "/bin/zsh -lc 'node research.mjs read OUTCOME-SIGNALS-2026'",
+      "/bin/zsh -lc 'node research.mjs read AX-LIFECYCLE-2026'",
+      "/bin/zsh -lc 'node research.mjs read MEMORY-BENCHMARK-2026'",
+      "/bin/zsh -lc 'node research.mjs read BUILD-EVERYTHING-2024'",
+      "/bin/zsh -lc 'node research.mjs search \"agent observability approved intervention later sessions keep rollback\"'",
+      "/bin/zsh -lc 'node research.mjs search \"intervention exposure randomized rollout comparison confounders\"'",
+      "/bin/zsh -lc 'node research.mjs search \"AGPL network service licensing integration clean room\"'"
+    ],
+    "actions": [
+      {
+        "action": "list",
+        "value": ""
+      },
+      {
+        "action": "read",
+        "value": "CAUSAL-EVIDENCE-2026"
+      },
+      {
+        "action": "read",
+        "value": "EXISTING-TOOLS-2026"
+      },
+      {
+        "action": "read",
+        "value": "LICENSE-REVIEW-2026"
+      },
+      {
+        "action": "read",
+        "value": "OUTCOME-SIGNALS-2026"
+      },
+      {
+        "action": "read",
+        "value": "AX-LIFECYCLE-2026"
+      },
+      {
+        "action": "read",
+        "value": "MEMORY-BENCHMARK-2026"
+      },
+      {
+        "action": "read",
+        "value": "BUILD-EVERYTHING-2024"
+      },
+      {
+        "action": "search",
+        "value": "agent observability approved intervention later sessions keep rollback"
+      },
+      {
+        "action": "search",
+        "value": "intervention exposure randomized rollout comparison confounders"
+      },
+      {
+        "action": "search",
+        "value": "AGPL network service licensing integration clean room"
+      }
+    ],
+    "violations": []
+  }
+}

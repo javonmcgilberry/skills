@@ -1,0 +1,58 @@
+{
+  "status": "complete",
+  "duration_ms": 48299,
+  "usage": {
+    "input_tokens": 183543,
+    "cached_input_tokens": 137472,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1285,
+    "reasoning_output_tokens": 180
+  },
+  "research_activity": {
+    "commands": [
+      "/bin/zsh -lc 'node research.mjs list'",
+      "/bin/zsh -lc 'node research.mjs read DEV-ARCH-2026'",
+      "/bin/zsh -lc 'node research.mjs read TEAM-LOOP-2026'",
+      "/bin/zsh -lc 'node research.mjs read OAUTH-BOUNDARY-2026'",
+      "/bin/zsh -lc 'node research.mjs read SECURITY-REVIEW-2026'",
+      "/bin/zsh -lc 'node research.mjs read MIGRATION-TESTING-2026'",
+      "/bin/zsh -lc 'node research.mjs read FULL-LOCAL-SETUP-2024'",
+      "/bin/zsh -lc 'node research.mjs read PRODUCTION-DEPLOY-2026'"
+    ],
+    "actions": [
+      {
+        "action": "list",
+        "value": ""
+      },
+      {
+        "action": "read",
+        "value": "DEV-ARCH-2026"
+      },
+      {
+        "action": "read",
+        "value": "TEAM-LOOP-2026"
+      },
+      {
+        "action": "read",
+        "value": "OAUTH-BOUNDARY-2026"
+      },
+      {
+        "action": "read",
+        "value": "SECURITY-REVIEW-2026"
+      },
+      {
+        "action": "read",
+        "value": "MIGRATION-TESTING-2026"
+      },
+      {
+        "action": "read",
+        "value": "FULL-LOCAL-SETUP-2024"
+      },
+      {
+        "action": "read",
+        "value": "PRODUCTION-DEPLOY-2026"
+      }
+    ],
+    "violations": []
+  }
+}

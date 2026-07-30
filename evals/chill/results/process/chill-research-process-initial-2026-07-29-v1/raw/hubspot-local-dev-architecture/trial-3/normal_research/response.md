@@ -1,0 +1,7 @@
+Run only the Vite client locally with `pnpm dev`, configured to call the existing development API on `wfdev.io`. Keep the API, development database, OAuth exchange, provider callback, and credentials hosted, which preserves the supported fast loop without duplicating production infrastructure [DEV-ARCH-2026] [TEAM-LOOP-2026].
+
+The browser should receive only public configuration. Provider secrets, refresh tokens, and database credentials must stay out of Vite environment variables and browser code [SECURITY-REVIEW-2026]. Authorization can begin from the local client, but the registered HTTPS callback and token exchange remain on `wfdev.io`, so ordinary extension work needs neither a local callback nor a tunnel [OAUTH-BOUNDARY-2026].
+
+Use a broader local environment only when the task changes server behavior, an API contract, authentication, persistence, or the OAuth callback implementation [DEV-ARCH-2026] [TEAM-LOOP-2026]. Schema changes specifically require an isolated database with forward and rollback migration testing [MIGRATION-TESTING-2026]. A tunnel becomes necessary only when a changed callback handler must receive provider traffic on the developer machine [OAUTH-BOUNDARY-2026].
+
+The 2024 full-local guide is stale because it predates the shared `wfdev.io` backend, while the production deployment checklist concerns release controls rather than development architecture [FULL-LOCAL-SETUP-2024] [PRODUCTION-DEPLOY-2026].

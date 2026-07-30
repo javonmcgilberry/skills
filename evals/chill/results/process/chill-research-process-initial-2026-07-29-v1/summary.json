@@ -1,0 +1,2098 @@
+{
+  "schema_version": 1,
+  "run_id": "chill-research-process-initial-2026-07-29-v1",
+  "suite": "initial",
+  "model_calls": 18,
+  "candidates": [
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 1,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 168
+      },
+      "research_quality": {
+        "total_score": 95,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 0,
+        "fact_results": [
+          {
+            "id": "HUB-001",
+            "passed": true
+          },
+          {
+            "id": "HUB-002",
+            "passed": true
+          },
+          {
+            "id": "HUB-003",
+            "passed": true
+          },
+          {
+            "id": "HUB-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": false,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "MIGRATION-TESTING-2026"
+        ],
+        "valid_cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "MIGRATION-TESTING-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 8,
+        "research_actions": 8,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "wfdev.io local hosted OAuth callback secrets database tunnel broader local environment"
+        ],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "DEV-ARCH-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "TEAM-LOOP-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "DEV-ARCH-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "TEAM-LOOP-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 45130,
+      "usage": {
+        "input_tokens": 191064,
+        "cached_input_tokens": 163840,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1255,
+        "reasoning_output_tokens": 172
+      }
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 1,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 233
+      },
+      "research_quality": {
+        "total_score": 95,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 0,
+        "fact_results": [
+          {
+            "id": "HUB-001",
+            "passed": true
+          },
+          {
+            "id": "HUB-002",
+            "passed": true
+          },
+          {
+            "id": "HUB-003",
+            "passed": true
+          },
+          {
+            "id": "HUB-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": false,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "MIGRATION-TESTING-2026"
+        ],
+        "valid_cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "MIGRATION-TESTING-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 10,
+        "research_actions": 10,
+        "list_count": 1,
+        "search_count": 3,
+        "search_queries": [
+          "day-to-day development setup local hosted wfdev.io tunnel OAuth callbacks secrets database",
+          "broader local environment condition database migration integration testing",
+          "stale full local setup guidance"
+        ],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 27390,
+      "usage": {
+        "input_tokens": 81581,
+        "cached_input_tokens": 58624,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 999,
+        "reasoning_output_tokens": 165
+      }
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 2,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 207
+      },
+      "research_quality": {
+        "total_score": 95,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 0,
+        "fact_results": [
+          {
+            "id": "HUB-001",
+            "passed": true
+          },
+          {
+            "id": "HUB-002",
+            "passed": true
+          },
+          {
+            "id": "HUB-003",
+            "passed": true
+          },
+          {
+            "id": "HUB-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": false,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "valid_cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 7,
+        "research_actions": 7,
+        "list_count": 1,
+        "search_count": 0,
+        "search_queries": [],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 23184,
+      "usage": {
+        "input_tokens": 59485,
+        "cached_input_tokens": 50432,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 768,
+        "reasoning_output_tokens": 154
+      }
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 2,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 239
+      },
+      "research_quality": {
+        "total_score": 100,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "HUB-001",
+            "passed": true
+          },
+          {
+            "id": "HUB-002",
+            "passed": true
+          },
+          {
+            "id": "HUB-003",
+            "passed": true
+          },
+          {
+            "id": "HUB-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "valid_cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 10,
+        "research_actions": 10,
+        "list_count": 1,
+        "search_count": 3,
+        "search_queries": [
+          "day-to-day local hosted wfdev.io tunnel OAuth callbacks secrets database broader local environment",
+          "stale full local setup",
+          "database migration local"
+        ],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 33631,
+      "usage": {
+        "input_tokens": 81649,
+        "cached_input_tokens": 70656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1089,
+        "reasoning_output_tokens": 252
+      }
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 3,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 182
+      },
+      "research_quality": {
+        "total_score": 93.571,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.571,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 0,
+        "fact_results": [
+          {
+            "id": "HUB-001",
+            "passed": true
+          },
+          {
+            "id": "HUB-002",
+            "passed": true
+          },
+          {
+            "id": "HUB-003",
+            "passed": true
+          },
+          {
+            "id": "HUB-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": false,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "SECURITY-REVIEW-2026",
+          "OAUTH-BOUNDARY-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "PRODUCTION-DEPLOY-2026"
+        ],
+        "valid_cited_source_ids": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "SECURITY-REVIEW-2026",
+          "OAUTH-BOUNDARY-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "PRODUCTION-DEPLOY-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 8,
+        "research_actions": 8,
+        "list_count": 1,
+        "search_count": 0,
+        "search_queries": [],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "PRODUCTION-DEPLOY-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "DEV-ARCH-2026",
+          "TEAM-LOOP-2026",
+          "OAUTH-BOUNDARY-2026",
+          "SECURITY-REVIEW-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "distractor_sources_opened": [
+          "PRODUCTION-DEPLOY-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.143,
+        "interface_violations": []
+      },
+      "duration_ms": 48299,
+      "usage": {
+        "input_tokens": 183543,
+        "cached_input_tokens": 137472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1285,
+        "reasoning_output_tokens": 180
+      }
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 3,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 176
+      },
+      "research_quality": {
+        "total_score": 95,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 0,
+        "fact_results": [
+          {
+            "id": "HUB-001",
+            "passed": true
+          },
+          {
+            "id": "HUB-002",
+            "passed": true
+          },
+          {
+            "id": "HUB-003",
+            "passed": true
+          },
+          {
+            "id": "HUB-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": false,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "TEAM-LOOP-2026",
+          "DEV-ARCH-2026",
+          "SECURITY-REVIEW-2026",
+          "OAUTH-BOUNDARY-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ],
+        "valid_cited_source_ids": [
+          "TEAM-LOOP-2026",
+          "DEV-ARCH-2026",
+          "SECURITY-REVIEW-2026",
+          "OAUTH-BOUNDARY-2026",
+          "MIGRATION-TESTING-2026",
+          "FULL-LOCAL-SETUP-2024"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 8,
+        "research_actions": 8,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "local Vite hosted API wfdev.io OAuth tunnel database secrets broader local environment"
+        ],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "DEV-ARCH-2026",
+          "OAUTH-BOUNDARY-2026",
+          "TEAM-LOOP-2026",
+          "SECURITY-REVIEW-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "MIGRATION-TESTING-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "DEV-ARCH-2026",
+          "OAUTH-BOUNDARY-2026",
+          "TEAM-LOOP-2026",
+          "SECURITY-REVIEW-2026",
+          "FULL-LOCAL-SETUP-2024",
+          "MIGRATION-TESTING-2026"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 46137,
+      "usage": {
+        "input_tokens": 187599,
+        "cached_input_tokens": 141568,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1313,
+        "reasoning_output_tokens": 189
+      }
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 1,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 234
+      },
+      "research_quality": {
+        "total_score": 95,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 5,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "NX-001",
+            "passed": true
+          },
+          {
+            "id": "NX-002",
+            "passed": true
+          },
+          {
+            "id": "NX-003",
+            "passed": true
+          },
+          {
+            "id": "NX-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": false
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "valid_cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 7,
+        "research_actions": 7,
+        "list_count": 1,
+        "search_count": 0,
+        "search_queries": [],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "FAILURE-TRACE-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "NX-RUNBOOK-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "FAILURE-TRACE-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "NX-RUNBOOK-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 0.857,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 40299,
+      "usage": {
+        "input_tokens": 161970,
+        "cached_input_tokens": 137472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1372,
+        "reasoning_output_tokens": 308
+      }
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 1,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 262
+      },
+      "research_quality": {
+        "total_score": 95,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 5,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "NX-001",
+            "passed": true
+          },
+          {
+            "id": "NX-002",
+            "passed": true
+          },
+          {
+            "id": "NX-003",
+            "passed": true
+          },
+          {
+            "id": "NX-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": false
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "valid_cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 9,
+        "research_actions": 9,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "Failed to start plugin worker package test worktree Jest environment verification blocked"
+        ],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "FAILURE-TRACE-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "NX-RUNBOOK-2026",
+          "REINSTALL-GUIDE-2023",
+          "JEST-FAILURE-CATALOG-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "FAILURE-TRACE-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "NX-RUNBOOK-2026",
+          "REINSTALL-GUIDE-2023",
+          "JEST-FAILURE-CATALOG-2026"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 60296,
+      "usage": {
+        "input_tokens": 236705,
+        "cached_input_tokens": 207360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1858,
+        "reasoning_output_tokens": 444
+      }
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 2,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 241
+      },
+      "research_quality": {
+        "total_score": 100,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "NX-001",
+            "passed": true
+          },
+          {
+            "id": "NX-002",
+            "passed": true
+          },
+          {
+            "id": "NX-003",
+            "passed": true
+          },
+          {
+            "id": "NX-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "valid_cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 8,
+        "research_actions": 8,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "plugin worker environment worktree node_modules Node version sandbox reset exact command"
+        ],
+        "read_count": 6,
+        "unique_sources_opened": 6,
+        "source_open_order": [
+          "FAILURE-TRACE-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "NODE-POLICY-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "FAILURE-TRACE-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "NODE-POLICY-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 0.857,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 64393,
+      "usage": {
+        "input_tokens": 190726,
+        "cached_input_tokens": 142592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1599,
+        "reasoning_output_tokens": 434
+      }
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 2,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 273
+      },
+      "research_quality": {
+        "total_score": 100,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "NX-001",
+            "passed": true
+          },
+          {
+            "id": "NX-002",
+            "passed": true
+          },
+          {
+            "id": "NX-003",
+            "passed": true
+          },
+          {
+            "id": "NX-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "valid_cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 11,
+        "research_actions": 11,
+        "list_count": 1,
+        "search_count": 3,
+        "search_queries": [
+          "plugin worker environment checks worktree node_modules Node version Nx reset sandbox exact focused command",
+          "what Failed to start plugin worker proves Jest did not start",
+          "same command blocked approval sandbox"
+        ],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "FAILURE-TRACE-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "NODE-POLICY-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "FAILURE-TRACE-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "NODE-POLICY-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 45455,
+      "usage": {
+        "input_tokens": 106104,
+        "cached_input_tokens": 92928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1464,
+        "reasoning_output_tokens": 471
+      }
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 3,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 249
+      },
+      "research_quality": {
+        "total_score": 100,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "NX-001",
+            "passed": true
+          },
+          {
+            "id": "NX-002",
+            "passed": true
+          },
+          {
+            "id": "NX-003",
+            "passed": true
+          },
+          {
+            "id": "NX-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026"
+        ],
+        "valid_cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 8,
+        "research_actions": 8,
+        "list_count": 1,
+        "search_count": 2,
+        "search_queries": [
+          "Failed to start plugin worker package test command worktree Jest verification environment Node dependencies daemon NX_DAEMON",
+          "exact focused command remains blocked main checkout comparison do not change code repository wide test approval sandbox"
+        ],
+        "read_count": 5,
+        "unique_sources_opened": 5,
+        "source_open_order": [
+          "FAILURE-TRACE-2026",
+          "NX-RUNBOOK-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "MAIN-CHECKOUT-PASS-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "FAILURE-TRACE-2026",
+          "NX-RUNBOOK-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "MAIN-CHECKOUT-PASS-2026"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 0.714,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 52350,
+      "usage": {
+        "input_tokens": 211381,
+        "cached_input_tokens": 183040,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1458,
+        "reasoning_output_tokens": 164
+      }
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 3,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 228
+      },
+      "research_quality": {
+        "total_score": 100,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 10,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "NX-001",
+            "passed": true
+          },
+          {
+            "id": "NX-002",
+            "passed": true
+          },
+          {
+            "id": "NX-003",
+            "passed": true
+          },
+          {
+            "id": "NX-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "valid_cited_source_ids": [
+          "FAILURE-TRACE-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "NODE-POLICY-2026",
+          "WORKTREE-DEPS-2026",
+          "NX-RUNBOOK-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "REINSTALL-GUIDE-2023"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 9,
+        "research_actions": 9,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "Failed to start plugin worker Jest worktree environment verification sequence"
+        ],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "FAILURE-TRACE-2026",
+          "NX-RUNBOOK-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "FAILURE-TRACE-2026",
+          "NX-RUNBOOK-2026",
+          "WORKTREE-DEPS-2026",
+          "NODE-POLICY-2026",
+          "MAIN-CHECKOUT-PASS-2026",
+          "JEST-FAILURE-CATALOG-2026",
+          "REINSTALL-GUIDE-2023"
+        ],
+        "distractor_sources_opened": [],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0,
+        "interface_violations": []
+      },
+      "duration_ms": 58002,
+      "usage": {
+        "input_tokens": 229907,
+        "cached_input_tokens": 206080,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1650,
+        "reasoning_output_tokens": 297
+      }
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 1,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 519
+      },
+      "research_quality": {
+        "total_score": 98.571,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.571,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "OBS-001",
+            "passed": true
+          },
+          {
+            "id": "OBS-002",
+            "passed": true
+          },
+          {
+            "id": "OBS-003",
+            "passed": true
+          },
+          {
+            "id": "OBS-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "LICENSE-REVIEW-2026"
+        ],
+        "valid_cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "LICENSE-REVIEW-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 8,
+        "research_actions": 8,
+        "list_count": 1,
+        "search_count": 0,
+        "search_queries": [],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "LICENSE-REVIEW-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "LICENSE-REVIEW-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "distractor_sources_opened": [
+          "MEMORY-BENCHMARK-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.143,
+        "interface_violations": []
+      },
+      "duration_ms": 49312,
+      "usage": {
+        "input_tokens": 184463,
+        "cached_input_tokens": 138496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1878,
+        "reasoning_output_tokens": 339
+      }
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 1,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 550
+      },
+      "research_quality": {
+        "total_score": 98.571,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.571,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "OBS-001",
+            "passed": true
+          },
+          {
+            "id": "OBS-002",
+            "passed": true
+          },
+          {
+            "id": "OBS-003",
+            "passed": true
+          },
+          {
+            "id": "OBS-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "OUTCOME-SIGNALS-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "LICENSE-REVIEW-2026"
+        ],
+        "valid_cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "OUTCOME-SIGNALS-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "LICENSE-REVIEW-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 13,
+        "research_actions": 13,
+        "list_count": 1,
+        "search_count": 4,
+        "search_queries": [
+          "randomized experiment intervention exposure confounders later sessions",
+          "licensing AGPL network service integration clean room copy code restrictions",
+          "build reuse observability intervention decision loop transcript tracing replay cost",
+          "minimum data model intervention version approval eligibility exposure outcome rollback"
+        ],
+        "read_count": 8,
+        "unique_sources_opened": 8,
+        "source_open_order": [
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "LICENSE-REVIEW-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "DASHBOARD-STYLE-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "LICENSE-REVIEW-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "distractor_sources_opened": [
+          "MEMORY-BENCHMARK-2026",
+          "DASHBOARD-STYLE-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.25,
+        "interface_violations": []
+      },
+      "duration_ms": 57320,
+      "usage": {
+        "input_tokens": 102884,
+        "cached_input_tokens": 78848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1570,
+        "reasoning_output_tokens": 406
+      }
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 2,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 511
+      },
+      "research_quality": {
+        "total_score": 98.571,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.571,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "OBS-001",
+            "passed": true
+          },
+          {
+            "id": "OBS-002",
+            "passed": true
+          },
+          {
+            "id": "OBS-003",
+            "passed": true
+          },
+          {
+            "id": "OBS-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "OUTCOME-SIGNALS-2026",
+          "AX-LIFECYCLE-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "BUILD-EVERYTHING-2024",
+          "LICENSE-REVIEW-2026"
+        ],
+        "valid_cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "OUTCOME-SIGNALS-2026",
+          "AX-LIFECYCLE-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "BUILD-EVERYTHING-2024",
+          "LICENSE-REVIEW-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 9,
+        "research_actions": 9,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "intervention exposure eligible sessions randomization confounders outcomes"
+        ],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "AX-LIFECYCLE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "distractor_sources_opened": [
+          "MEMORY-BENCHMARK-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.143,
+        "interface_violations": []
+      },
+      "duration_ms": 59200,
+      "usage": {
+        "input_tokens": 204673,
+        "cached_input_tokens": 157696,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1812,
+        "reasoning_output_tokens": 197
+      }
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 2,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 395
+      },
+      "research_quality": {
+        "total_score": 98.333,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.333,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "OBS-001",
+            "passed": true
+          },
+          {
+            "id": "OBS-002",
+            "passed": true
+          },
+          {
+            "id": "OBS-003",
+            "passed": true
+          },
+          {
+            "id": "OBS-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "OUTCOME-SIGNALS-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "AX-LIFECYCLE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "LICENSE-REVIEW-2026"
+        ],
+        "valid_cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "OUTCOME-SIGNALS-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "AX-LIFECYCLE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "LICENSE-REVIEW-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 13,
+        "research_actions": 13,
+        "list_count": 1,
+        "search_count": 4,
+        "search_queries": [
+          "agent observability approved interventions later agent work evidence reuse licensing",
+          "existing tools tracing evaluation dashboards capabilities",
+          "licensing constraints candidate projects",
+          "causal evidence intervention claims counterfactual"
+        ],
+        "read_count": 8,
+        "unique_sources_opened": 8,
+        "source_open_order": [
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "AX-LIFECYCLE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "DASHBOARD-STYLE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "distractor_sources_opened": [
+          "MEMORY-BENCHMARK-2026",
+          "DASHBOARD-STYLE-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.25,
+        "interface_violations": []
+      },
+      "duration_ms": 48595,
+      "usage": {
+        "input_tokens": 106111,
+        "cached_input_tokens": 60672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1553,
+        "reasoning_output_tokens": 385
+      }
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 3,
+      "arm": "normal_research",
+      "communication": {
+        "word_count": 486
+      },
+      "research_quality": {
+        "total_score": 98.571,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.571,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "OBS-001",
+            "passed": true
+          },
+          {
+            "id": "OBS-002",
+            "passed": true
+          },
+          {
+            "id": "OBS-003",
+            "passed": true
+          },
+          {
+            "id": "OBS-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "AX-LIFECYCLE-2026",
+          "EXISTING-TOOLS-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "LICENSE-REVIEW-2026"
+        ],
+        "valid_cited_source_ids": [
+          "AX-LIFECYCLE-2026",
+          "EXISTING-TOOLS-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "BUILD-EVERYTHING-2024",
+          "MEMORY-BENCHMARK-2026",
+          "LICENSE-REVIEW-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 10,
+        "research_actions": 10,
+        "list_count": 1,
+        "search_count": 1,
+        "search_queries": [
+          "approved interventions later agent work causal evidence licensing existing tools build reuse commodity capabilities"
+        ],
+        "read_count": 8,
+        "unique_sources_opened": 8,
+        "source_open_order": [
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "AX-LIFECYCLE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "BUILD-EVERYTHING-2024",
+          "DASHBOARD-STYLE-2026"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "distractor_sources_opened": [
+          "MEMORY-BENCHMARK-2026",
+          "DASHBOARD-STYLE-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.25,
+        "interface_violations": []
+      },
+      "duration_ms": 64560,
+      "usage": {
+        "input_tokens": 227032,
+        "cached_input_tokens": 199168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2048,
+        "reasoning_output_tokens": 315
+      }
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 3,
+      "arm": "chill_upfront_research",
+      "communication": {
+        "word_count": 446
+      },
+      "research_quality": {
+        "total_score": 98.333,
+        "fact_score": 40,
+        "citation_recall_score": 15,
+        "citation_precision_score": 8.333,
+        "contradiction_score": 20,
+        "limitation_score": 10,
+        "decision_score": 5,
+        "fact_results": [
+          {
+            "id": "OBS-001",
+            "passed": true
+          },
+          {
+            "id": "OBS-002",
+            "passed": true
+          },
+          {
+            "id": "OBS-003",
+            "passed": true
+          },
+          {
+            "id": "OBS-004",
+            "passed": true
+          }
+        ],
+        "limitation_results": [
+          {
+            "id": "LIMIT-1",
+            "passed": true
+          },
+          {
+            "id": "LIMIT-2",
+            "passed": true
+          }
+        ],
+        "decision_passed": true,
+        "missing_critical_facts": [],
+        "forbidden_claims": [],
+        "critical_failure_count": 0,
+        "cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "MEMORY-BENCHMARK-2026",
+          "LICENSE-REVIEW-2026"
+        ],
+        "valid_cited_source_ids": [
+          "EXISTING-TOOLS-2026",
+          "AX-LIFECYCLE-2026",
+          "CAUSAL-EVIDENCE-2026",
+          "OUTCOME-SIGNALS-2026",
+          "MEMORY-BENCHMARK-2026",
+          "LICENSE-REVIEW-2026"
+        ]
+      },
+      "research_process": {
+        "tool_calls": 11,
+        "research_actions": 11,
+        "list_count": 1,
+        "search_count": 3,
+        "search_queries": [
+          "agent observability approved intervention later sessions keep rollback",
+          "intervention exposure randomized rollout comparison confounders",
+          "AGPL network service licensing integration clean room"
+        ],
+        "read_count": 7,
+        "unique_sources_opened": 7,
+        "source_open_order": [
+          "CAUSAL-EVIDENCE-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "OUTCOME-SIGNALS-2026",
+          "AX-LIFECYCLE-2026",
+          "MEMORY-BENCHMARK-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "repeated_reads": 0,
+        "relevant_sources_opened": [
+          "CAUSAL-EVIDENCE-2026",
+          "EXISTING-TOOLS-2026",
+          "LICENSE-REVIEW-2026",
+          "OUTCOME-SIGNALS-2026",
+          "AX-LIFECYCLE-2026",
+          "BUILD-EVERYTHING-2024"
+        ],
+        "distractor_sources_opened": [
+          "MEMORY-BENCHMARK-2026"
+        ],
+        "relevant_source_recall": 1,
+        "distractor_rate": 0.143,
+        "interface_violations": []
+      },
+      "duration_ms": 55056,
+      "usage": {
+        "input_tokens": 106732,
+        "cached_input_tokens": 82944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1729,
+        "reasoning_output_tokens": 435
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 1,
+      "quality_delta": 0,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 25,
+      "sources_opened_delta_percent": 0,
+      "relevant_recall_delta": 0,
+      "distractor_rate_delta": 0,
+      "source_set_overlap": 1
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 2,
+      "quality_delta": 5,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 42.857,
+      "sources_opened_delta_percent": 0,
+      "relevant_recall_delta": 0,
+      "distractor_rate_delta": 0,
+      "source_set_overlap": 1
+    },
+    {
+      "case_id": "hubspot-local-dev-architecture",
+      "trial": 3,
+      "quality_delta": 1.429000000000002,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 0,
+      "sources_opened_delta_percent": -14.286,
+      "relevant_recall_delta": 0,
+      "distractor_rate_delta": -0.143,
+      "source_set_overlap": 0.857
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 1,
+      "quality_delta": 0,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 28.571,
+      "sources_opened_delta_percent": 16.667,
+      "relevant_recall_delta": 0.14300000000000002,
+      "distractor_rate_delta": 0,
+      "source_set_overlap": 0.857
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 2,
+      "quality_delta": 0,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 37.5,
+      "sources_opened_delta_percent": 16.667,
+      "relevant_recall_delta": 0.14300000000000002,
+      "distractor_rate_delta": 0,
+      "source_set_overlap": 0.857
+    },
+    {
+      "case_id": "nx-plugin-worker-diagnosis",
+      "trial": 3,
+      "quality_delta": 0,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 12.5,
+      "sources_opened_delta_percent": 40,
+      "relevant_recall_delta": 0.28600000000000003,
+      "distractor_rate_delta": 0,
+      "source_set_overlap": 0.714
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 1,
+      "quality_delta": 0,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 62.5,
+      "sources_opened_delta_percent": 14.286,
+      "relevant_recall_delta": 0,
+      "distractor_rate_delta": 0.10700000000000001,
+      "source_set_overlap": 0.875
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 2,
+      "quality_delta": -0.23799999999999955,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 44.444,
+      "sources_opened_delta_percent": 14.286,
+      "relevant_recall_delta": 0,
+      "distractor_rate_delta": 0.10700000000000001,
+      "source_set_overlap": 0.875
+    },
+    {
+      "case_id": "agent-observability-build-buy",
+      "trial": 3,
+      "quality_delta": -0.23799999999999955,
+      "critical_failure_delta": 0,
+      "tool_call_delta_percent": 10,
+      "sources_opened_delta_percent": -12.5,
+      "relevant_recall_delta": 0,
+      "distractor_rate_delta": -0.10700000000000001,
+      "source_set_overlap": 0.875
+    }
+  ],
+  "stopping_rule": {
+    "pair_count": 9,
+    "quality": {
+      "median_delta": 0,
+      "direction_count": 5,
+      "total_critical_failure_delta": 0,
+      "material_effect": false
+    },
+    "process": {
+      "metrics": {
+        "tool_call_delta_percent": {
+          "median": 28.571,
+          "direction_count": 8,
+          "threshold": 20,
+          "qualifies": true,
+          "coherent_across_two_cases": true
+        },
+        "sources_opened_delta_percent": {
+          "median": 14.286,
+          "direction_count": 5,
+          "threshold": 20,
+          "qualifies": false,
+          "coherent_across_two_cases": true
+        },
+        "relevant_recall_delta": {
+          "median": 0,
+          "direction_count": 6,
+          "threshold": 0.1,
+          "qualifies": false,
+          "coherent_across_two_cases": false
+        },
+        "distractor_rate_delta": {
+          "median": 0,
+          "direction_count": 5,
+          "threshold": 0.1,
+          "qualifies": false,
+          "coherent_across_two_cases": false
+        }
+      },
+      "qualifying_metrics": [
+        "tool_call_delta_percent"
+      ],
+      "material_effect": true
+    },
+    "stop_after_initial": true,
+    "needs_holdout": false
+  }
+}

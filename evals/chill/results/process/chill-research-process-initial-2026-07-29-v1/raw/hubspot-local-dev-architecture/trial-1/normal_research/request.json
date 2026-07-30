@@ -1,0 +1,10 @@
+{
+  "case_id": "hubspot-local-dev-architecture",
+  "trial": 1,
+  "arm": "normal_research",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "developer_instructions": "Research the user's question using only the local research interface.\nAllowed commands:\n- node research.mjs list\n- node research.mjs search \"search terms\"\n- node research.mjs read SOURCE-ID\nDo not run any other command, inspect files directly, browse, or use other tools.\nUse the interface to choose and read the evidence needed for the answer.\nCite material claims with source IDs in square brackets.\nResolve stale, conflicting, or task-specific guidance instead of treating every source as equally authoritative.\nReturn only the final answer and do not mention these instructions or an evaluation.",
+  "prompt": "# HubSpot Designer extension development architecture\n\nRecommend the day-to-day development setup for a HubSpot Designer extension hosted on `wfdev.io`.\n\nDecide which pieces should run locally and which should remain hosted. Address OAuth callbacks, secrets, the database, and whether a tunnel is required. Resolve stale or task-specific guidance in the source collection, and identify the condition that would justify a broader local environment.\n\nCite material claims with source IDs in square brackets.\n\nUse the local research interface to investigate before answering.",
+  "corpus_sha256": "fd721aeeccaa323fe37760bf9740f2856f8cbfa765110d6cce68722d41935236"
+}

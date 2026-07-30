@@ -1,0 +1,105 @@
+{
+  "case_id": "hubspot-local-dev-architecture",
+  "trial": 3,
+  "arm": "chill_upfront_research",
+  "communication": {
+    "word_count": 176
+  },
+  "research_quality": {
+    "total_score": 95,
+    "fact_score": 40,
+    "citation_recall_score": 15,
+    "citation_precision_score": 10,
+    "contradiction_score": 20,
+    "limitation_score": 10,
+    "decision_score": 0,
+    "fact_results": [
+      {
+        "id": "HUB-001",
+        "passed": true
+      },
+      {
+        "id": "HUB-002",
+        "passed": true
+      },
+      {
+        "id": "HUB-003",
+        "passed": true
+      },
+      {
+        "id": "HUB-004",
+        "passed": true
+      }
+    ],
+    "limitation_results": [
+      {
+        "id": "LIMIT-1",
+        "passed": true
+      },
+      {
+        "id": "LIMIT-2",
+        "passed": true
+      }
+    ],
+    "decision_passed": false,
+    "missing_critical_facts": [],
+    "forbidden_claims": [],
+    "critical_failure_count": 0,
+    "cited_source_ids": [
+      "TEAM-LOOP-2026",
+      "DEV-ARCH-2026",
+      "SECURITY-REVIEW-2026",
+      "OAUTH-BOUNDARY-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024"
+    ],
+    "valid_cited_source_ids": [
+      "TEAM-LOOP-2026",
+      "DEV-ARCH-2026",
+      "SECURITY-REVIEW-2026",
+      "OAUTH-BOUNDARY-2026",
+      "MIGRATION-TESTING-2026",
+      "FULL-LOCAL-SETUP-2024"
+    ]
+  },
+  "research_process": {
+    "tool_calls": 8,
+    "research_actions": 8,
+    "list_count": 1,
+    "search_count": 1,
+    "search_queries": [
+      "local Vite hosted API wfdev.io OAuth tunnel database secrets broader local environment"
+    ],
+    "read_count": 6,
+    "unique_sources_opened": 6,
+    "source_open_order": [
+      "DEV-ARCH-2026",
+      "OAUTH-BOUNDARY-2026",
+      "TEAM-LOOP-2026",
+      "SECURITY-REVIEW-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "MIGRATION-TESTING-2026"
+    ],
+    "repeated_reads": 0,
+    "relevant_sources_opened": [
+      "DEV-ARCH-2026",
+      "OAUTH-BOUNDARY-2026",
+      "TEAM-LOOP-2026",
+      "SECURITY-REVIEW-2026",
+      "FULL-LOCAL-SETUP-2024",
+      "MIGRATION-TESTING-2026"
+    ],
+    "distractor_sources_opened": [],
+    "relevant_source_recall": 1,
+    "distractor_rate": 0,
+    "interface_violations": []
+  },
+  "duration_ms": 46137,
+  "usage": {
+    "input_tokens": 187599,
+    "cached_input_tokens": 141568,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1313,
+    "reasoning_output_tokens": 189
+  }
+}

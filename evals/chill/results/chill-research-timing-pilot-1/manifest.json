@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "run_id": "chill-research-timing-pilot-1",
+  "status": "complete",
+  "started_at": "2026-07-29T20:05:20.826Z",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "timeout_ms": 300000,
+  "cases": [
+    "skill-evaluation-practices",
+    "agent-observability-decision",
+    "shared-styling-contract"
+  ],
+  "arms": [
+    "normal",
+    "chill_upfront",
+    "chill_afterward"
+  ],
+  "expected_model_calls": 9,
+  "completed_model_calls": 9,
+  "skill_sha256": "15cd2d7512628ac9560ec122b360dbba914ece6b6bd44e953ae1d9b912344436",
+  "runtime_skill_path": "../../skills/chill/SKILL.md",
+  "completed_at": "2026-07-29T20:08:04.070Z"
+}

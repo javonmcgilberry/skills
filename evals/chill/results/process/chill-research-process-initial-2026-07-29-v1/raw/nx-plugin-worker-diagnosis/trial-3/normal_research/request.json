@@ -1,0 +1,10 @@
+{
+  "case_id": "nx-plugin-worker-diagnosis",
+  "trial": 3,
+  "arm": "normal_research",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "developer_instructions": "Research the user's question using only the local research interface.\nAllowed commands:\n- node research.mjs list\n- node research.mjs search \"search terms\"\n- node research.mjs read SOURCE-ID\nDo not run any other command, inspect files directly, browse, or use other tools.\nUse the interface to choose and read the evidence needed for the answer.\nCite material claims with source IDs in square brackets.\nResolve stale, conflicting, or task-specific guidance instead of treating every source as equally authoritative.\nReturn only the final answer and do not mention these instructions or an evaluation.",
+  "prompt": "# Nx plugin-worker failure diagnosis\n\nA package test command in a worktree prints `Failed to start plugin worker` before Jest reports any tests.\n\nDiagnose what this result proves and what it does not prove. Recommend the smallest verification sequence, including environment checks and what to do if the same command remains blocked. Avoid destructive or unrelated repair work.\n\nCite material claims with source IDs in square brackets.\n\nUse the local research interface to investigate before answering.",
+  "corpus_sha256": "810748925661c15274384b786b2f48ddf1ca87d949753afac7d3fa80456fd940"
+}

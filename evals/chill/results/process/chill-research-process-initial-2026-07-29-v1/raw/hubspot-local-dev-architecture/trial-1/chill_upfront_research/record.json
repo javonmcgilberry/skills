@@ -1,0 +1,68 @@
+{
+  "status": "complete",
+  "duration_ms": 27390,
+  "usage": {
+    "input_tokens": 81581,
+    "cached_input_tokens": 58624,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 999,
+    "reasoning_output_tokens": 165
+  },
+  "research_activity": {
+    "commands": [
+      "/bin/zsh -lc 'node research.mjs list'",
+      "/bin/zsh -lc 'node research.mjs search \"day-to-day development setup local hosted wfdev.io tunnel OAuth callbacks secrets database\"'",
+      "/bin/zsh -lc 'node research.mjs search \"broader local environment condition database migration integration testing\"'",
+      "/bin/zsh -lc 'node research.mjs search \"stale full local setup guidance\"'",
+      "/bin/zsh -lc 'node research.mjs read DEV-ARCH-2026'",
+      "/bin/zsh -lc 'node research.mjs read TEAM-LOOP-2026'",
+      "/bin/zsh -lc 'node research.mjs read OAUTH-BOUNDARY-2026'",
+      "/bin/zsh -lc 'node research.mjs read SECURITY-REVIEW-2026'",
+      "/bin/zsh -lc 'node research.mjs read MIGRATION-TESTING-2026'",
+      "/bin/zsh -lc 'node research.mjs read FULL-LOCAL-SETUP-2024'"
+    ],
+    "actions": [
+      {
+        "action": "list",
+        "value": ""
+      },
+      {
+        "action": "search",
+        "value": "day-to-day development setup local hosted wfdev.io tunnel OAuth callbacks secrets database"
+      },
+      {
+        "action": "search",
+        "value": "broader local environment condition database migration integration testing"
+      },
+      {
+        "action": "search",
+        "value": "stale full local setup guidance"
+      },
+      {
+        "action": "read",
+        "value": "DEV-ARCH-2026"
+      },
+      {
+        "action": "read",
+        "value": "TEAM-LOOP-2026"
+      },
+      {
+        "action": "read",
+        "value": "OAUTH-BOUNDARY-2026"
+      },
+      {
+        "action": "read",
+        "value": "SECURITY-REVIEW-2026"
+      },
+      {
+        "action": "read",
+        "value": "MIGRATION-TESTING-2026"
+      },
+      {
+        "action": "read",
+        "value": "FULL-LOCAL-SETUP-2024"
+      }
+    ],
+    "violations": []
+  }
+}

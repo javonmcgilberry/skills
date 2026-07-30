@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Symlink a skill from this repo into every agent runtime's skills directory.
 #
-# Creates a chain: runtime → ~/.agents/skills/<skill> → this repo
+# Creates a chain: runtime -> ~/.agents/skills/<skill> -> this repo
 # so edits in the repo propagate instantly to every runtime.
 #
 # Usage:
@@ -20,7 +20,7 @@ fi
 
 SKILL="$1"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SKILL_PATH="$REPO_DIR/$SKILL"
+SKILL_PATH="$REPO_DIR/skills/$SKILL"
 
 if [ ! -d "$SKILL_PATH" ]; then
   echo "Error: skill '$SKILL' not found at $SKILL_PATH" >&2
@@ -33,22 +33,22 @@ mkdir -p "$AGENTS_DIR"
 # Relative link when the repo sits at $HOME/skills so it survives
 # a username change; absolute otherwise.
 if [ "$REPO_DIR" = "$HOME/skills" ]; then
-  AGENTS_TARGET="../../skills/$SKILL"
+  AGENTS_TARGET="../../skills/skills/$SKILL"
 else
   AGENTS_TARGET="$SKILL_PATH"
 fi
 
 ln -sfn "$AGENTS_TARGET" "$AGENTS_DIR/$SKILL"
-echo "  ~/.agents/skills/$SKILL  →  $AGENTS_TARGET"
+echo "  ~/.agents/skills/$SKILL  ->  $AGENTS_TARGET"
 
 for runtime in .cursor .claude .codex; do
   runtime_dir="$HOME/$runtime/skills"
   if [ ! -d "$runtime_dir" ]; then
-    echo "  ~/$runtime/skills                  (skipped — directory doesn't exist)"
+    echo "  ~/$runtime/skills                  (skipped - directory doesn't exist)"
     continue
   fi
   ln -sfn "../../.agents/skills/$SKILL" "$runtime_dir/$SKILL"
-  echo "  ~/$runtime/skills/$SKILL  →  ../../.agents/skills/$SKILL"
+  echo "  ~/$runtime/skills/$SKILL  ->  ../../.agents/skills/$SKILL"
 done
 
 echo ""

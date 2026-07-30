@@ -1,0 +1,50 @@
+[
+  {
+    "id": "FULL-LOCAL-SETUP-2024",
+    "title": "Legacy full-local setup guide",
+    "date": "2024-01-11",
+    "content": "This archived guide predates wfdev.io. It runs the client, API, Postgres database, and OAuth callback locally, then exposes the callback through a tunnel. The document was written when no shared hosted development backend existed. It is retained for historical migrations and should not be treated as the current daily workflow."
+  },
+  {
+    "id": "DEV-ARCH-2026",
+    "title": "Current Designer extension development architecture",
+    "date": "2026-06-18",
+    "content": "For ordinary Designer extension work, run the Vite client locally and point it at the existing hosted API on wfdev.io. The hosted environment continues to own the database, OAuth exchange, provider credentials, and callback handling. This keeps the local loop fast without reproducing production infrastructure. A full local backend is reserved for work that changes server behavior, database migrations, or the OAuth callback implementation."
+  },
+  {
+    "id": "SECURITY-REVIEW-2026",
+    "title": "Designer extension security review",
+    "date": "2026-04-27",
+    "content": "Provider client secrets, refresh tokens, and database credentials must never be placed in Vite environment variables or browser code. The browser receives only public configuration and calls the hosted API. Local convenience does not justify moving confidential credentials across the server boundary."
+  },
+  {
+    "id": "OAUTH-BOUNDARY-2026",
+    "title": "OAuth callback and secret ownership",
+    "date": "2026-05-09",
+    "content": "The registered provider callback is the HTTPS wfdev.io callback. The local Vite client may begin authorization through the hosted API, but the client secret and token exchange stay on the hosted server. Frontend-only development does not require a local callback or tunnel. A tunnel is needed only when deliberately testing a changed callback handler that must receive provider traffic on a developer machine."
+  },
+  {
+    "id": "MIGRATION-TESTING-2026",
+    "title": "Database migration testing procedure",
+    "date": "2026-03-14",
+    "content": "When a task changes the database schema, create an isolated database and run forward and rollback migrations before deploying to the hosted development environment. This procedure is specific to persistence changes. It does not require every frontend contributor to run a local database."
+  },
+  {
+    "id": "PRODUCTION-DEPLOY-2026",
+    "title": "Production deployment checklist",
+    "date": "2026-06-30",
+    "content": "Production releases require a tagged build, deployment approval, smoke testing, and rollback confirmation. These release controls do not define the local development architecture."
+  },
+  {
+    "id": "FIGMA-SYNC-2026",
+    "title": "Figma asset synchronization",
+    "date": "2026-02-03",
+    "content": "Design assets are exported through the Figma sync job and committed to the extension package. The sync job has no dependency on OAuth callbacks, API hosting, or the application database."
+  },
+  {
+    "id": "TEAM-LOOP-2026",
+    "title": "Team workflow for ordinary extension changes",
+    "date": "2026-07-02",
+    "content": "The supported daily loop is pnpm dev for the local Vite client with environment values targeting the hosted development API. Developers use the hosted development database and existing OAuth installation. They do not run database containers or replay migrations for UI-only work. If a task changes an API contract, authentication behavior, persistence, or provider callback behavior, plan the appropriate server-side environment separately."
+  }
+]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chill"
+  short_description: "Restate messages in plain human language"
+  default_prompt: "Use $chill to restate the previous message in plain, conversational language."

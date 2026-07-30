@@ -1,0 +1,8 @@
+{
+  "case_id": "shared-styling-contract",
+  "arm": "normal",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "developer_instructions": "Complete the user's research or planning task using only the supplied source packet.\nDo not use tools, browse, inspect files, or mention this evaluation.\nReturn only the final answer.\nPreserve source markers when making claims from the packet.\nDo not invent facts beyond the packet.",
+  "prompt": "Using only the constraints below, propose a small implementation plan for a shared styling contract. Decide what belongs in the base contract, what remains optional, and how adoption should be sequenced. Cite decisions with the exact constraint markers.\n\nConstraints:\n- [BASE] Every consumer needs spacing, typography, foreground color, background color, and disabled-state styling.\n- [OPTIONAL] Borders and shadows are supported by only some consumers and must remain optional.\n- [STRUCTURE] The shared contract should describe style data, not component structure or rendering behavior.\n- [COMPATIBILITY] Existing consumers already have different local shapes. The migration may use explicit adapters at each boundary, but the shared contract must not absorb legacy aliases.\n- [ROLLOUT] The team wants one representative consumer migrated first, followed by focused validation, then the remaining consumers.\n\nKeep the plan concrete. Include the contract boundary, migration order, and validation criteria."
+}

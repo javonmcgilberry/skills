@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "trials_per_case": 3,
+  "arms": [
+    "normal_research",
+    "chill_upfront_research"
+  ],
+  "initial_cases": [
+    "process-cases/initial/hubspot-local-dev-architecture",
+    "process-cases/initial/nx-plugin-worker-diagnosis",
+    "process-cases/initial/agent-observability-build-buy"
+  ],
+  "holdout_cases": []
+}
