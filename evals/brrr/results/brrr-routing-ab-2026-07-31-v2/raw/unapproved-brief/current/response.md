@@ -1,0 +1,1 @@
+Route it through Lock In first because the brief is still Draft and has no explicit approval. Brrr should execute only after the brief’s Approval status is `Approved`.

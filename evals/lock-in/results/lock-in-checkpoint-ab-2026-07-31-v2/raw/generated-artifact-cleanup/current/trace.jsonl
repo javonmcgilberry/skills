@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"019fbb58-b1c5-7423-adea-83a81a37b25d"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"I recommend deleting candidate workspaces automatically after a successful evaluation run while retaining workspaces from failed candidates for diagnosis. The durable responses, manifests, grades, summaries, and reviews remain untouched and checked in as before.\n\nShould cleanup remove only successful candidate workspaces and preserve failed ones?"}}
+{"type":"turn.completed","usage":{"input_tokens":18042,"cached_input_tokens":6912,"cache_write_input_tokens":0,"output_tokens":148,"reasoning_output_tokens":87}}

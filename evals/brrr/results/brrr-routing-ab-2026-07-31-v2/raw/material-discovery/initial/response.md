@@ -1,0 +1,1 @@
+Pause for a contract decision. The proposed seam violates the approved current-user cache boundary, and fixing that requires an unapproved architecture or scope change.

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_id": "lock-in-checkpoint-ab-2026-07-31-v2",
+  "status": "complete",
+  "started_at": "2026-08-01T03:22:28.831Z",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "timeout_ms": 300000,
+  "expected_model_calls": 8,
+  "completed_model_calls": 8,
+  "cases": [
+    "clear-readme-edit",
+    "generated-artifact-cleanup",
+    "install-command-evidence",
+    "publication-boundary"
+  ],
+  "arms": [
+    "pre-checkpoint",
+    "current"
+  ],
+  "skill_sha256": {
+    "pre-checkpoint": "08d17facc7a74ecd3c5efac8ba71dce9260706588af575823f928515b7eb0af1",
+    "current": "0d6b46aae4b18c56029cb2bd68c83555692899858cbf268d25aa1f6bb4f28d46"
+  },
+  "completed_at": "2026-08-01T03:24:17.336Z"
+}

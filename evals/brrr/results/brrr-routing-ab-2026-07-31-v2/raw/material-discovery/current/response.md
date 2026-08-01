@@ -1,0 +1,1 @@
+Pause and route the decision through Lock In. Preventing cross-tenant cache sharing requires changing the approved architecture or scope, so Brrr cannot continue until the contract is revised and reapproved.

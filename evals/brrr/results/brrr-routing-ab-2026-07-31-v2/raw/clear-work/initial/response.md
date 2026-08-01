@@ -1,0 +1,1 @@
+Execute directly with Brrr because the change is fully specified, limited to one file and one behavior, and has explicit acceptance criteria and a focused verification command.

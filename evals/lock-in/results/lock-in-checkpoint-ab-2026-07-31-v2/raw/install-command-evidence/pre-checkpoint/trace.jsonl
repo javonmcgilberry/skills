@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"019fbb58-d254-7d32-a672-805440088687"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Skill descriptions were shortened to fit the 2% skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."}}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"Draft brief: add `cp -r skills/lock-in ~/.codex/skills/` to the README’s manual installation examples, following the existing convention. Scope is README-only; acceptance requires the command to appear alongside the other manual examples with no runtime-specific alternatives. Verification is a focused README diff review.\n\nApprove this brief for execution with `$brrr`?"}}
+{"type":"turn.completed","usage":{"input_tokens":18378,"cached_input_tokens":18176,"cache_write_input_tokens":0,"output_tokens":175,"reasoning_output_tokens":95}}

@@ -1,0 +1,1 @@
+I recommend adding `cp -r skills/lock-in ~/.codex/skills/` to the README’s manual installation examples, with no other installation changes. Should I use that contract for the draft brief?

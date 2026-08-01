@@ -1,0 +1,1 @@
+I recommend Brrr add a publication phase after implementation, but require explicit authorization before it commits, pushes, opens or merges a pull request, creates a release, or mutates any shared or production system. Should publication remain approval-gated, with the user choosing the authorized actions for each run?

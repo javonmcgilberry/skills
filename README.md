@@ -4,6 +4,26 @@ These are the agent skills I use across Cursor, Claude Code, Codex, and anything
 
 ## Skills
 
+### Lock In
+
+Use Lock In when a request still has decisions hiding inside it. It checks the code and supporting evidence, asks about the choices that could change the implementation, and writes one brief you can approve before coding starts. It always checks its understanding with you instead of silently treating its assumptions as decisions.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill lock-in
+```
+
+[Guide](docs/lock-in-and-brrr.md) | [Skill source](skills/lock-in/SKILL.md)
+
+### Brrr
+
+Brrr gets clear work done. It uses one primary agent, keeps a short record as it goes, runs the right tests, and reviews the final diff. You can run it on its own when the request is already clear, or hand it a brief from Lock In.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill brrr
+```
+
+[Guide](docs/lock-in-and-brrr.md) | [Skill source](skills/brrr/SKILL.md)
+
 ### Chill
 
 Chill rewrites dense answers in plain language without sanding off the facts, caveats, or next steps. I usually run it after research or planning, once the real work is done.
@@ -50,6 +70,8 @@ If you don't use the `skills` CLI, clone the repo and copy whichever folder you 
 git clone https://github.com/javonmcgilberry/skills.git
 
 cp -r skills/chill ~/.codex/skills/
+cp -r skills/lock-in ~/.codex/skills/
+cp -r skills/brrr ~/.codex/skills/
 cp -r skills/no-directors-commentary ~/.cursor/skills/
 cp -r skills/no-directors-commentary ~/.claude/skills/
 cp -r skills/no-directors-commentary ~/.codex/skills/

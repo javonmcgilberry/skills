@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "run_id": "lock-in-checkpoint-ab-2026-07-31-v2",
+  "arms": {
+    "pre-checkpoint": {
+      "mean_score": 85,
+      "scores": {
+        "clear-readme-edit": 80,
+        "generated-artifact-cleanup": 100,
+        "install-command-evidence": 80,
+        "publication-boundary": 80
+      }
+    },
+    "current": {
+      "mean_score": 100,
+      "scores": {
+        "clear-readme-edit": 100,
+        "generated-artifact-cleanup": 100,
+        "install-command-evidence": 100,
+        "publication-boundary": 100
+      }
+    }
+  },
+  "rows": [
+    {
+      "case_id": "clear-readme-edit",
+      "arm": "pre-checkpoint",
+      "score": 80,
+      "question_count": 1,
+      "matched_terms": [
+        "Manual installation",
+        "unrelated",
+        "git diff --check"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": false,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "clear-readme-edit",
+      "arm": "current",
+      "score": 100,
+      "question_count": 1,
+      "matched_terms": [
+        "Manual installation",
+        "unrelated",
+        "git diff --check"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": true,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "generated-artifact-cleanup",
+      "arm": "pre-checkpoint",
+      "score": 100,
+      "question_count": 1,
+      "matched_terms": [
+        "workspaces",
+        "durable"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": true,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "generated-artifact-cleanup",
+      "arm": "current",
+      "score": 100,
+      "question_count": 1,
+      "matched_terms": [
+        "workspaces",
+        "durable"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": true,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "install-command-evidence",
+      "arm": "pre-checkpoint",
+      "score": 80,
+      "question_count": 1,
+      "matched_terms": [
+        "cp -r skills/lock-in ~/.codex/skills/",
+        "Codex",
+        "only"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": false,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "install-command-evidence",
+      "arm": "current",
+      "score": 100,
+      "question_count": 1,
+      "matched_terms": [
+        "cp -r skills/lock-in ~/.codex/skills/",
+        "Codex"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": true,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "publication-boundary",
+      "arm": "pre-checkpoint",
+      "score": 80,
+      "question_count": 1,
+      "matched_terms": [
+        "commit",
+        "release"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": false,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    },
+    {
+      "case_id": "publication-boundary",
+      "arm": "current",
+      "score": 100,
+      "question_count": 1,
+      "matched_terms": [
+        "authorization",
+        "commit",
+        "release"
+      ],
+      "checks": {
+        "has_checkpoint": true,
+        "asks_one_question": true,
+        "gives_recommendation": true,
+        "avoids_premature_brief": true,
+        "grounds_question_in_evidence": true,
+        "avoids_discoverable_fact_question": true
+      }
+    }
+  ]
+}

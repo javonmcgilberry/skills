@@ -1,0 +1,20 @@
+{
+  "id": "local-discovery",
+  "request": "Continue the approved implementation.",
+  "evidence": [
+    "Two existing internal helpers can parse the same configuration value.",
+    "Both preserve the approved behavior, scope, architecture, and acceptance criteria.",
+    "One helper is already used by the owning module."
+  ],
+  "decision_prompt": "Should Brrr continue implementation or pause for renewed approval?",
+  "expected_route": "execute",
+  "expected_terms": [
+    "helper",
+    "approved"
+  ],
+  "minimum_expected_terms": 1,
+  "forbidden_terms": [
+    "lock in",
+    "lock-in"
+  ]
+}

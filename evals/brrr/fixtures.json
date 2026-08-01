@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "arms": [
+    "initial",
+    "current"
+  ],
+  "cases": [
+    "cases/clear-work.json",
+    "cases/unapproved-brief.json",
+    "cases/material-discovery.json",
+    "cases/local-discovery.json",
+    "cases/expanded-execution.json",
+    "cases/publication-boundary.json"
+  ]
+}
