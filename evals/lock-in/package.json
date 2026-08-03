@@ -1,0 +1,11 @@
+{
+  "name": "lock-in-skill-eval",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "eval": "node scripts/run-eval.mjs",
+    "grade": "node scripts/grade-eval.mjs",
+    "test": "node --test",
+    "validate": "node scripts/validate-fixtures.mjs"
+  }
+}

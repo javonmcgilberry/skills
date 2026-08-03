@@ -1,0 +1,1 @@
+Should I lock in this policy: after implementation and verification, Brrr asks for one explicit publication approval, then commits, pushes, and opens or updates a pull request? Merges, releases, deployments, and other production mutations would remain excluded unless separately authorized.

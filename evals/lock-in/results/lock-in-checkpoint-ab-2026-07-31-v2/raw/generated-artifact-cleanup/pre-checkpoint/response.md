@@ -1,0 +1,1 @@
+I recommend deleting only `results/process/<run-id>/workspaces` after a run completes successfully and all durable evidence has been written. Failed, interrupted, or partially completed runs would keep their workspaces for diagnosis, while raw responses, manifests, grades, summaries, and reviews remain untouched. Should I lock in that behavior?

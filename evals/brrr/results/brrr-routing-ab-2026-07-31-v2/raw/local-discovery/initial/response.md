@@ -1,0 +1,1 @@
+Continue implementation using the helper already used by the owning module, because this is an implementation detail within the approved contract and introduces no material product or technical decision requiring renewed approval.

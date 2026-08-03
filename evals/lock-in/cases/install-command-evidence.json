@@ -1,0 +1,20 @@
+{
+  "id": "install-command-evidence",
+  "request": "Add Lock In to the repository's manual installation examples using the existing convention.",
+  "evidence": [
+    "The README manual installation section uses commands shaped as 'cp -r skills/<name> ~/.codex/skills/'.",
+    "The installable package lives at skills/lock-in.",
+    "No other runtime-specific installation example is requested."
+  ],
+  "expected_terms": [
+    "cp -r skills/lock-in ~/.codex/skills/",
+    "Codex",
+    "only"
+  ],
+  "minimum_expected_terms": 2,
+  "forbidden_question_terms": [
+    "what command",
+    "where is",
+    "which runtime"
+  ]
+}

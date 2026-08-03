@@ -1,0 +1,16 @@
+{
+  "score": 100,
+  "route": "execute",
+  "word_count": 27,
+  "matched_terms": [
+    "file",
+    "acceptance criteria"
+  ],
+  "forbidden_terms": [],
+  "checks": {
+    "expected_route": true,
+    "avoids_forbidden_route": true,
+    "uses_case_evidence": true,
+    "concise": true
+  }
+}

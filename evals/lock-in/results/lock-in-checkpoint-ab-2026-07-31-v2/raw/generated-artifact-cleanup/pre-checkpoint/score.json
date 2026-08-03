@@ -1,0 +1,16 @@
+{
+  "score": 100,
+  "question_count": 1,
+  "matched_terms": [
+    "workspaces",
+    "durable"
+  ],
+  "checks": {
+    "has_checkpoint": true,
+    "asks_one_question": true,
+    "gives_recommendation": true,
+    "avoids_premature_brief": true,
+    "grounds_question_in_evidence": true,
+    "avoids_discoverable_fact_question": true
+  }
+}

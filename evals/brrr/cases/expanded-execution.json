@@ -1,0 +1,20 @@
+{
+  "id": "expanded-execution",
+  "request": "Continue the approved implementation contract.",
+  "evidence": [
+    "The contract is still valid and has no unresolved product decisions.",
+    "Execution now contains three independent repository workstreams.",
+    "Verification requires coordinated checks across local, staging, and production-like environments."
+  ],
+  "decision_prompt": "Should Brrr continue as the execution workflow or hand this valid contract to a heavier workflow?",
+  "expected_route": "heavier",
+  "expected_terms": [
+    "workstreams",
+    "coordinated"
+  ],
+  "minimum_expected_terms": 1,
+  "forbidden_terms": [
+    "change the contract",
+    "renewed product approval"
+  ]
+}
