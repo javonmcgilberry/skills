@@ -1,6 +1,6 @@
 # Reading the scorecard
 
-Reading what `convo.py score --markdown`, `score --cards`, and `compare` print comes down to what each cell counts and how sure it is, which is how you tell a real change from noise, whether you read your own numbers or an agent quotes them in a mirror or coaching report. Flags and defaults are in [the reference](know-thyself-reference.md).
+You have a scorecard, a habit card, or a `compare` result in front of you, from your own run or quoted in a mirror or coaching report, and you want to know what it means. Reading what `convo.py score --markdown`, `score --cards`, and `compare` print comes down to what each cell counts and how sure it is, which is how you tell a real change from noise. Flags and defaults are in [the reference](know-thyself-reference.md).
 
 The scorecard compares you with your earlier self and nothing else. It never grades you against other people or an outside target, and it calls a habit up or down only after the change holds up against chance.
 
@@ -56,7 +56,7 @@ The trend shows one mark per month for the last six months that have sessions, u
 
 ## Why there is no best month
 
-A single month holds a few dozen sessions, so its rate swings a lot by chance. Picking the best of six such months picks the luckiest one, and measured against that, almost every later month looks like a decline even when nothing changed. So the scorecard bases every verdict on two long windows and their ranges, and uses months only for the trend marks, where a quiet month shows as · rather than a number.
+A single month can hold only a few dozen sessions, so its rate swings a lot by chance. Picking the best of six such months picks the luckiest one, and measured against that, almost every later month looks like a decline even when nothing changed. So the scorecard bases every verdict on two long windows and their ranges, and uses months only for the trend marks, where a quiet month shows as · rather than a number.
 
 ## Why counts are a floor
 
