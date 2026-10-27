@@ -1,6 +1,6 @@
 # know-thyself
 
-know-thyself is an agent skill for people who do much of their work through AI coding agents. It reads the conversations you've had with those agents and reflects back how you work, what you're good at, where friction shows up, and how that's changed, with every pattern backed by counts and short quotes from your own history. It describes rather than prescribes, and when you ask, it also coaches you against public guidance, checks whether a habit changed since a date, recalls what you decided, and turns corrections you keep repeating into rules.
+You do much of your work through AI coding agents and want to see how you work with them, or you've installed know-thyself and want to know what it reads, what it keeps, and what to ask it. know-thyself is an agent skill that reads the conversations you've had with those agents and reflects back how you work, what you're good at, where friction shows up, and how that's changed, with every pattern backed by counts and short quotes from your own history. It describes rather than prescribes, and when you ask, it also coaches you against public guidance, checks whether a habit changed since a date, recalls what you decided, and turns corrections you keep repeating into rules.
 
 Everything stays on your machine. The script uses only Python's standard library, opens other tools' history read-only, replaces credentials before anything is stored, and writes only to its own config file, data directory, and reports directory, which by default sit outside every repository, plus any file you name when you export the corpus.
 
@@ -13,19 +13,7 @@ Everything stays on your machine. The script uses only Python's standard library
 | Data directory | `~/.local/share/know-thyself/` | `corpus.db`, a SQLite file holding your past turns, which survive even after a tool deletes its own copy |
 | Reports | `~/.local/share/know-thyself/reports/` | The mirror, coaching, and shareable reports your agent writes |
 
-You need Python 3.11 or later. Install the skill with the skills CLI.
-
-```sh
-npx skills@latest add javonmcgilberry/skills --skill know-thyself
-```
-
-Or clone this repository and link the skill, so every agent runtime loads the repository's copy.
-
-```sh
-git clone https://github.com/javonmcgilberry/skills.git ~/skills
-cd ~/skills
-./bin/link-skill.sh know-thyself
-```
+You need Python 3.11 or later. Install the skill with the skills CLI, a copied folder, or a linked clone, as [the README](../README.md#install) shows.
 
 From a clone, build your corpus once from the repository root, then see where everything landed.
 
@@ -54,7 +42,7 @@ flowchart LR
 
 **Querying.** `stats`, `score`, `compare`, and `search` read only the corpus and default to human turns. `score` builds the scorecard by comparing your last 60 days with the 180 days before, line by line, with a 95% range on every count and a correction for testing up to 30 habits at once, and `score --cards` turns chosen lines into short plain-language cards. `compare` checks whether one habit changed after a date you name. `search` returns the actual turns behind a number, which is how a rate gets checked before anyone trusts it.
 
-**Answering.** When you ask a question, your agent reads `SKILL.md`, picks a mode, and loads only the reference that mode needs, plus the shared voice file before it writes. A request without a clear other mode, such as "let's do a run" or "what am I good or bad at", gets the mirror. Your agent runs the commands, reads about 150 of your turns, most of them from the last 90 days, and writes a report on how you work, what you're good at, where friction shows up, and what's changed, with plain counts and short dated quotes and no advice. The reply opens with one sentence on how you work, then what you're good at and where friction shows up, then where the full report is saved, with its path and an offer to show any part of it in the chat, and ends with three to five follow-ups written from that run, which you can paste to go further.
+**Answering.** When you ask a question, your agent reads `SKILL.md`, picks a mode, and loads the reference that mode needs, plus the shared voice file before it writes. Coaching also reads `references/practices.md` and takes titles and links from `references/sources.json`. A request without a clear other mode, such as "let's do a run" or "what am I good or bad at", gets the mirror. Your agent runs the commands, reads about 150 of your turns, most of them from the last 90 days, and writes a report on how you work, what you're good at, where friction shows up, and what's changed, with plain counts and short dated quotes and no advice. The reply opens with one sentence on how you work, then what you're good at and where friction shows up, then where the full report is saved, with its path and an offer to show any part of it in the chat, and closes with three to five follow-ups written from that run, which you can paste to go further, and one sentence on what the run covered.
 
 ## Modes
 
@@ -93,7 +81,8 @@ Ask "make a version I can share" and your agent writes `YYYY-MM-DD-shareable.md`
 | Understand a scorecard cell or verdict | [Reading the scorecard](know-thyself-scorecard.md) |
 | Check whether a habit changed after a date | [Checking a change with compare](know-thyself-scorecard.md#checking-a-change-with-compare) |
 | Change a signal rule | [Signal fixtures](know-thyself-development.md#signal-fixtures) |
-| Run the checks | [Development](know-thyself-development.md) |
+| Run the repository's checks | [Checks in the README](../README.md#checks) |
+| See what know-thyself's own tests cover | [Test layers](know-thyself-development.md#test-layers) |
 | Compare two versions of the skill | [Evaluation protocol](../skills/know-thyself/evals/JUDGE.md) |
 
 ## Where the advice comes from
@@ -146,4 +135,4 @@ The practices and habits in this skill are a distillation of public guidance fro
 
 ## Credits
 
-- **Felix Rieseberg**, [How to be more ambitious: a tutorial for humans with models](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/). The Altitude, Depth, and Range dimensions of the scorecard and the Depth rewrite prompt come from this article.
+- **Felix Rieseberg**, [How to be more ambitious: A tutorial for humans with models](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/). The scorecard's six ambition lines, `altitude`, `hard_target`, `raw_material`, `expert_method`, `range_fields`, and `aim_high`, come from this article's Altitude, Depth, and Range, and three other lines, `outside_judge`, `role_framing`, and `challenge_assumptions`, cite it too.
