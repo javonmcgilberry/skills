@@ -28,6 +28,26 @@ npx skills@latest add javonmcgilberry/skills --skill no-directors-commentary
 
 [Guide](docs/no-directors-commentary.md) | [Skill source](skills/no-directors-commentary/SKILL.md)
 
+### Fresh Eyes
+
+Fresh Eyes overhauls a repository's Markdown docs until a newcomer can learn the system from them alone. Every claim gets checked against the code, a docs check keeps paths, links, and scripts honest afterward, and a cold reader who sees only the docs proves the result by answering newcomer questions. Run it again after code changes and it refreshes only what moved.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill fresh-eyes
+```
+
+[Guide](docs/fresh-eyes.md) | [Skill source](skills/fresh-eyes/SKILL.md)
+
+### Know Thyself
+
+Know Thyself reads the conversations you've had with AI coding agents and reflects back how you work, what you're good at, and where friction shows up, with counts and short quotes from your own history behind every pattern. Ask and it coaches you against public guidance, checks whether a habit changed since a date, or turns corrections you keep repeating into rules. Everything stays on your machine.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill know-thyself
+```
+
+[Guide](docs/know-thyself.md) | [Skill source](skills/know-thyself/SKILL.md)
+
 ## Repository layout
 
 ```text
