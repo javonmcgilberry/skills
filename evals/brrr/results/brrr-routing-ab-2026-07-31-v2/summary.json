@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "run_id": "brrr-routing-ab-2026-07-31-v2",
+  "arms": {
+    "initial": {
+      "mean_score": 100,
+      "scores": {
+        "clear-work": 100,
+        "unapproved-brief": 100,
+        "material-discovery": 100,
+        "local-discovery": 100,
+        "expanded-execution": 100,
+        "publication-boundary": 100
+      }
+    },
+    "current": {
+      "mean_score": 100,
+      "scores": {
+        "clear-work": 100,
+        "unapproved-brief": 100,
+        "material-discovery": 100,
+        "local-discovery": 100,
+        "expanded-execution": 100,
+        "publication-boundary": 100
+      }
+    }
+  },
+  "rows": [
+    {
+      "case_id": "clear-work",
+      "arm": "initial",
+      "score": 100,
+      "route": "execute",
+      "word_count": 27,
+      "matched_terms": [
+        "file",
+        "acceptance criteria"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "clear-work",
+      "arm": "current",
+      "score": 100,
+      "route": "execute",
+      "word_count": 28,
+      "matched_terms": [
+        "acceptance criteria"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "unapproved-brief",
+      "arm": "initial",
+      "score": 100,
+      "route": "lock-in",
+      "word_count": 30,
+      "matched_terms": [
+        "Draft",
+        "approval"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "unapproved-brief",
+      "arm": "current",
+      "score": 100,
+      "route": "lock-in",
+      "word_count": 28,
+      "matched_terms": [
+        "Draft",
+        "approval"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "material-discovery",
+      "arm": "initial",
+      "score": 100,
+      "route": "lock-in",
+      "word_count": 24,
+      "matched_terms": [
+        "architecture"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "material-discovery",
+      "arm": "current",
+      "score": 100,
+      "route": "lock-in",
+      "word_count": 30,
+      "matched_terms": [
+        "architecture",
+        "tenant"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "local-discovery",
+      "arm": "initial",
+      "score": 100,
+      "route": "execute",
+      "word_count": 32,
+      "matched_terms": [
+        "helper",
+        "approved"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "local-discovery",
+      "arm": "current",
+      "score": 100,
+      "route": "execute",
+      "word_count": 25,
+      "matched_terms": [
+        "helper",
+        "approved"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "expanded-execution",
+      "arm": "initial",
+      "score": 100,
+      "route": "heavier",
+      "word_count": 27,
+      "matched_terms": [
+        "workstreams",
+        "coordinated"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "expanded-execution",
+      "arm": "current",
+      "score": 100,
+      "route": "heavier",
+      "word_count": 36,
+      "matched_terms": [
+        "workstreams",
+        "coordinated"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "publication-boundary",
+      "arm": "initial",
+      "score": 100,
+      "route": "execute-without-publication",
+      "word_count": 30,
+      "matched_terms": [
+        "publication",
+        "authorization"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    },
+    {
+      "case_id": "publication-boundary",
+      "arm": "current",
+      "score": 100,
+      "route": "execute-without-publication",
+      "word_count": 23,
+      "matched_terms": [
+        "publication",
+        "authorization"
+      ],
+      "forbidden_terms": [],
+      "checks": {
+        "expected_route": true,
+        "avoids_forbidden_route": true,
+        "uses_case_evidence": true,
+        "concise": true
+      }
+    }
+  ]
+}

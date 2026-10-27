@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "arms": [
+    "pre-checkpoint",
+    "current"
+  ],
+  "cases": [
+    "cases/clear-readme-edit.json",
+    "cases/generated-artifact-cleanup.json",
+    "cases/install-command-evidence.json",
+    "cases/publication-boundary.json"
+  ]
+}

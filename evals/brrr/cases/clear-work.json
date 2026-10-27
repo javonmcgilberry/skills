@@ -1,0 +1,21 @@
+{
+  "id": "clear-work",
+  "request": "Implement the accepted request now.",
+  "evidence": [
+    "The request names one file and one behavior change.",
+    "The acceptance criteria and focused test command are explicit.",
+    "No product, architecture, scope, or approval decision remains open."
+  ],
+  "decision_prompt": "Should Brrr execute this work directly or route it through another workflow?",
+  "expected_route": "execute",
+  "expected_terms": [
+    "file",
+    "acceptance criteria"
+  ],
+  "minimum_expected_terms": 1,
+  "forbidden_terms": [
+    "lock in",
+    "lock-in",
+    "need approval"
+  ]
+}

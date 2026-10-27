@@ -6,13 +6,33 @@ These are the agent skills I use across Cursor, Claude Code, Codex, and anything
 
 | Skill | What it does | Guide |
 | --- | --- | --- |
+| Lock In | Turns an unsettled request into one brief you can approve before any code is written | [docs/lock-in-and-brrr.md](docs/lock-in-and-brrr.md) |
+| Brrr | Has one agent build a clear task with visible progress, focused checks, and a self-review | [docs/lock-in-and-brrr.md](docs/lock-in-and-brrr.md) |
 | Chill | Rewrites a dense answer in plain language and keeps its facts, caveats, and next steps | [docs/chill.md](docs/chill.md) |
 | No Director's Commentary | Strips agent narration from comments, docs, and PR text, and flags type escapes and no-op try/catch in the same pass | [docs/no-directors-commentary.md](docs/no-directors-commentary.md) |
 | Fresh Eyes | Overhauls a repository's Markdown docs, checks every claim against the code, and proves the result with a cold reader | [docs/fresh-eyes.md](docs/fresh-eyes.md) |
 | Know Thyself | Reads your local agent conversations and reflects back how you work, with counts and quotes from your own history | [docs/know-thyself.md](docs/know-thyself.md) |
-| Lock In | Turns an unsettled request into one brief you can approve before any code is written | [docs/lock-in.md](docs/lock-in.md) |
-| Brrr | Has one agent build a clear task with visible progress, focused checks, and a self-review | [docs/brrr.md](docs/brrr.md) |
 | useEffect or Not | Decides whether each React effect should stay, go, or be repaired, and names its real owner | [docs/useeffect-or-not.md](docs/useeffect-or-not.md) |
+
+### Lock In
+
+Use Lock In when a request still has decisions hiding inside it. It checks the code and supporting evidence, asks about the choices that could change the implementation, and writes one brief you can approve before coding starts. It always checks its understanding with you instead of silently treating its assumptions as decisions.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill lock-in
+```
+
+[Guide](docs/lock-in-and-brrr.md) | [Skill source](skills/lock-in/SKILL.md)
+
+### Brrr
+
+Brrr gets clear work done. It uses one primary agent, keeps a short record as it goes, runs the right tests, and reviews the final diff. You can run it on its own when the request is already clear, or hand it a brief from Lock In.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill brrr
+```
+
+[Guide](docs/lock-in-and-brrr.md) | [Skill source](skills/brrr/SKILL.md)
 
 ### Chill
 
@@ -55,26 +75,6 @@ npx skills@latest add javonmcgilberry/skills --skill know-thyself
 ```
 
 [Guide](docs/know-thyself.md) | [Skill source](skills/know-thyself/SKILL.md)
-
-### Lock In
-
-Reach for it when a request is ambiguous or spans real choices, before anyone starts building. It investigates, asks only what changes the implementation, and ends with one brief to approve.
-
-```sh
-npx skills@latest add javonmcgilberry/skills --skill lock-in
-```
-
-[Guide](docs/lock-in.md) | [Skill source](skills/lock-in/SKILL.md)
-
-### Brrr
-
-Reach for it once the outcome is clear, often right after Lock In. One agent builds it with visible progress, focused checks, and a self-review, without a heavier multi-agent workflow.
-
-```sh
-npx skills@latest add javonmcgilberry/skills --skill brrr
-```
-
-[Guide](docs/brrr.md) | [Skill source](skills/brrr/SKILL.md)
 
 ### useEffect or Not
 
@@ -134,7 +134,7 @@ Running it again replaces existing links. When a runtime already holds a copied 
 ```text
 skills/     Installable skill packages, one folder each with its SKILL.md
 docs/       One guide per skill, plus know-thyself's reference, scorecard, and development pages
-evals/      Chill's evaluation fixtures, graders, and recorded results
+evals/      Evaluation fixtures, graders, and recorded results for Chill, Lock In, and Brrr
 bin/        link-skill.sh
 scripts/    check.sh, the docs check, and the docs check's tests
 .github/    The CI workflow that runs scripts/check.sh
@@ -152,7 +152,7 @@ It runs the docs check's tests, the docs check, and know-thyself's validator, an
 
 The docs check, `scripts/docs_check.py`, fails when a page names a path, link, heading, script, command, or skill the repository doesn't have, and the top of the file lists its rules. It proves names exist, not that the prose around them is true.
 
-Chill's eval harness (`npm test` in `evals/chill/`) and the Fresh Eyes lever's tests run by hand, as their guides explain.
+The eval harnesses (`npm test` in `evals/chill/`, `evals/lock-in/`, or `evals/brrr/`) and the Fresh Eyes lever's tests run by hand, as their guides explain.
 
 ## Add a skill
 

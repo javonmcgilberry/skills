@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"019fbb59-1177-7b30-9a19-caa76f681861"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Skill descriptions were shortened to fit the 2% skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."}}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I recommend adding `cp -r skills/lock-in ~/.codex/skills/` to the README’s manual installation examples, with no other installation changes. Should I use that contract for the draft brief?"}}
+{"type":"turn.completed","usage":{"input_tokens":18549,"cached_input_tokens":9984,"cache_write_input_tokens":0,"output_tokens":173,"reasoning_output_tokens":125}}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "brrr-e2e-2026-08-01-v2",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "skill_sha256": "b4d92246e708b9c651d5faa71d13370c7a30a1b830474b96b2420485b5ff3c46",
+  "score": 100,
+  "checks": {
+    "baseline_reproduced": true,
+    "focused_test_passes": true,
+    "execution_record_updated": true,
+    "changes_left_uncommitted": true
+  },
+  "git_status": [
+    "M brief.md",
+    " M src/normalize-name.mjs"
+  ]
+}

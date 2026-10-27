@@ -2,3 +2,4 @@
 *.zip
 .private-terms
 __pycache__/
+evals/brrr/results/*/workspace/

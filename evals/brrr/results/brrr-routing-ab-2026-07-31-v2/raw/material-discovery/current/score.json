@@ -1,0 +1,16 @@
+{
+  "score": 100,
+  "route": "lock-in",
+  "word_count": 30,
+  "matched_terms": [
+    "architecture",
+    "tenant"
+  ],
+  "forbidden_terms": [],
+  "checks": {
+    "expected_route": true,
+    "avoids_forbidden_route": true,
+    "uses_case_evidence": true,
+    "concise": true
+  }
+}

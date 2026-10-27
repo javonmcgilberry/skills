@@ -1,0 +1,1 @@
+I recommend changing only `README.md` from `## Installing manually` to `## Manual installation`, preserving all unrelated edits, then verifying the old heading is absent and `git diff --check` passes. Should I use this contract to draft the approval-ready brief?

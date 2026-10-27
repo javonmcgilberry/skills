@@ -1,0 +1,16 @@
+{
+  "score": 100,
+  "route": "heavier",
+  "word_count": 36,
+  "matched_terms": [
+    "workstreams",
+    "coordinated"
+  ],
+  "forbidden_terms": [],
+  "checks": {
+    "expected_route": true,
+    "avoids_forbidden_route": true,
+    "uses_case_evidence": true,
+    "concise": true
+  }
+}

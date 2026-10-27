@@ -1,0 +1,20 @@
+{
+  "id": "generated-artifact-cleanup",
+  "request": "Add automatic cleanup for generated evaluation artifacts.",
+  "evidence": [
+    "Each evaluation run creates disposable candidate workspaces under results/process/<run-id>/workspaces.",
+    "The raw responses, manifests, grades, summaries, and reviews are durable evidence used by documentation and grading.",
+    "Completed evaluation results are checked into the repository.",
+    "Failed candidate workspaces are useful for diagnosis."
+  ],
+  "expected_terms": [
+    "workspaces",
+    "failure",
+    "durable"
+  ],
+  "minimum_expected_terms": 2,
+  "forbidden_question_terms": [
+    "where are",
+    "what files exist"
+  ]
+}

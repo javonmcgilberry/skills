@@ -1,0 +1,12 @@
+{
+  "name": "brrr-skill-eval",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e": "node scripts/run-e2e.mjs",
+    "eval": "node scripts/run-eval.mjs",
+    "grade": "node scripts/grade-eval.mjs",
+    "test": "node --test test/harness.test.mjs",
+    "validate": "node scripts/validate-fixtures.mjs"
+  }
+}

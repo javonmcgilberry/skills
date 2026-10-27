@@ -1,0 +1,1 @@
+Route it to Lock In for explicit approval. Brrr must not execute a brief whose Approval status is still Draft, even when the implementation details and acceptance criteria are complete.

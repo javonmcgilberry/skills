@@ -1,0 +1,20 @@
+{
+  "id": "clear-readme-edit",
+  "request": "In the root README, rename the heading 'Installing manually' to 'Manual installation'. Change no other text. Completion means the new heading exists, the old heading is absent, and git diff --check passes.",
+  "evidence": [
+    "README.md currently contains the exact heading '## Installing manually'.",
+    "The requested replacement heading is absent.",
+    "The working tree contains unrelated user edits that must be preserved."
+  ],
+  "expected_terms": [
+    "Manual installation",
+    "unrelated",
+    "git diff --check"
+  ],
+  "minimum_expected_terms": 2,
+  "forbidden_question_terms": [
+    "which heading",
+    "what heading",
+    "which file"
+  ]
+}

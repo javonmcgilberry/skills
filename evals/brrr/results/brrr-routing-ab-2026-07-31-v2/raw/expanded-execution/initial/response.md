@@ -1,0 +1,1 @@
+Hand the valid contract to the heavier workflow, because three independent workstreams and coordinated cross-environment verification now require parallel execution and integrated review beyond Brrr’s single-agent scope.

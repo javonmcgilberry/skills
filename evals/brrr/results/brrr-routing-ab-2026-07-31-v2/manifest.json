@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "brrr-routing-ab-2026-07-31-v2",
+  "status": "complete",
+  "started_at": "2026-08-01T03:44:27.176Z",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "timeout_ms": 300000,
+  "expected_model_calls": 12,
+  "completed_model_calls": 12,
+  "cases": [
+    "clear-work",
+    "unapproved-brief",
+    "material-discovery",
+    "local-discovery",
+    "expanded-execution",
+    "publication-boundary"
+  ],
+  "arms": [
+    "initial",
+    "current"
+  ],
+  "skill_sha256": {
+    "initial": "312e946307174505b5d38f147a27f787c7f13bbc9ba86fedd0b24d846e47a8b9",
+    "current": "b4d92246e708b9c651d5faa71d13370c7a30a1b830474b96b2420485b5ff3c46"
+  },
+  "completed_at": "2026-08-01T03:46:10.117Z"
+}

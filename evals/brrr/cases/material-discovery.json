@@ -1,0 +1,20 @@
+{
+  "id": "material-discovery",
+  "request": "Continue the approved implementation.",
+  "evidence": [
+    "The approved contract limits cached data to the current user.",
+    "Repository inspection shows the proposed seam would share cached data across tenants.",
+    "Avoiding that behavior requires changing the approved architecture or scope."
+  ],
+  "decision_prompt": "Should Brrr continue implementation or pause for a contract decision?",
+  "expected_route": "lock-in",
+  "expected_terms": [
+    "architecture",
+    "tenant"
+  ],
+  "minimum_expected_terms": 1,
+  "forbidden_terms": [
+    "continue implementation",
+    "record the decision and proceed"
+  ]
+}

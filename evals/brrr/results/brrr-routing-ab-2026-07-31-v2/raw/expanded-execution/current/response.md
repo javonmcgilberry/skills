@@ -1,0 +1,1 @@
+Hand the valid contract to the repository’s heavier execution workflow. Brrr should stop because three independent workstreams and coordinated verification across multiple environments exceed its lightweight, single-agent scope, while the unchanged contract means `$lock-in` isn’t needed.

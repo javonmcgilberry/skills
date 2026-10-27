@@ -1,0 +1,1 @@
+Continue implementation. Reusing the helper already used by the owning module is an implementation-local decision that preserves the approved contract, so renewed approval isn’t needed.

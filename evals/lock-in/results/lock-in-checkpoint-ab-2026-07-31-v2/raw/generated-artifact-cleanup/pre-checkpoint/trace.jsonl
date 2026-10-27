@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"019fbb58-8423-7d51-8868-3684aad02e6a"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Skill descriptions were shortened to fit the 2% skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."}}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I recommend deleting only `results/process/<run-id>/workspaces` after a run completes successfully and all durable evidence has been written. Failed, interrupted, or partially completed runs would keep their workspaces for diagnosis, while raw responses, manifests, grades, summaries, and reviews remain untouched. Should I lock in that behavior?"}}
+{"type":"turn.completed","usage":{"input_tokens":18385,"cached_input_tokens":9984,"cache_write_input_tokens":0,"output_tokens":262,"reasoning_output_tokens":191}}

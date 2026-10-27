@@ -1,0 +1,20 @@
+{
+  "id": "unapproved-brief",
+  "request": "Execute the attached Lock In brief.",
+  "evidence": [
+    "The brief has Approval set to Draft.",
+    "Its implementation units and acceptance criteria are otherwise complete.",
+    "No explicit approval response appears in the conversation."
+  ],
+  "decision_prompt": "Should Brrr execute this brief now or route it elsewhere?",
+  "expected_route": "lock-in",
+  "expected_terms": [
+    "Draft",
+    "approval"
+  ],
+  "minimum_expected_terms": 1,
+  "forbidden_terms": [
+    "start implementation",
+    "proceed with implementation"
+  ]
+}
