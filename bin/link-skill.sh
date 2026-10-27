@@ -47,6 +47,11 @@ for runtime in .cursor .claude .codex; do
     echo "  ~/$runtime/skills                  (skipped - directory doesn't exist)"
     continue
   fi
+  if [ -d "$runtime_dir/$SKILL" ] && [ ! -L "$runtime_dir/$SKILL" ]; then
+    # ln would put the link inside a copied folder instead of replacing it.
+    echo "  ~/$runtime/skills/$SKILL  (skipped - a copied folder is there; delete it, then run this again)"
+    continue
+  fi
   ln -sfn "../../.agents/skills/$SKILL" "$runtime_dir/$SKILL"
   echo "  ~/$runtime/skills/$SKILL  ->  ../../.agents/skills/$SKILL"
 done

@@ -94,7 +94,7 @@ flowchart LR
     A --> R["~/skills/skills/know-thyself in your clone"]
 ```
 
-Running it again replaces existing links. It can't replace a copied folder, though, because `ln -sfn` puts the new link inside a real directory instead of in its place, so delete a copy at `~/.claude/skills/<name>` or the other runtime paths before you link. Check the result with `readlink -f ~/.agents/skills/<name>`.
+Running it again replaces existing links. When a runtime already holds a copied folder of the skill, it skips that runtime and says so, so delete the copy and run it again. Check the result with `readlink -f ~/.agents/skills/<name>`.
 
 ## Layout
 
