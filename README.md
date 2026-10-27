@@ -117,7 +117,7 @@ scripts/check.sh
 
 It runs three commands in order and stops at the first failure.
 
-1. **The docs check's tests.** `python3 -m unittest -q scripts/test_docs_check.py` builds a throwaway repository per rule, plants one break only that rule should catch, and checks that clean docs pass.
+1. **The docs check's tests.** `python3 -m unittest -q scripts/test_docs_check.py` builds a throwaway repository per case, with at least one seeded break per rule that only that rule catches and clean cases that must pass.
 2. **The docs check.** `python3 scripts/docs_check.py` reads every tracked Markdown file, the recorded eval results included, and prints one line per problem.
 3. **know-thyself's package validator.** `python3 skills/know-thyself/scripts/validate_skill.py` checks that skill's files, statistics, sources, and signal fixtures, as [its development page](docs/know-thyself-development.md#package-validator) lists.
 
