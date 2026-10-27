@@ -36,7 +36,7 @@ flowchart LR
     Q -->|no| S["Full steps, from questions to cold reads"]
 ```
 
-A repository that already tracks a docs check, at `<repo>/scripts/docs-check.mts` or the path an earlier pass adapted it to, has had an overhaul, so it gets a refresh. Every other repository gets the full steps. In both, the work happens in a separate worktree, never in your checkout, and the audit trail lives in a `.audit/` directory that's added to Git's local exclude file so it never gets committed.
+A repository that already tracks a docs check, at `<repo>/scripts/docs-check.mts` or the path and language an earlier pass adapted it to, such as this repository's `scripts/docs_check.py`, has had an overhaul, so it gets a refresh. Every other repository gets the full steps. In both, the work happens in a separate worktree, never in your checkout, and the audit trail lives in a `.audit/` directory that's added to Git's local exclude file so it never gets committed.
 
 ### Full steps
 
@@ -74,7 +74,7 @@ History files such as changelogs go in its exclusion list, because their compare
 node --test skills/fresh-eyes/lever/docs-check.test.mts
 ```
 
-This repository runs the same lever as a Python port at [scripts/docs_check.py](../scripts/docs_check.py), adapted for skill packages, and [the README's Checks section](../README.md#checks) lists its rules. The lever's own tests stay out of `scripts/check.sh` and CI.
+This repository's docs check, [scripts/docs_check.py](../scripts/docs_check.py), is a Python version of the lever adapted for skill packages. It has no pnpm rule, matches anchors to headings only, and adds the script, command, and install rules that [the README's Checks section](../README.md#checks) lists. The lever's own tests stay out of `scripts/check.sh` and CI.
 
 ## Subagent roles
 

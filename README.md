@@ -7,7 +7,7 @@ These are the agent skills I use across Cursor, Claude Code, Codex, and anything
 | Skill | What it does | Guide |
 | --- | --- | --- |
 | Chill | Rewrites a dense answer in plain language and keeps its facts, caveats, and next steps | [docs/chill.md](docs/chill.md) |
-| No Director's Commentary | Strips agent narration from comments, docs, and PR text, and flags type escapes and empty try/catch blocks in the same pass | [docs/no-directors-commentary.md](docs/no-directors-commentary.md) |
+| No Director's Commentary | Strips agent narration from comments, docs, and PR text, and flags type escapes and no-op try/catch in the same pass | [docs/no-directors-commentary.md](docs/no-directors-commentary.md) |
 | Fresh Eyes | Overhauls a repository's Markdown docs, checks every claim against the code, and proves the result with a cold reader | [docs/fresh-eyes.md](docs/fresh-eyes.md) |
 | Know Thyself | Reads your local agent conversations and reflects back how you work, with counts and quotes from your own history | [docs/know-thyself.md](docs/know-thyself.md) |
 
@@ -45,7 +45,7 @@ npx skills@latest add javonmcgilberry/skills --skill fresh-eyes
 
 ### Know Thyself
 
-Reach for it when you want to see how you work with AI coding agents. Ask and it also coaches you against public guidance, checks whether a habit changed since a date, or turns corrections you keep repeating into rules. Its script uses only Python's standard library and writes only to its own config file, data directory, and reports directory, so your history stays on your machine.
+Reach for it when you want to see how you work with AI coding agents. Ask and it also coaches you against public guidance, checks whether a habit changed since a date, or turns corrections you keep repeating into rules. Its script uses only Python's standard library and writes only to its own config file, data directory, and reports directory, plus any file you name when you export the corpus, so your history stays on your machine.
 
 ```sh
 npx skills@latest add javonmcgilberry/skills --skill know-thyself

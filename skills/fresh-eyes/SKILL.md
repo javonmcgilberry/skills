@@ -9,7 +9,7 @@ Docs pass when a stranger, reading only the Markdown, answers the newcomer quest
 
 You coordinate. Writers, cold readers and checkers are subagents, briefed from [prompts.md](prompts.md). Route their models by the session's policy, a strong model for writing and checking and a small one for the cold reader, since a newcomer is the point.
 
-Choose the branch first. A repository whose tracked docs check exists (`scripts/docs-check.mts` or its adapted path) has had an overhaul, so take [Refresh](#refresh). Any other repository takes the full Steps.
+Choose the branch first. A repository whose tracked docs check exists (`scripts/docs-check.mts`, or its adapted path or language) has had an overhaul, so take [Refresh](#refresh). Any other repository takes the full Steps.
 
 ## Steps
 
