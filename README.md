@@ -12,6 +12,7 @@ These are the agent skills I use across Cursor, Claude Code, Codex, and anything
 | Know Thyself | Reads your local agent conversations and reflects back how you work, with counts and quotes from your own history | [docs/know-thyself.md](docs/know-thyself.md) |
 | Lock In | Turns an unsettled request into one brief you can approve before any code is written | [docs/lock-in.md](docs/lock-in.md) |
 | Brrr | Has one agent build a clear task with visible progress, focused checks, and a self-review | [docs/brrr.md](docs/brrr.md) |
+| useEffect or Not | Decides whether each React effect should stay, go, or be repaired, and names its real owner | [docs/useeffect-or-not.md](docs/useeffect-or-not.md) |
 
 ### Chill
 
@@ -74,6 +75,16 @@ npx skills@latest add javonmcgilberry/skills --skill brrr
 ```
 
 [Guide](docs/brrr.md) | [Skill source](skills/brrr/SKILL.md)
+
+### useEffect or Not
+
+Reach for it when reviewing React code full of effects. It names the owner of each one, keeps the effects that talk to an outside system, and moves the rest into render, an event, or the right store.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill useeffect-or-not
+```
+
+[Guide](docs/useeffect-or-not.md) | [Skill source](skills/useeffect-or-not/SKILL.md)
 
 ## Install
 

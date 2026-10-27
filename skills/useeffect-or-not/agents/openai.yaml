@@ -1,0 +1,4 @@
+interface:
+  display_name: "useEffect or Not"
+  short_description: "Decide whether React code needs useEffect"
+  default_prompt: "Use $useeffect-or-not to review this React effect and recommend the simplest correct pattern."
