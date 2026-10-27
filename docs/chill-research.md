@@ -1,20 +1,12 @@
 # Research first, Chill second
 
-The [Chill guide](chill.md) covers the skill itself. This page tackles the question that came out of testing it: does loading a writing skill upfront change how an agent researches?
+You've read [the Chill guide](chill.md) and want to know whether its advice to research first and rewrite afterward holds up beyond one experiment. Testing Chill raised a narrower question, whether loading a writing skill upfront changes how an agent researches, and the published work below bears on it from several sides without answering it outright.
 
 ## Has anyone tested this?
 
 Not exactly, at least not that I could find.
 
-I found related work, but no published experiment comparing these two workflows:
-
-```text
-research with a plain-language skill loaded upfront
-
-vs.
-
-research normally, then rewrite the finished answer
-```
+I found related work, but no published experiment comparing research with a plain-language skill loaded upfront against researching normally and rewriting the finished answer afterward.
 
 Other studies show that prompt wording can change searches, tool calls, and the path through a task. They also show that persona and concision prompts can change behavior without improving accuracy.
 
@@ -41,7 +33,7 @@ Vercel compared four ways of giving coding agents current Next.js documentation 
 - Explicitly telling the agent to invoke the skill raised the pass rate to 79 percent and skill use above 95 percent.
 - Putting a compressed documentation index in persistent context scored 100 percent.
 
-Vercel's explanation is all about sequencing. A skill creates a decision: should the agent read the docs first or inspect the project first? Persistent context removes that decision because the guidance is already available.
+Vercel's explanation is all about sequencing. A skill creates a decision about whether the agent should read the docs first or inspect the project first. Persistent context removes that decision because the guidance is already available.
 
 That looks a lot like what we saw with Chill. An instruction does not sit quietly until the final paragraph. It can change what the agent reads first and how it moves through the task.
 
@@ -73,7 +65,7 @@ OpenAI presents those internal numbers as a guide, not a promise. The underlying
 
 The personas changed individual predictions, but they did not reliably improve accuracy over the control. Persona gender, role, and domain all influenced behavior, yet automatically choosing a "helpful" persona often performed no better than choosing one at random.
 
-We saw the same general pattern: behavioral context moved the model without producing a dependable quality gain. This study did not involve agents, tools, research corpora, or writing skills, so it cannot explain Chill's extra searches by itself.
+We saw the same general pattern, where behavioral context moved the model without producing a dependable quality gain. This study did not involve agents, tools, research corpora, or writing skills, so it cannot explain Chill's extra searches by itself.
 
 ### Concision can push the other way
 
@@ -91,18 +83,18 @@ Anthropic tested this problem directly in [Reasoning Models Don't Always Say Wha
 
 Claude 3.7 Sonnet mentioned the hint only 25 percent of the time on average. DeepSeek R1 mentioned it 39 percent of the time. In separate reward-hacking experiments, models exploited planted shortcuts in more than 99 percent of cases but usually admitted doing so in fewer than 2 percent.
 
-Written reasoning can still be useful, but it is not a complete recording of the mechanism that produced an action. That is why we graded the things we could observe: searches, source reads, tool calls, citations, tokens, latency, and the final findings.
+Written reasoning can still be useful, but it is not a complete recording of the mechanism that produced an action. That is why we graded the things we could observe, which were searches, source reads, tool calls, citations, tokens, latency, and the final findings.
 
 Anthropic makes the same distinction in [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents). An agent has a trajectory, meaning the steps and tool calls it takes, and an outcome, meaning what it actually produces. You need both to understand whether extra work helped.
 
-For Chill, those measurements told two different stories:
+For Chill, those measurements told two different stories.
 
 - The process changed. Chill produced more searches and tool calls.
 - The outcome barely moved. Research quality stayed effectively tied.
 
 ## What the evidence supports
 
-Four conclusions hold up:
+Four conclusions hold up.
 
 1. Prompt wording can change an agent's actions, retrieval order, and tool use.
 2. A behavioral or stylistic instruction does not automatically improve accuracy.
