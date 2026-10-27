@@ -1,6 +1,6 @@
 # Rewrite Examples
 
-Before/after rewrites for each category in [SKILL.md](../SKILL.md).
+Before/after rewrites for each narration category in [SKILL.md](../SKILL.md).
 
 When you catch yourself writing narration instead of content, rewrite by answering:
 
