@@ -51,7 +51,7 @@ The judge compares the old and the new skill's output for the same case. When bo
 4. **Check position bias.** Count how often the judge picked the output shown second. Far from half, say over two in three, means the judge is reading position, not quality, so shorten the inputs or switch to a stronger judge before trusting the tally.
 5. **Tally by question.** For each question, report wins, losses, and ties for the new version across all pairs, next to the hard-gate and grader failures for each side.
 
-The judge prompt is below. Fill `{request}` with the case's prompt, `{question}` with one line from the list under it, and the two outputs with the reply followed by its report, if one was written.
+The judge prompt is below. Fill `{request}` with the case's prompt, `{question}` with one line from the list under it, and the two outputs with each run's chat reply.
 
 ```text
 You are comparing two outputs from an assistant that read a person's past conversations with AI coding agents and wrote back to them about how they work. The person asked:
