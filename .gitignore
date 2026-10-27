@@ -1,2 +1,4 @@
 .DS_Store
 *.zip
+.private-terms
+__pycache__/
