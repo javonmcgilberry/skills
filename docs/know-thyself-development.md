@@ -1,12 +1,6 @@
 # Development
 
-A change to the code, the signal rules, the skill's instructions, or these docs has to keep the contract below, and the test layers after it say which check proves each part and what no check covers. Commands and paths are in [the reference](know-thyself-reference.md).
-
-Run every check with one command from the repository root. It needs Python 3.11 or later and nothing outside the standard library.
-
-```sh
-scripts/check.sh
-```
+You're changing know-thyself's code, signal rules, instructions, or docs, or reviewing someone's change, and you need to know what the change must keep and which check proves it. A change has to keep the contract below, and the test layers after it say which check proves each part and what no check covers. Commands and paths are in [the reference](know-thyself-reference.md), and running the repository's checks, `scripts/check.sh` and CI, is in [the README](../README.md#checks).
 
 ## The contract a change must keep
 
@@ -32,7 +26,7 @@ A mine and a query each run through a short chain of functions, so most changes 
 
 ## Where each rule lives in the skill
 
-The skill keeps each rule in one file, so changing a behavior is a one-file edit, and an agent reads only `SKILL.md`, the voice file, and the file its mode points to. All of them are under `skills/know-thyself/`.
+The skill keeps each rule in one file, so changing a behavior is a one-file edit, and an agent reads only `SKILL.md`, the voice file, and the file its mode points to, plus `references/practices.md` and `references/sources.json` in coaching. All of them are under `skills/know-thyself/`.
 
 | File | Holds |
 | --- | --- |
@@ -50,7 +44,7 @@ The voice file and each mode's file end on a Done when list whose items a reader
 
 ## How rule changes reach stored data
 
-`mine` stores each human turn's signals in the corpus so queries stay fast. Two hashes decide when that stored work is stale. `CLEAN_HASH` covers cleaning, redaction, origin tagging including the `harness_patterns` in your config that `user_harness()` accepts (it skips, with a warning, any that fails to compile or matches empty text), the source parsers, the dedupe in `row_key()` and `rank()`, and how a turn is stored, through `pack()` and `key_text()`, and `RULES_HASH` covers `SIGNALS`, `prose()`, and the signal helpers. Both hash source text. `RULES_HASH` takes the `SIGNALS` patterns, the patterns `prose()` strips with, and the full source of `prose()`, `detect_prose()`, `plain_signals()`, `emphasized()`, `annotate_texts()`, and `emphasize()`, and `CLEAN_HASH` likewise takes the full source of `clean()`, `classify()`, the readers, and the other functions it lists. So even a comment or whitespace edit inside one of those functions forces a full re-mine, while a comment beside a `SIGNALS` pattern doesn't, because only the patterns themselves are hashed.
+`mine` stores each human turn's signals in the corpus so queries stay fast. Two hashes decide when that stored work is stale. `CLEAN_HASH` covers cleaning, redaction, origin tagging including the `harness_patterns` in your config that `user_harness()` accepts (it skips, with a warning, any that fails to compile or matches empty text), the source parsers, the dedupe in `row_key()` and `rank()`, and how a turn is stored, through `pack()` and `key_text()`, and `RULES_HASH` covers `SIGNALS`, `prose()`, and the signal helpers. Both hash source text. `RULES_HASH` takes the `SIGNALS` patterns, the patterns `prose()` strips with, the `SHORT_REFERENCE`, `CAPS_TOKEN`, and `WORD` patterns, and the full source of `prose()`, `detect_prose()`, `plain_signals()`, `emphasized()`, `annotate_texts()`, and `emphasize()`, and `CLEAN_HASH` likewise takes the full source of `clean()`, `classify()`, the readers, and the other functions it lists. So even a comment or whitespace edit inside one of those functions forces a full re-mine, while a comment beside a `SIGNALS` pattern doesn't, because only the patterns themselves are hashed.
 
 When either hash differs from the one stored in the `meta` table of `corpus.db`, the next `mine` re-reads every source instead of only changed ones. When `RULES_HASH` has changed, every `stats`, `score`, `compare`, and `search` until then prints `signal rules changed since the last mine; recomputing (slow). Run: convo.py mine` to stderr and recomputes signals in memory without saving them. When `CLEAN_HASH` has changed, for example after you edit `harness_patterns`, they print `turn cleaning rules changed since the last mine; the stored turns are out of date. Run: convo.py mine` and read the stored turns as they are, because only a mine cleans them again. Running `mine` once clears both.
 
@@ -114,17 +108,7 @@ Adding a practice to `references/practices.md` needs a source as well. End the b
 
 ### Docs check
 
-`scripts/docs_check.py` reads every tracked Markdown file in the repository, the recorded eval results included, and fails on any of these.
-
-- A path in code that starts at a tracked top-level entry, or at an entry next to the page, and doesn't exist. A leading `./` starts at the repository root, where commands run. Gitignored paths, placeholders like `<reports>`, globs, home and absolute paths, and URLs are skipped.
-- A missing path on a page inside a skill package, such as `skills/know-thyself/references/coach.md`. A skill runs in other repositories, so its paths start at its own directory, a path that starts with its repository path (`skills/know-thyself/...`) is checked from the repository root, and any other path names a file in the repository the skill runs in and is skipped.
-- A relative link that doesn't resolve, or that climbs out of the repository even if it comes back in.
-- A link fragment that isn't a heading in its target.
-- A script file name without a slash, such as `convo.py`, that isn't the name of any tracked file.
-- A `convo.py <command>` in code that the CLI doesn't define, or a flag after it on the same line that the command doesn't accept. It asks the real CLI by running `--help`.
-- An install command, `npx skills@latest add <repo> --skill <name>` or `link-skill.sh <name>`, whose skill isn't a package in `skills/`.
-
-`scripts/test_docs_check.py` builds a throwaway repository for each rule, plants one break that only that rule should catch, and checks that clean docs pass. A rule that lets something pass, such as the `./` start or a skill page naming a file in another repository, is proven by a clean case that fails without it.
+`scripts/docs_check.py` checks every tracked Markdown file in the repository, so it covers these pages and the skill's own files too. Among its rules, it runs `convo.py <command> --help` to fail any command or flag a page names that the CLI doesn't define. [The README](../README.md#checks) owns its full rule list and its tests.
 
 ### Behavioral evals
 
@@ -132,7 +116,7 @@ Adding a practice to `references/practices.md` needs a source as well. End the b
 
 ## What none of these cover
 
-- **The source parsers on real formats.** Only one small Codex file and one OpenCode file, both written to test bad input, go through the readers. No test feeds well-formed Claude Code, Pi, or Cursor history, so a format change in one of those tools shows up only as fewer turns from that tool in the `by_source` counts of `stats`, and in `files_failed` only when a reader raises.
+- **The source parsers on real formats.** Only one small Codex file and one OpenCode file, both written to test bad input, go through the readers. No test feeds well-formed Claude Code, Pi, or Cursor history, so a format change in one of those tools shows up only as fewer turns from that tool in the `by_source` counts of `stats`. A Claude Code or Pi reader that raises is counted in `files_failed`, but an error reading Cursor's database stops the whole mine, because `cursor_composers()` and `read_cursor()` run outside `parse_file()`.
 - **Mining logic.** Incremental reuse, retention of pruned turns, the merge that applies `row_key()` and `rank()`, imports, the mine lock, the move from older files to `corpus.db`, and `export` have no tests, so a regression there could lose history without failing a check. Only the key and the ranking themselves are checked, on fixed rows.
 - **Origin tagging and redaction.** The harness patterns have no fixtures, including for whether a personal `harness_patterns` entry tags the turns it should, and the credential patterns have only the one wrapped-value case, so a missed secret format or a misfiled human turn passes every check.
 - **Query output on real data.** `score` and `compare` run only on a few synthetic sessions built for the edge cases above, `stats` runs once, on an undated session, and `search` never runs, so a wrong number or a broken sentence on a real corpus passes. Beyond those cases, only two edge cases of the `compare` sentences and the card payoff text are rendered, on fixed inputs, along with the statistics helpers, the trend marks, and detection on fixed texts.
