@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lock In"
+  short_description: "Turn uncertain work into an executable brief"
+  default_prompt: "Use $lock-in to investigate this request, resolve material uncertainty, and produce an executable brief."

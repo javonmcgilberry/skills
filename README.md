@@ -10,6 +10,8 @@ These are the agent skills I use across Cursor, Claude Code, Codex, and anything
 | No Director's Commentary | Strips agent narration from comments, docs, and PR text, and flags type escapes and no-op try/catch in the same pass | [docs/no-directors-commentary.md](docs/no-directors-commentary.md) |
 | Fresh Eyes | Overhauls a repository's Markdown docs, checks every claim against the code, and proves the result with a cold reader | [docs/fresh-eyes.md](docs/fresh-eyes.md) |
 | Know Thyself | Reads your local agent conversations and reflects back how you work, with counts and quotes from your own history | [docs/know-thyself.md](docs/know-thyself.md) |
+| Lock In | Turns an unsettled request into one brief you can approve before any code is written | [docs/lock-in.md](docs/lock-in.md) |
+| Brrr | Has one agent build a clear task with visible progress, focused checks, and a self-review | [docs/brrr.md](docs/brrr.md) |
 
 ### Chill
 
@@ -52,6 +54,26 @@ npx skills@latest add javonmcgilberry/skills --skill know-thyself
 ```
 
 [Guide](docs/know-thyself.md) | [Skill source](skills/know-thyself/SKILL.md)
+
+### Lock In
+
+Reach for it when a request is ambiguous or spans real choices, before anyone starts building. It investigates, asks only what changes the implementation, and ends with one brief to approve.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill lock-in
+```
+
+[Guide](docs/lock-in.md) | [Skill source](skills/lock-in/SKILL.md)
+
+### Brrr
+
+Reach for it once the outcome is clear, often right after Lock In. One agent builds it with visible progress, focused checks, and a self-review, without a heavier multi-agent workflow.
+
+```sh
+npx skills@latest add javonmcgilberry/skills --skill brrr
+```
+
+[Guide](docs/brrr.md) | [Skill source](skills/brrr/SKILL.md)
 
 ## Install
 

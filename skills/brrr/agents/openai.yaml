@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brrr"
+  short_description: "Execute work with lightweight visible progress"
+  default_prompt: "Use $brrr to implement this work, keep progress visible, validate it, and review the final diff."
