@@ -1,32 +1,16 @@
 # Fresh Eyes
 
-Fresh Eyes overhauls a repository's Markdown docs until a stranger can learn the system from the docs alone. The test is concrete, since a cold reader who sees only the Markdown answers a fixed set of newcomer questions, and a checker grades each answer against the code. The code is the only source of truth, so another doc never counts as evidence for a claim.
+You want a repository's docs to be trustworthy again, or you've installed Fresh Eyes and want to know what it will do to your repository before you run it. Fresh Eyes overhauls a repository's Markdown docs until a stranger can learn the system from the docs alone. The test is concrete, since a cold reader who sees only the Markdown answers a fixed set of newcomer questions, and a checker grades each answer against the code. The code is the only source of truth, so another doc never counts as evidence for a claim.
 
 Your agent coordinates the work and hands writing, cold reading, and checking to subagents. A full overhaul also adds a docs check to the repository, so paths, links, and scripts named in the docs keep matching the code after the overhaul ends.
 
-Read the [skill](../skills/fresh-eyes/SKILL.md), or start with the [subagent briefs](../skills/fresh-eyes/prompts.md).
+Install it with the commands in [the README](../README.md#install), then read the [skill](../skills/fresh-eyes/SKILL.md), or start with the [subagent briefs](../skills/fresh-eyes/prompts.md).
 
 ## When to use it
 
 Reach for it when the docs have drifted far enough that you no longer trust them, when you want an accuracy audit of a repository's Markdown, when a batch of code changes has landed and the docs need to catch up, or when sibling repositories that implement the same thing for different providers should share one doc layout. The `/fresh-eyes` command and requests like "overhaul the docs" or "refresh the docs after these changes" all trigger it.
 
 It's a long, multi-agent job that ends with a cold-read score and a hand-back report, so it isn't the tool for fixing a single typo or rewording one page.
-
-## Install
-
-Install it from [javonmcgilberry/skills](https://github.com/javonmcgilberry/skills):
-
-```sh
-npx skills@latest add javonmcgilberry/skills --skill fresh-eyes
-```
-
-Or symlink it so the repo stays the source of truth:
-
-```sh
-git clone https://github.com/javonmcgilberry/skills.git ~/skills
-cd ~/skills
-./bin/link-skill.sh fresh-eyes
-```
 
 ## Package layout
 
@@ -43,11 +27,20 @@ skills/fresh-eyes/
 
 ## Two branches
 
-The agent picks a branch before anything else. A repository that already tracks a docs check, at `<repo>/scripts/docs-check.mts` or the path an earlier pass adapted it to, has had an overhaul, so it gets a refresh. Every other repository gets the full steps. In both, the work happens in a separate worktree, never in your checkout, and the audit trail lives in a `.audit/` directory that's added to Git's local exclude file so it never gets committed.
+The agent picks a branch before anything else.
+
+```mermaid
+flowchart LR
+    R["Target repository"] --> Q{"Tracks a docs check?"}
+    Q -->|yes| F["Refresh, auditing only what changed since the baseline"]
+    Q -->|no| S["Full steps, from questions to cold reads"]
+```
+
+A repository that already tracks a docs check, at `<repo>/scripts/docs-check.mts` or the path an earlier pass adapted it to, has had an overhaul, so it gets a refresh. Every other repository gets the full steps. In both, the work happens in a separate worktree, never in your checkout, and the audit trail lives in a `.audit/` directory that's added to Git's local exclude file so it never gets committed.
 
 ### Full steps
 
-The full overhaul runs ten steps, and each one ends on a "Done when" condition the agent has to meet before moving on.
+The full overhaul runs ten steps. Steps 1 to 9 each end on a "Done when" condition the agent has to meet before moving on, and step 10 hands the result back.
 
 1. **Set up.** It reads the repository's agent files, README, and PR conventions, makes a worktree from the default branch, records that the full check was green, and copies the steps into `.audit/docs.todo.md`.
 2. **Fix the questions.** It writes 10 to 12 newcomer questions from [questions.md](../skills/fresh-eyes/questions.md) into `.audit/questions.md` before anyone rewrites a page, so the test can't be bent around the new docs.
@@ -68,20 +61,20 @@ It runs the docs check on the default branch's head and treats every failure as 
 
 ## What the lever checks
 
-The lever is [lever/docs-check.mts](../skills/fresh-eyes/lever/docs-check.mts), a TypeScript script for Node that reads every Markdown file Git tracks and prints one line per problem, exiting 1 when there is one. It fails on these:
+The lever is [lever/docs-check.mts](../skills/fresh-eyes/lever/docs-check.mts), a TypeScript script for Node that reads every Markdown file Git tracks and prints one line per problem, exiting 1 when there is one. It fails on these.
 
-- A repository path in code (a code span or a fenced block) that doesn't exist. A path is checked when it has a slash and starts at a tracked top-level entry of the repository or of the page's own directory, and paths Git ignores and placeholders like `<site-id>` pass.
+- A repository path in code (a code span or a fenced block) that doesn't exist. A path with a slash resolves from the page's directory when it starts with `../` or with an entry that exists next to the page, and from the repository root otherwise, and it's checked when the result starts at a tracked top-level entry. Paths Git ignores and placeholders like `<site-id>` pass.
 - A relative link that doesn't resolve, or that leaves the repository, even when it comes back in at a real file.
 - A link anchor that matches no heading or `<a id>` in its target, with headings turned into anchors the way GitHub does it.
 - A `pnpm <script>` that neither the root `package.json` nor the page's own workspace package defines, a `pnpm --filter <package> <script>` whose package or script doesn't exist, or a `pnpm --recursive <script>` that no package defines. pnpm's own commands, such as `install` and `exec`, aren't checked.
 
-History files such as changelogs go in its exclusion list, because their compare links point at tags rather than files. The skill asks for every rule to be proven by a seeded break that fails without that rule, and after the check is renamed, for a dead path to be seeded in a real doc to show the check still runs. To run its tests here, use Node 22.18 or later, which runs `.mts` files without a build step:
+History files such as changelogs go in its exclusion list, because their compare links point at tags rather than files. The skill asks for every rule to be proven by a seeded break that fails without that rule, and after the check is renamed, for a dead path to be seeded in a real doc to show the check still runs. To run its tests here, use Node 22.18 or later, which runs `.mts` files without a build step.
 
 ```sh
 node --test skills/fresh-eyes/lever/docs-check.test.mts
 ```
 
-This repository runs the same lever as a Python port at [scripts/docs_check.py](../scripts/docs_check.py), adapted for skill packages, which [the know-thyself development page](know-thyself-development.md#docs-check) describes.
+This repository runs the same lever as a Python port at [scripts/docs_check.py](../scripts/docs_check.py), adapted for skill packages, and [the README's Checks section](../README.md#checks) lists its rules. The lever's own tests stay out of `scripts/check.sh` and CI.
 
 ## Subagent roles
 
