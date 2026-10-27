@@ -7,7 +7,7 @@ metadata:
 
 # Know thyself
 
-The corpus holds every prompt the user typed into a local AI tool, and `scripts/convo.py` builds, measures, and searches it. Numbers and quoted text come only from its output, and a claim is **traced** when you can point to the output it came from.
+The corpus holds every user turn from five local AI tools, and `scripts/convo.py` builds, measures, and searches it. Numbers and quoted text come only from its output, and a claim is **traced** when you can point to the output it came from.
 
 ```sh
 S="python3 <skill dir>/scripts/convo.py"
