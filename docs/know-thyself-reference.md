@@ -199,7 +199,7 @@ A turn that isn't `subagent` is tagged `harness` when its working directory star
 | Command | What it runs |
 | --- | --- |
 | `scripts/check.sh` | The docs check's own tests, the docs check, and the package validator, stopping at the first failure |
-| `python3 scripts/docs_check.py` | Paths, links, anchors, and `convo.py` commands and flags named in tracked Markdown |
+| `python3 scripts/docs_check.py` | Paths, links, anchors, script names, `convo.py` commands and flags, and the skills install commands name, in tracked Markdown |
 | `python3 -m unittest -q scripts/test_docs_check.py` | One seeded break per docs check rule |
 | `python3 skills/know-thyself/scripts/validate_skill.py` | The package validator, which also runs `convo.py check` |
 | `python3 skills/know-thyself/scripts/convo.py check` | The signal fixtures alone, skipping the `caps_emphasis` ones until a mine has built the vocabulary |

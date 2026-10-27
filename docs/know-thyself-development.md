@@ -46,7 +46,7 @@ The skill keeps each rule in one file, so changing a behavior is a one-file edit
 | `references/sources.json` | Every source the skill cites |
 | `references/signal-fixtures.jsonl` | Labeled examples for the signal rules |
 
-The voice file and each mode's file end on a Done when list whose items a reader can answer yes or no. The lists cover what `evals/grade.py` checks and what it can't, so a change to a behavior changes its Done when item in the same commit.
+The voice file and each mode's file end on a Done when list whose items a reader can answer yes or no. The lists cover what `skills/know-thyself/evals/grade.py` checks and what it can't, so a change to a behavior changes its Done when item in the same commit.
 
 ## How rule changes reach stored data
 
@@ -114,14 +114,17 @@ Adding a practice to `references/practices.md` needs a source as well. End the b
 
 ### Docs check
 
-`scripts/docs_check.py` reads every tracked Markdown file and fails on any of these.
+`scripts/docs_check.py` reads every tracked Markdown file in the repository, the recorded eval results included, and fails on any of these.
 
-- A path in code that starts at a tracked top-level entry, or at an entry next to the page, and doesn't exist. Gitignored paths, placeholders like `<reports>`, globs, home and absolute paths, and URLs are skipped.
+- A path in code that starts at a tracked top-level entry, or at an entry next to the page, and doesn't exist. A leading `./` starts at the repository root, where commands run. Gitignored paths, placeholders like `<reports>`, globs, home and absolute paths, and URLs are skipped.
+- A missing path on a page inside a skill package, such as `skills/know-thyself/references/coach.md`. A skill runs in other repositories, so its paths start at its own directory, a path that starts with its repository path (`skills/know-thyself/...`) is checked from the repository root, and any other path names a file in the repository the skill runs in and is skipped.
 - A relative link that doesn't resolve, or that climbs out of the repository even if it comes back in.
 - A link fragment that isn't a heading in its target.
+- A script file name without a slash, such as `convo.py`, that isn't the name of any tracked file.
 - A `convo.py <command>` in code that the CLI doesn't define, or a flag after it on the same line that the command doesn't accept. It asks the real CLI by running `--help`.
+- An install command, `npx skills@latest add <repo> --skill <name>` or `link-skill.sh <name>`, whose skill isn't a package in `skills/`.
 
-`scripts/test_docs_check.py` builds a throwaway repository for each rule, plants one break that only that rule should catch, and checks that clean docs pass.
+`scripts/test_docs_check.py` builds a throwaway repository for each rule, plants one break that only that rule should catch, and checks that clean docs pass. A rule that lets something pass, such as the `./` start or a skill page naming a file in another repository, is proven by a clean case that fails without it.
 
 ### Behavioral evals
 
