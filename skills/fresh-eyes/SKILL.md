@@ -46,7 +46,7 @@ Choose the branch first. A repository whose tracked docs check exists (`scripts/
 
 A refresh keeps the layout and audits only what the code changed since the last pass. Set up as in step 1, in a worktree with the trail excluded.
 
-1. **Find the baseline.** Use the commit in `.audit/docs.baseline`. Without one, use the last commit that changed `docs/reference.md`, and tell the operator that is the baseline you chose.
+1. **Find the baseline.** Use the commit in `.audit/docs.baseline`. Without one, use the last commit that changed a tracked `.md` file, and tell the operator that is the baseline you chose.
    Done when you have one commit and `git diff --name-only <baseline>..origin/<default>` lists the changed files.
 
 2. **Run the lever.** Run the docs check on the default branch's head. Each failure is a defect to fix, and its file is in scope.

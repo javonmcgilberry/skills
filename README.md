@@ -109,38 +109,17 @@ scripts/    check.sh, the docs check, and the docs check's tests
 
 ## Checks
 
-Run every check from the repository root with Python 3.11 or later, which know-thyself's script needs, and Git.
+Run every check from the repository root with Python 3.11 or later.
 
 ```sh
 scripts/check.sh
 ```
 
-It runs three commands in order and stops at the first failure.
+It runs the docs check's tests, the docs check, and know-thyself's validator, and stops at the first failure. CI runs the same script on every push and pull request, with Python 3.11 and 3.13 (`.github/workflows/check.yml`).
 
-1. **The docs check's tests.** `python3 -m unittest -q scripts/test_docs_check.py` builds a throwaway repository per case, with at least one seeded break per rule that only that rule catches and clean cases that must pass.
-2. **The docs check.** `python3 scripts/docs_check.py` reads every tracked Markdown file, the recorded eval results included, and prints one line per problem.
-3. **know-thyself's package validator.** `python3 skills/know-thyself/scripts/validate_skill.py` checks that skill's files, statistics, sources, and signal fixtures, as [its development page](docs/know-thyself-development.md#package-validator) lists.
+The docs check, `scripts/docs_check.py`, fails when a page names a path, link, heading, script, command, or skill the repository doesn't have, and the top of the file lists its rules. It proves names exist, not that the prose around them is true.
 
-The docs check fails on any of these.
-
-- A path in code, meaning a code span or fenced block, that has a slash, starts at a tracked top-level entry or at an entry next to the page, and doesn't exist. A leading `./` starts at the repository root, where commands run. Gitignored paths, placeholders like `<name>`, globs, home and absolute paths, and URLs are skipped.
-- A missing path on a page inside a skill package, such as `skills/know-thyself/references/coach.md`. A skill runs in other repositories, so its paths start at its own folder, a path that starts with its repository path (`skills/know-thyself/...`) is checked from the repository root, and any other path names a file in the repository the skill runs in and is skipped.
-- A relative link that doesn't resolve, or that climbs out of the repository even if it comes back in.
-- A link fragment that isn't a heading in its Markdown target.
-- A script file name without a slash, such as `convo.py`, that isn't the name of any tracked file.
-- A `convo.py <command>` in code that the CLI doesn't define, or a flag after it on the same line that the command doesn't accept, which it learns by running the command with `--help`.
-- An install command, `npx skills@latest add <repo> --skill <name>` or `link-skill.sh <name>`, whose skill isn't a tracked `skills/<name>/SKILL.md`.
-
-`.github/workflows/check.yml` runs `scripts/check.sh` on every push and pull request, on Ubuntu with Python 3.11 and 3.13, with no path filters, because a renamed script breaks a doc as surely as an edited doc does.
-
-Some checks stay out of `scripts/check.sh` and CI, so run them by hand when you touch their area.
-
-- Chill's eval harness has Node tests, run with `npm test` in `evals/chill/`, and [the Chill guide](docs/chill.md#run-the-checks) lists its other commands.
-- The Fresh Eyes lever has its own tests, run with `node --test skills/fresh-eyes/lever/docs-check.test.mts` on Node 22.18 or later, as [the Fresh Eyes guide](docs/fresh-eyes.md#what-the-lever-checks) explains.
-- know-thyself's behavioral evals need a live agent and a real corpus, and CI never mines, so it skips the fixtures that depend on your vocabulary. [Its development page](docs/know-thyself-development.md#test-layers) says what each layer covers.
-- Only know-thyself has a package validator, so the other skills' frontmatter and file references go unchecked beyond what the docs check reads.
-
-The docs check proves that named paths, links, commands, and flags exist, never that the prose around them is true.
+Chill's eval harness (`npm test` in `evals/chill/`) and the Fresh Eyes lever's tests run by hand, as their guides explain.
 
 ## Add a skill
 

@@ -276,6 +276,8 @@ report(holds(tiny_windows), "a scorecard line with under 10 sessions a side or u
 report(holds(sparse_payoff), "the payoff test skips sides with under 5 corrections between them")
 report(holds(malformed_files), "a null Codex payload, an odd timestamp, and a non-UTF-8 OpenCode file parse without raising")
 report(holds(future_sessions), "sessions dated after today count toward no window, span, or trend month")
+report(convo.parse_cursor((Path("/nonexistent/state.vscdb"), [("c1", None, "")])) is None,
+       "a Cursor database that can't be read costs only its own turns, never the whole mine")
 report(holds(lambda: json.loads(run_on([session_row(None, "a")], convo.stats)[0])["date_range"] is None),
        "stats reports no date range instead of crashing when no turn has a date")
 report(holds(dedupe_key), "a short turn repeated in another session is kept, and a dated copy wins over an undated one")

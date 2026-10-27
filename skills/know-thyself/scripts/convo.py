@@ -768,6 +768,14 @@ def admitted(turns):
     return rows
 
 
+def parse_cursor(task):
+    """Cursor's turns for one group of conversations, or None when its database can't be read, as parse_file does for files."""
+    try:
+        return read_cursor(task)
+    except Exception:
+        return None
+
+
 def parse_file(task):
     """The file's admitted turns, or None when it can't be parsed, so one malformed file never stops a mine."""
     read, path = task
@@ -1033,7 +1041,10 @@ def mine(args):
                 jobs.append((files[str(path)][0], parse_file, (read, path)))
     file_jobs = len(jobs)
     cursor_db = next((path for path in CURSOR_DBS if path.exists()), None)
-    composers = cursor_composers(cursor_db) if cursor_db else {}
+    try:
+        composers, cursor_failed = (cursor_composers(cursor_db) if cursor_db else {}), 0
+    except Exception:
+        composers, cursor_failed = {}, 1
     coverage["cursor_composers"] = len(composers)
     changed = sorted(((cid, created, cwd, sig) for cid, (created, cwd, sig) in composers.items()
                       if known_composers.get(cid) != json.dumps(sig)), key=lambda c: -c[3][1])
@@ -1045,14 +1056,20 @@ def mine(args):
         groups = min(len(changed), 4 * workers if pool else 1)
         for i in range(groups):
             group = changed[i::groups]
-            jobs.append((BUBBLE_BYTES * sum(c[3][1] for c in group), read_cursor, (cursor_db, [c[:3] for c in group])))
+            jobs.append((BUBBLE_BYTES * sum(c[3][1] for c in group), parse_cursor, (cursor_db, [c[:3] for c in group])))
         results = run_jobs(jobs, pool)
         failed = [path for (_, _, (_, path)), rows in zip(jobs[:file_jobs], results[:file_jobs]) if rows is None]
-        coverage["files_failed"] = len(failed)
+        for (_, _, (_, group)), pairs in zip(jobs[file_jobs:], results[file_jobs:]):
+            if pairs is None:
+                cursor_failed += 1
+                for composer_id, *_ in group:
+                    composers.pop(composer_id, None)
+        coverage["files_failed"] = len(failed) + cursor_failed
+        # A failure stores no signature, so the next mine tries it again and counts it again.
         for path in failed:
-            files.pop(str(path))  # no stored signature, so the next mine tries the file again and counts it again
+            files.pop(str(path))
         parsed = [row for rows in results[:file_jobs] for row in rows or ()]
-        parsed += [row for _, row in sorted((pair for pairs in results[file_jobs:] for pair in pairs), key=lambda p: p[0])]
+        parsed += [row for _, row in sorted((pair for pairs in results[file_jobs:] for pair in pairs or ()), key=lambda p: p[0])]
 
         fresh = {}
         for row in parsed:

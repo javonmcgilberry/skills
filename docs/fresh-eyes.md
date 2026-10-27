@@ -55,7 +55,7 @@ The full overhaul runs ten steps. Steps 1 to 9 each end on a "Done when" conditi
 
 ### Refresh
 
-A refresh keeps the existing layout and audits only what the code changed since the last pass, so it's much shorter. It starts from the commit in `.audit/docs.baseline`, or from the last commit that changed `<repo>/docs/reference.md` when there's no baseline, and tells you which one it chose.
+A refresh keeps the existing layout and audits only what the code changed since the last pass, so it's much shorter. It starts from the commit in `.audit/docs.baseline`, or from the last commit that changed a tracked Markdown file when there's no baseline, and tells you which one it chose.
 
 It runs the docs check on the default branch's head and treats every failure as a defect in scope. Then it maps each changed file to the doc claims it reaches, using `.audit/docs.audit.tsv` when it exists, or a search of the docs for each changed path, script, env key, route, export, and port when it doesn't, plus the pages that own the changed behavior. One writer checks and fixes those claims inside the existing layout, since adding a page or changing a page's job is an overhaul decision that needs your go-ahead. A cold read on just the stored questions whose answers touch the changed pages closes it out, and the stress test is skipped unless the change altered the architecture.
 
@@ -74,7 +74,7 @@ History files such as changelogs go in its exclusion list, because their compare
 node --test skills/fresh-eyes/lever/docs-check.test.mts
 ```
 
-This repository's docs check, [scripts/docs_check.py](../scripts/docs_check.py), is a Python version of the lever adapted for skill packages. It has no pnpm rule, matches anchors to headings only, and adds the script, command, and install rules that [the README's Checks section](../README.md#checks) lists. The lever's own tests stay out of `scripts/check.sh` and CI.
+This repository's docs check, [scripts/docs_check.py](../scripts/docs_check.py), is a Python version of the lever adapted for skill packages. It has no pnpm rule, matches anchors to headings only, and adds script, command, and install rules, all listed at the top of the file. The lever's own tests stay out of `scripts/check.sh` and CI.
 
 ## Subagent roles
 
