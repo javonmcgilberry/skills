@@ -19,8 +19,8 @@ Rules:
            that command accepts. The skill an install command names, in `npx skills@latest add <repo> --skill <name>` or
            `link-skill.sh <name>`, must be a skill package in skills/.
 
-Every tracked Markdown file is checked, including the recorded eval results under evals/*/results/, which name only real
-files, so none is excluded.
+Every tracked Markdown file is checked except recorded eval results under evals/*/results/, which are an agent's raw
+output kept as evidence and can name files that existed only on the machine that ran the eval.
 """
 
 import re
@@ -114,7 +114,8 @@ def check(repo):
             return f"`{token}` does not exist next to this page"
         return None
 
-    for doc_rel in sorted(p for p in tracked if p.endswith(".md")):
+    recorded = re.compile(r"evals/[^/]+/results/")
+    for doc_rel in sorted(p for p in tracked if p.endswith(".md") and not recorded.match(p)):
         doc = repo / doc_rel
         package = next((p for p in packages if doc_rel.startswith(f"{p}/")), None)
         text = doc.read_text()

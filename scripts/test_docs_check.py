@@ -45,6 +45,12 @@ class DocsCheck(unittest.TestCase):
         self.assertEqual(kinds({"README.md": "Run `tool/scripts/convo.py score --markdown`, see [setup](docs/guide.md#setup-steps), "
                                              "data goes to `data/corpus.jsonl` and reports to `<reports>/x.md`.\n"}), [])
 
+    def test_recorded_eval_results_are_evidence_not_docs(self):
+        self.assertEqual(kinds({"evals/tool/results/run-1/response.md": "Wrote [it](/home/ana/workspace/gone.md).\n"}), [])
+
+    def test_eval_docs_outside_results_are_checked(self):
+        self.assertEqual(kinds({"evals/tool/README.md": "See [it](missing.md).\n"}), ["link"])
+
     def test_missing_path(self):
         self.assertEqual(kinds({"README.md": "Read `docs/missing.md`.\n"}), ["path"])
 
