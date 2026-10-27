@@ -1,6 +1,6 @@
 # Reference
 
-Exact commands, flags, paths, and settings, for looking something up once you know what know-thyself does. New readers start with [the guide](know-thyself.md), and [the scorecard guide](know-thyself-scorecard.md) explains how to read what `score` prints.
+You already know what know-thyself does and need an exact command, flag, path, setting, or table, so everything here is lookup. New readers start with [the guide](know-thyself.md), and [the scorecard guide](know-thyself-scorecard.md) explains how to read what `score` prints.
 
 Every command runs the same script, and every example below assumes you're at the repository root.
 
@@ -142,19 +142,19 @@ The config file is JSON. If it isn't valid JSON, or doesn't hold an object, ever
 | File | Written by | Holds |
 | --- | --- | --- |
 | `corpus.db` | `mine` | The SQLite corpus, holding every turn, the signals found in each, what the last mine saw, and the stored vocabulary |
-| `*.migrated` | The first command after an upgrade | An older version's files, renamed once their contents are in `corpus.db` and never read again |
+| `*.migrated` | The first command that opens the corpus after an upgrade | An older version's files, renamed once their contents are in `corpus.db` and never read again |
 | `reports/` | your agent | Reports, which the skill's instructions name `YYYY-MM-DD-<mode>.md`, such as `-mirror.md`, `-coach.md`, or `-shareable.md`, adding `-2` when that name is taken so no report is overwritten, unless the reports directory is set elsewhere |
 
 `mine` applies all its changes in one SQLite transaction, so an interrupted run leaves the previous corpus whole. It takes the corpus's write lock before it reads anything, so a second `mine`, or the one a `setup` starts, waits up to an hour for the first to finish and then runs on what it wrote, and fails with a database-locked error if the wait runs out.
 
 ### Tables in `corpus.db`
 
-- `turns` holds one row per turn with `source`, `session`, `timestamp`, `cwd`, `words`, `spawned`, and `origin`, and for human turns `prose_words` (words left after code, logs, links, and paths are removed) and `caps` (the all-caps words). A turn's text is compressed with zlib into `packed`, or kept in `text` when compressing wouldn't make it smaller, which happens only for very short turns. No query reads text in SQL, and `rows_from()` decompresses a turn's text only when the code first reads it, so `score` decodes only the few openers it quotes. `key` is the first 16 bytes of a SHA-256 over the turn's dedupe key.
+- `turns` holds one row per turn with `source`, `session`, `timestamp`, `cwd`, `words`, `spawned`, and `origin`, and for human turns `prose_words` (words left after code, logs, links, and paths are removed) and `caps` (the all-caps words). A turn's text is compressed with zlib into `packed`, or kept in `text` when compressing wouldn't make it smaller, which in practice means short turns. No query reads text in SQL, and `rows_from()` decompresses a turn's text only when the code first reads it, so `score` decodes only the turns it quotes as examples and plain openers, unless the signal rules changed since the last mine, when it decodes every human turn to recompute them. `key` is the first 16 bytes of a SHA-256 over the turn's dedupe key.
 - `turn_signals` holds one row per human turn and signal found in it. It's small enough that a `--signal` filter scans it without an index.
 - `sources` and `composers` hold the size and modification time of every source file and a change signature for every Cursor conversation, so the next mine can skip what hasn't changed.
 - `meta` holds the rule hashes (`clean` and `rules`), the `vocab` that lets `caps_emphasis` tell emphasis from acronyms (words you've typed in all caps that you type in lowercase more often, built from the `upper` and `lower` counts), the running `redacted` counts, and the `coverage` summary.
 
-A full mine ends with `VACUUM`, so the file shrinks back after a rewrite. On a corpus of about 27,000 turns, `corpus.db` is about 27 MB.
+A full mine ends with `VACUUM`, so the file shrinks back after a rewrite.
 
 ### Moving from older files
 
@@ -173,7 +173,7 @@ Each line `export --jsonl` writes has `source`, `session`, `timestamp`, `cwd`, `
 `coverage` prints the summary the last mine stored, and `mine` prints the same object with `corpus` added.
 
 - `codex_files`, `claude_files`, `pi_files`, and `opencode_message_files` count the files found per source.
-- `cursor_composers` counts Cursor conversations, and `chatgpt_encrypted_files_unread` counts ChatGPT desktop files that were found and not read.
+- `cursor_composers` counts Cursor conversations that aren't marked as subagents, and `chatgpt_encrypted_files_unread` counts ChatGPT desktop files that were found and not read.
 - `corpus_turns`, `by_origin`, and `redacted` describe the corpus, with `redacted` counting each kind of credential that was replaced.
 - `mode` is `incremental` or `full`, and `files_parsed`, `files_skipped`, `composers_parsed`, and `composers_skipped` say how much of it was reused.
 - `files_failed` counts the parsed Codex, Claude Code, Pi, and OpenCode files that raised an error. Each adds no turns and the mine carries on. Its signature isn't stored, so every later mine tries it again and counts it again until it parses.
@@ -196,16 +196,11 @@ A turn that isn't `subagent` is tagged `harness` when its working directory star
 
 ## Checks
 
+[The README](../README.md#checks) owns the repository-wide checks, `scripts/check.sh` and CI. These two commands are know-thyself's own, and `scripts/check.sh` runs the first.
+
 | Command | What it runs |
 | --- | --- |
-| `scripts/check.sh` | The docs check's own tests, the docs check, and the package validator, stopping at the first failure |
-| `python3 scripts/docs_check.py` | Paths, links, anchors, script names, `convo.py` commands and flags, and the skills install commands name, in tracked Markdown |
-| `python3 -m unittest -q scripts/test_docs_check.py` | One seeded break per docs check rule |
 | `python3 skills/know-thyself/scripts/validate_skill.py` | The package validator, which also runs `convo.py check` |
 | `python3 skills/know-thyself/scripts/convo.py check` | The signal fixtures alone, skipping the `caps_emphasis` ones until a mine has built the vocabulary |
 
-[Development](know-thyself-development.md) says what each check guards.
-
-## CI
-
-`.github/workflows/check.yml` runs `scripts/check.sh` on every push and pull request, on Ubuntu with Python 3.11 and 3.13, with no path filters. CI never mines, so it has no vocabulary, and `check` runs every fixture there except the `caps_emphasis` ones.
+CI never mines, so it has no vocabulary, and `check` runs every fixture there except the `caps_emphasis` ones. [Development](know-thyself-development.md#test-layers) says what each check guards.
