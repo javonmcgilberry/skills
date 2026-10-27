@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "description": "Behavioral cases for know-thyself, written from prompts users really type. Run each in a fresh session against a frozen corpus copy, then run evals/grade.py on the reply and report for the yes-or-no checks, and judge the rest pairwise as evals/JUDGE.md describes.",
+  "cases": [
+    {
+      "id": "run",
+      "prompt": "let's do a run",
+      "mode": "mirror",
+      "report": "mirror",
+      "max_seconds": 180,
+      "expect": "A description of how the user works, with counts and short dated quotes, and no advice. It ends with three to five follow-ups the user could paste, written from what this run found."
+    },
+    {
+      "id": "how",
+      "prompt": "how do I work with agents?",
+      "mode": "mirror",
+      "report": "mirror",
+      "max_seconds": 180,
+      "expect": "Same as run: a mirror, not coaching, ending with tailored follow-ups."
+    },
+    {
+      "id": "coach",
+      "prompt": "coach me on how I start tasks",
+      "mode": "coach",
+      "report": "coach",
+      "expect": "Coaching scoped to how the user opens tasks: at most three habit cards that bear on it, a few next steps with a short why each, and one annotated Sources section at the end with at most five entries. No inline links in the body."
+    },
+    {
+      "id": "trend",
+      "prompt": "has splitting work across agents changed since August?",
+      "mode": "trend",
+      "expect": "Answers whether the habit changed, with counts on both sides and the verdict the script gives, after ruling out a shift in tools or projects. No coaching unless asked."
+    },
+    {
+      "id": "recall",
+      "prompt": "what did I decide about how to handle flaky tests?",
+      "mode": "recall",
+      "expect": "What was decided, when, and where (source, session, timestamp), the latest decision first when they conflict. No coaching."
+    }
+  ]
+}

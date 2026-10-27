@@ -1,0 +1,192 @@
+{"signal": "caps_emphasis", "expect": true, "text": "you think we should COMPLETELY decouple both things?"}
+{"signal": "caps_emphasis", "expect": true, "text": "AT THIS POINT MAN JUST DO THE TESTS ON MY MAIN BROWSER"}
+{"signal": "caps_emphasis", "expect": true, "text": "it's my WORK profile. you did not open it"}
+{"signal": "caps_emphasis", "expect": false, "text": "[$bro](/Users/someone/.codex/skills/bro/SKILL.md)"}
+{"signal": "caps_emphasis", "expect": false, "text": "can you check the API response and the DOM node it renders"}
+{"signal": "caps_emphasis", "expect": false, "text": "here is the snippet:\nconst SHOW = 'show';\nconst CHILDREN_PATH = [{in: 'Record'}];"}
+{"signal": "caps_emphasis", "expect": false, "text": "[2026-03-24T03:27:53Z] [BABEL] Note: The code generator has deoptimised the styling"}
+{"signal": "caps_emphasis", "expect": false, "text": "**But** relying only on MORE LESS overrides is **easy to get wrong**"}
+{"signal": "agent_rework", "expect": true, "text": "no, those read me files are very important"}
+{"signal": "agent_rework", "expect": true, "text": "I just said it's my work profile. you did not open the work profile tab"}
+{"signal": "agent_rework", "expect": true, "text": "WALK BACK ALL THOSE CHANGES. why did you do that"}
+{"signal": "agent_rework", "expect": true, "text": "walk that back please"}
+{"signal": "agent_rework", "expect": true, "text": "revert that and start over"}
+{"signal": "agent_rework", "expect": true, "text": "this isn't making any sense. that's wrong"}
+{"signal": "agent_rework", "expect": false, "text": "actually....\n\nmaybe I'm wrong here. Maybe this is the wrong thing to be testing"}
+{"signal": "agent_rework", "expect": false, "text": "otherwise correct me if I'm wrong but it puts the wrapper in a similar position"}
+{"signal": "agent_rework", "expect": false, "text": "Assume prior suggestions were insufficient or **wrong**. Focus on the root cause."}
+{"signal": "agent_rework", "expect": false, "text": "what's wrong with the test runner?"}
+{"signal": "agent_rework", "expect": false, "text": "there is no way to know without measuring"}
+{"signal": "scope_control", "expect": true, "text": "I would like to make a minimally invasive PR"}
+{"signal": "scope_control", "expect": true, "text": "research the SIMPLEST, LEAST INVASIVE path forward"}
+{"signal": "scope_control", "expect": true, "text": "don't touch the reducer, only change the selector"}
+{"signal": "scope_control", "expect": true, "text": "keep the diff small"}
+{"signal": "scope_control", "expect": false, "text": "getSimulatableRoles only expects the userRole to be one of the default site roles"}
+{"signal": "scope_control", "expect": false, "text": "Only difference identified: the failing form has a hidden field"}
+{"signal": "scope_control", "expect": false, "text": "I added comments where I thought the scope needed a little more definition"}
+{"signal": "overengineering", "expect": true, "text": "is our types script a little over engineered?"}
+{"signal": "overengineering", "expect": true, "text": "nah. this is still too complicated man"}
+{"signal": "overengineering", "expect": true, "text": "why did we create a new hook for this"}
+{"signal": "overengineering", "expect": false, "text": "the overlay is engineered to sit above the editor"}
+{"signal": "repeated_constraint", "expect": true, "text": "I made it clear that I wanted to keep the tests headed"}
+{"signal": "repeated_constraint", "expect": true, "text": "I already told you the branch is wrong"}
+{"signal": "repeated_constraint", "expect": true, "text": "the phone issue is still showing for me"}
+{"signal": "repeated_constraint", "expect": true, "text": "you keep pushing the same change"}
+{"signal": "repeated_constraint", "expect": false, "text": "can we measure again?"}
+{"signal": "repeated_constraint", "expect": false, "text": "run the tests again after the rebase"}
+{"signal": "evidence_demand", "expect": true, "text": "did you actually test this in the browser?"}
+{"signal": "evidence_demand", "expect": true, "text": "look at the current code before answering"}
+{"signal": "evidence_demand", "expect": true, "text": "how do you know that's the cause"}
+{"signal": "evidence_demand", "expect": false, "text": "check the box in settings"}
+{"signal": "certainty_check", "expect": true, "text": "are you sure that's how it works?"}
+{"signal": "certainty_check", "expect": true, "text": "is that accurate?"}
+{"signal": "certainty_check", "expect": false, "text": "according to plan, ship it tomorrow"}
+{"signal": "profanity", "expect": true, "text": "what the fuck are you doing. don't create a new button type"}
+{"signal": "profanity", "expect": false, "text": "the shipment flow is done"}
+{"signal": "exasperation", "expect": true, "text": "why is auto research mode not active????"}
+{"signal": "exasperation", "expect": false, "text": "what do you mean by versioned?"}
+{"signal": "quality_gate", "expect": true, "text": "run the playwright tests"}
+{"signal": "quality_gate", "expect": false, "text": "build the feature behind a flag"}
+{"signal": "short_confirmation", "expect": true, "text": "go ahead."}
+{"signal": "short_confirmation", "expect": false, "text": "go ahead and also update the docs"}
+{"signal": "contains_question", "expect": false, "text": "here is the url https://example.com/path?query=1"}
+{"signal": "five_words_or_fewer", "expect": true, "text": "keep going [$bro](/Users/x/.codex/skills/bro/SKILL.md)"}
+{"signal": "agent_rework", "expect": true, "text": "I just reverted all your changes. only edit files in the main diff"}
+{"signal": "agent_rework", "expect": false, "text": "NO biggie, just approve them both on my behalf"}
+{"signal": "agent_rework", "expect": false, "text": "NO need to revert. just tell me what a follow up fix could be."}
+{"signal": "altitude", "expect": true, "text": "fix the flicker, but the real goal is that the editor never regresses on this again"}
+{"signal": "altitude", "expect": true, "text": "keep the e2e suite green from now on"}
+{"signal": "altitude", "expect": false, "text": "fix the flicker in the save button"}
+{"signal": "hard_target", "expect": true, "text": "get dashboard load under 2 seconds"}
+{"signal": "hard_target", "expect": true, "text": "I want zero flakes across 20 runs"}
+{"signal": "hard_target", "expect": false, "text": "make the dashboard load faster"}
+{"signal": "raw_material", "expect": true, "text": "pull the datadog traces for the slow requests before guessing"}
+{"signal": "raw_material", "expect": false, "text": "make the button blue"}
+{"signal": "expert_method", "expect": true, "text": "what would a senior performance engineer do here?"}
+{"signal": "expert_method", "expect": true, "text": "git bisect to find the commit that broke it"}
+{"signal": "expert_method", "expect": false, "text": "what would you do here?"}
+{"signal": "outside_judge", "expect": true, "text": "write a failing test first, then fix it"}
+{"signal": "outside_judge", "expect": true, "text": "done when the playwright run passes three times in a row"}
+{"signal": "outside_judge", "expect": true, "text": "give me before and after numbers"}
+{"signal": "outside_judge", "expect": false, "text": "the test is done, push it"}
+{"signal": "challenge_assumptions", "expect": true, "text": "we think it's a race in the reducer. try to disprove that before fixing"}
+{"signal": "challenge_assumptions", "expect": true, "text": "poke holes in my plan"}
+{"signal": "challenge_assumptions", "expect": false, "text": "push the branch"}
+{"signal": "range_fields", "expect": true, "text": "review this from a security perspective and from the designer's point of view"}
+{"signal": "range_fields", "expect": false, "text": "review this PR"}
+{"signal": "aim_high", "expect": true, "text": "keep going until all tests pass"}
+{"signal": "aim_high", "expect": false, "text": "keep going"}
+{"signal": "shipping_authority", "expect": true, "text": "investigate only, don't commit anything"}
+{"signal": "shipping_authority", "expect": true, "text": "open a draft PR once it's green"}
+{"signal": "shipping_authority", "expect": false, "text": "what did the last commit change?"}
+{"signal": "task_context", "expect": true, "text": "PROJ-142 on my branch: expected behavior is the width persists per breakpoint"}
+{"signal": "task_context", "expect": false, "text": "can-do attitude, let's go"}
+{"signal": "hard_target", "expect": false, "text": "the styles look like this\nform: 'width: 94%;',\nvisibleField: 'display: block; width: 88%;'"}
+{"signal": "hard_target", "expect": false, "text": "how far along are we now? I remember when we were 70% complete"}
+{"signal": "hard_target", "expect": false, "text": "do the reducer test set up change\n│ QualifiedMap builders │ ~90 ms │ Needs review │"}
+{"signal": "task_context", "expect": false, "text": "OK now let's work on the next ticket"}
+{"signal": "altitude", "expect": false, "text": "how can i edit the pre-commit hook so that it doesn't trigger on markdown files?"}
+{"signal": "hard_target", "expect": false, "text": "target 1: the chart, target 2: the panel"}
+{"signal": "hard_target", "expect": false, "text": "we have under 20 left to review"}
+{"signal": "hard_target", "expect": true, "text": "get it under ~800 ms on a cold load"}
+{"signal": "raw_material", "expect": false, "text": "use my chrome work profile and log in"}
+{"signal": "raw_material", "expect": true, "text": "capture a performance profile and read the logs first"}
+{"signal": "outside_judge", "expect": true, "text": "Pass = repeated runs show the target met"}
+{"signal": "aim_high", "expect": true, "text": "aim for 200 ms and treat that as reachable"}
+{"signal": "aim_high", "expect": false, "text": "is that reasonable to ship today?"}
+{"signal": "decompose", "expect": true, "text": "break this down into three phases and stop after each"}
+{"signal": "decompose", "expect": true, "text": "first reproduce the bug, then write the failing test, then fix it"}
+{"signal": "decompose", "expect": false, "text": "fix the login bug"}
+{"signal": "audience_format", "expect": true, "text": "write it for a non-technical PM, in five bullets, under 120 words"}
+{"signal": "audience_format", "expect": true, "text": "summarize the findings as a table"}
+{"signal": "audience_format", "expect": false, "text": "summarize the findings"}
+{"signal": "plan_first", "expect": true, "text": "make a plan before you start editing"}
+{"signal": "plan_first", "expect": true, "text": "don't write any code yet, propose a plan"}
+{"signal": "plan_first", "expect": false, "text": "the plan was fine, ship it"}
+{"signal": "context_management", "expect": true, "text": "write a handoff so a fresh session can pick this up"}
+{"signal": "context_management", "expect": true, "text": "when you compact, keep the failing test names and the branch"}
+{"signal": "context_management", "expect": false, "text": "the component is too compact on mobile"}
+{"signal": "long_runs", "expect": true, "text": "keep going until every test passes, I'm going to bed"}
+{"signal": "long_runs", "expect": true, "text": "run this overnight while I'm asleep"}
+{"signal": "long_runs", "expect": false, "text": "keep going"}
+{"signal": "delegation", "expect": true, "text": "spawn a subagent to research the API while you implement"}
+{"signal": "delegation", "expect": false, "text": "who owns this API?"}
+{"signal": "model_choice", "expect": true, "text": "use haiku for the extraction and opus for the design"}
+{"signal": "model_choice", "expect": false, "text": "the data model is wrong"}
+{"signal": "independent_review", "expect": true, "text": "get a second opinion from a different model before we merge"}
+{"signal": "independent_review", "expect": false, "text": "review my PR"}
+{"signal": "teach_once", "expect": true, "text": "add that rule to AGENTS.md so you stop doing it"}
+{"signal": "teach_once", "expect": true, "text": "turn this into a skill"}
+{"signal": "teach_once", "expect": false, "text": "the skill check failed"}
+{"signal": "guardrails", "expect": true, "text": "add a pre-commit hook that blocks console.log"}
+{"signal": "guardrails", "expect": false, "text": "move the state into a custom React hook"}
+{"signal": "automation", "expect": true, "text": "run the triage headless every night from a cron job"}
+{"signal": "automation", "expect": false, "text": "what's on my schedule today?"}
+{"signal": "share_setup", "expect": true, "text": "package these skills as a plugin the team can install"}
+{"signal": "share_setup", "expect": false, "text": "share the doc link"}
+{"signal": "decompose", "expect": false, "text": "it worked on the first successful edit. Then it broke"}
+{"signal": "teach_once", "expect": false, "text": "read AGENTS.md before starting"}
+{"signal": "guardrails", "expect": false, "text": "spin up the docker sandbox for the API"}
+{"signal": "automation", "expect": false, "text": "github actions failed on the lint step"}
+{"signal": "automation", "expect": true, "text": "set up a github action that runs this review on every PR"}
+{"signal": "share_setup", "expect": false, "text": "the vite plugin is broken"}
+{"signal": "role_framing", "expect": true, "text": "review this diff as a security reviewer who has never seen the codebase"}
+{"signal": "role_framing", "expect": true, "text": "act as the on-call engineer at 3am and tell me what you'd check first in these alerts"}
+{"signal": "role_framing", "expect": true, "text": "put on your editor hat and cut this PR description to the parts a reviewer needs"}
+{"signal": "role_framing", "expect": true, "text": "take on the role of a new hire reading the onboarding doc and list every place you'd get stuck"}
+{"signal": "role_framing", "expect": false, "text": "this module acts as a wrapper around fetch so the retries live in one place"}
+{"signal": "role_framing", "expect": false, "text": "I read it as a reviewer complaint about naming, not a real bug"}
+{"signal": "role_framing", "expect": false, "text": "you are a lifesaver, that fixed the flaky test"}
+{"signal": "role_framing", "expect": false, "text": "as a reviewer I'd push back on the extra abstraction here"}
+{"signal": "role_framing", "expect": false, "text": "the cache should act as the source of truth for session state"}
+{"signal": "role_framing", "expect": false, "text": "I'll review this as a team tomorrow morning"}
+{"signal": "task_type", "expect": true, "text": "this is a brainstorm, give me naming ideas for the new queue service and don't rank them yet"}
+{"signal": "task_type", "expect": true, "text": "treat this as an investigation, not a fix. I want to understand why p95 jumped"}
+{"signal": "task_type", "expect": true, "text": "give me at least ten approaches for deduping these webhook events, go wide before we narrow"}
+{"signal": "task_type", "expect": true, "text": "it's mostly a spike, so throwaway code is fine as long as we learn whether the SDK supports streaming"}
+{"signal": "task_type", "expect": false, "text": "it's a draft PR so don't merge it yet"}
+{"signal": "task_type", "expect": false, "text": "this is a research doc from last quarter, skim it for the latency numbers"}
+{"signal": "task_type", "expect": false, "text": "the analysis of the heap snapshot shows a leak in the listener map"}
+{"signal": "task_type", "expect": false, "text": "give me 3 options for the migration order"}
+{"signal": "task_type", "expect": false, "text": "this is an investigation that Sam started, pick it up from his notes"}
+{"signal": "task_type", "expect": false, "text": "it's a spike in CPU on the worker pods every night at 2am"}
+{"signal": "targeted_iteration", "expect": true, "text": "close, just tighten the summary section and keep everything else as is"}
+{"signal": "targeted_iteration", "expect": true, "text": "the rest looks good, only the error message wording is off"}
+{"signal": "targeted_iteration", "expect": true, "text": "same thing but shorter, under 100 words"}
+{"signal": "targeted_iteration", "expect": true, "text": "good, just rewrite the subject line so it says what was fixed"}
+{"signal": "targeted_iteration", "expect": false, "text": "keep the rest of the suite green while you refactor the parser"}
+{"signal": "targeted_iteration", "expect": false, "text": "rewrite the whole thing from scratch, this approach is wrong"}
+{"signal": "targeted_iteration", "expect": false, "text": "leave the rest to me, I'll wire up the routes"}
+{"signal": "targeted_iteration", "expect": false, "text": "good catch, just fix the test and push"}
+{"signal": "targeted_iteration", "expect": false, "text": "it's the same bug but in the billing service this time"}
+{"signal": "structured_report", "expect": true, "text": "spawn three subagents and have each report back with a table of file, line, and severity"}
+{"signal": "structured_report", "expect": true, "text": "tell the reviewer agent to return a verdict plus the evidence for it"}
+{"signal": "structured_report", "expect": true, "text": "have each worker list any obstacles they ran into and the flags they needed"}
+{"signal": "structured_report", "expect": true, "text": "I want a structured report from the scout, not a wall of prose"}
+{"signal": "structured_report", "expect": false, "text": "the user agent header should return json for the mobile client"}
+{"signal": "structured_report", "expect": false, "text": "the agent returned a huge table that nobody can read"}
+{"signal": "structured_report", "expect": false, "text": "what blockers do we have for the release this sprint"}
+{"signal": "structured_report", "expect": false, "text": "reviewers keep asking about the schema migration in standup"}
+{"signal": "structured_report", "expect": false, "text": "report the bug to the payments team in slack"}
+{"signal": "rewind_restart", "expect": true, "text": "rewind to before you touched the auth middleware and try again with the plan I gave"}
+{"signal": "rewind_restart", "expect": true, "text": "scrap that and let's start over with a smaller scope, just the parser"}
+{"signal": "rewind_restart", "expect": true, "text": "go back to the last checkpoint, that refactor went sideways"}
+{"signal": "rewind_restart", "expect": true, "text": "/rewind and redo it without the new dependency"}
+{"signal": "rewind_restart", "expect": false, "text": "the rewind button on the video player is broken on Safari"}
+{"signal": "rewind_restart", "expect": false, "text": "the counter should start over at zero after midnight"}
+{"signal": "rewind_restart", "expect": false, "text": "revert that commit, it broke the build"}
+{"signal": "rewind_restart", "expect": false, "text": "don't scrap the tests, they still cover the old path"}
+{"signal": "rewind_restart", "expect": false, "text": "can we roll back the deploy to last night's build"}
+{"signal": "grounding", "expect": true, "text": "answer only from the attached runbook, and if you're not sure, say so instead of guessing"}
+{"signal": "grounding", "expect": true, "text": "cite the file and line for every claim about where the token gets refreshed"}
+{"signal": "grounding", "expect": true, "text": "it's fine to say you don't know, just don't invent APIs that aren't in the SDK"}
+{"signal": "grounding", "expect": true, "text": "tell me if you can't find the config, don't make it up"}
+{"signal": "grounding", "expect": false, "text": "i don't know why the build is slow, can you look"}
+{"signal": "grounding", "expect": false, "text": "make it only use the cache when the device is offline"}
+{"signal": "grounding", "expect": false, "text": "quote the price in dollars on the checkout page"}
+{"signal": "grounding", "expect": false, "text": "I guess the retry logic is fine as is"}
+{"signal": "grounding", "expect": false, "text": "we cite sources in the docs footer already"}
+{"signal": "grounding", "expect": true, "text": "don't guess at the schema, read the migration files"}
+{"signal": "long_runs", "expect": true, "text": "/goal get the e2e suite green and keep it green"}
+{"signal": "long_runs", "expect": true, "text": "kick off a /loop on the flaky tests"}
+{"signal": "long_runs", "expect": false, "text": "the route is at /api/goal/settings"}

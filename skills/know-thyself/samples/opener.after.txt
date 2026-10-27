@@ -1,0 +1,13 @@
+The local dashboard takes too long to cold load on my branch. The goal beyond this
+PR is that it stays fast: a regression should fail a check, not reach me.
+
+Start from a real trace and a CPU profile of a cold load, not from guesses, and rank
+the biggest costs by time. Fix them in that order, measuring after each fix. Aim for
+under 2 seconds to an interactive page, and treat that as reachable.
+
+Scope: startup code paths only. Don't touch the chart renderer or the build config.
+Investigate and edit freely, commit on my branch, but don't open a PR.
+
+Pass = five cold-load runs, before and after, show the median under 2 seconds, and a
+startup timing check fails when I add an artificial 500 ms delay. Report real numbers
+even if the target is missed.

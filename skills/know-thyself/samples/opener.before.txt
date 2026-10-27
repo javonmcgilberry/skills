@@ -1,0 +1,1 @@
+the dashboard is slow to load locally can you speed it up
