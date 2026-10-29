@@ -102,14 +102,14 @@ Clone the repository and copy the skill's folder into your agent's skills direct
 
 ```sh
 git clone https://github.com/javonmcgilberry/skills.git
-cp -r skills/<name> ~/.claude/skills/
+cp -r skills/skills/<name> ~/.claude/skills/
 ```
 
 A copy doesn't follow later changes to the repository, so copy again after you pull.
 
 ### By linking a clone
 
-Linking makes your clone the copy every runtime loads, so an edit in the repository shows up everywhere at once.
+Linking makes your clone the copy that Cursor, Claude Code, and Codex load, and any agent that reads `~/.agents/skills/` directly, such as Pi, so an edit in the repository shows up in all of them at once. Another runtime needs its own link to `~/.agents/skills/<name>`.
 
 ```sh
 git clone https://github.com/javonmcgilberry/skills.git ~/skills

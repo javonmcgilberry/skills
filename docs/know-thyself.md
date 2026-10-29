@@ -15,7 +15,7 @@ Everything stays on your machine. The script uses only Python's standard library
 
 You need Python 3.11 or later. Install the skill with the skills CLI, a copied folder, or a linked clone, as [the README](../README.md#install) shows.
 
-From a clone, build your corpus once from the repository root, then see where everything landed.
+From a clone, build your corpus once from the repository root, then see where everything landed. Outside a clone, run the same commands from the installed folder, such as `python3 ~/.agents/skills/know-thyself/scripts/convo.py paths` after `link-skill.sh`, or `~/.claude/skills/know-thyself/scripts/convo.py` after a copy into Claude Code.
 
 ```sh
 python3 skills/know-thyself/scripts/convo.py setup
