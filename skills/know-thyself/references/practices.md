@@ -87,7 +87,7 @@ A brief is a message to a capable colleague who just walked in and lacks your co
   - Expert personas, because handing the same task to a subagent doesn't make the answer better. ([Claude Code best practices][anth-cc-best-practices])
   - Chains where each step needs the last one's findings, since detail gets lost at handoffs. ([Claude Code subagents][cc-subagents], [Anthropic multi-agent research system][anth-multi-agent])
   - Small jobs, where a fresh subagent spends longer gathering context than the work takes. ([Claude prompting best practices][anth-prompting-bp], [Claude Code best practices][anth-cc-best-practices])
-- **Parallelize only independent work.** Give each writer its own worktree, or they overwrite each other. ([Claude Code best practices][anth-cc-best-practices], [Codex best practices][oai-codex-bp])
+- **Parallelize only independent work.** Run sessions side by side only once a single session can finish without you, and give each writer its own worktree, or they overwrite each other. ([Claude Code best practices][anth-cc-best-practices], [Codex best practices][oai-codex-bp], [Overprompting][overprompting-post])
 - **Keep the decision.** Judge each step by reversibility, cost of error, and who answers for it. Approving, merging, and anything irreversible stay with a person. ([Claude prompting best practices][anth-prompting-bp], [Claude Code best practices][anth-cc-best-practices], [A practical guide to building agents][oai-practical-guide])
 - **Bring in another lens.** For work with stakes, add a reviewer with a different job, such as security, doing what that role really does. (`range_fields`) ([How to be more ambitious][felix-ambitious])
 
@@ -98,6 +98,7 @@ A brief is a message to a capable colleague who just walked in and lacks your co
 - **Know the failure signatures.** Watch for unsourced precise numbers, functions that don't exist, claims about code nobody opened, and answers that change from one run to the next. (`challenge_assumptions`) ([Reduce hallucinations][anth-reduce-hallucinations], [Claude prompting best practices][anth-prompting-bp])
 - **Verify in proportion to how little you watched.** A supervised edit needs a glance. An overnight or CI run needs the diff read before the summary, the tests, each claim re-checked, and its exit code. ([Claude Code best practices][anth-cc-best-practices], [Claude Code in Action][skj-cc-in-action])
 - **Make tests a gate.** A hook that refuses to end the turn on red beats trusting "tests pass," and it should confirm no test was loosened. (`outside_judge`) ([Claude Code best practices][anth-cc-best-practices], [Claude prompting best practices][anth-prompting-bp])
+- **Ask for the receipt.** When the agent reports back, ask for the command it ran and its output, or a screenshot, rather than its summary. (`evidence_demand`) ([Overprompting][overprompting-post])
 - **Get a cold review on risky work.** A fresh agent reviewing from the brief and diff catches what the author rationalized. (`independent_review`) ([Claude Code best practices][anth-cc-best-practices])
 - **Tell the reviewer what to skip.** Ask it to check the diff against the spec and report only gaps that affect correctness, skipping style, because a reviewer asked to find problems always finds some, and fixing every finding adds layers and tests nobody needs. ([Claude Code best practices][anth-cc-best-practices])
 - **Decide in advance what a human signs off.** Customer-facing work, irreversible steps, security changes, regulated or private data, and money-driving numbers all get a person first. ([Claude Code best practices][anth-cc-best-practices], [A practical guide to building agents][oai-practical-guide])
@@ -109,6 +110,7 @@ A brief is a message to a capable colleague who just walked in and lacks your co
 - **Write rules you can check.** "New handlers go in src/routes, one per file" works, and "follow good structure" can't be verified. ([Claude Code memory][cc-memory])
 - **Name the replacement when you ban something.** "Use the shared logger, not console.log" closes the gap a bare ban leaves. ([Claude prompting best practices][anth-prompting-bp], [Claude Code best practices][anth-cc-best-practices])
 - **Write rules plainly, without capitals.** Anthropic puts IMPORTANT and ALL CAPS on its list of old advice you can stop following, because current models follow a plainly worded line and piled-on emphasis makes them over-apply the rule. Turn a rule that can't bend into a hook, and shorten a file where lines get lost. ([Claude Code best practices][anth-cc-best-practices], [Claude prompting best practices][anth-prompting-bp])
+- **Subtract when the model changes.** When a new model ships, remove some of your instructions and add back only what it misses, since rules written for older models can hold a newer one back. Anthropic removed most of the Claude Code system prompt for its newer models with no measurable loss on coding evals. ([Overprompting][overprompting-post])
 - **Move hard rules to enforcement.** A pre-tool hook can block a push to main, and exit code 2 blocks while exit code 1 doesn't. (`guardrails`) ([Claude Code hooks guide][cc-hooks-guide], [Claude Code hooks reference][cc-hooks])
 - **Match the permission mode to the job.** Auto mode is a classifier judging each action rather than a hard rule, so it can be wrong. Pair it with a test hook, give unattended jobs an allowlist, and keep approvals tight until you trust the repo. (`guardrails`) ([Claude Code best practices][anth-cc-best-practices], [Codex best practices][oai-codex-bp])
 - **Give the agent a way to verify.** Claude Code bundles a verify skill that builds and runs your app to confirm a change does what it should. Write one for your project that also runs the tests and reports pass or fail with evidence (this skill's own advice), and keep it sharp as shared infrastructure, because it lets the agent finish without you relaying what you see. ([Claude Code skills][cc-skills], [Claude Code in Action][skj-cc-in-action], [Shipping thousands of PRs a month][prs-at-scale-talk])
@@ -124,6 +126,7 @@ A brief is a message to a capable colleague who just walked in and lacks your co
 - **Queue findings before fixing them.** Have a recurring job append what it finds to a file you read every few days, because findings seen together often share one cause that fixing each on arrival would miss. ([Shipping thousands of PRs a month][prs-at-scale-talk])
 - **Let bots comment, not approve.** Automated PR review posts findings, and a person makes the merge call. ([Claude Code Code Review][cc-code-review])
 - **Share what works.** Package trusted skills, hooks, and instructions as a versioned plugin or repo the team installs. (`share_setup`) ([Claude Code plugins][cc-plugins], [Codex best practices][oai-codex-bp])
+- **Push before a cloud session.** A cloud session starts from a fresh clone, so unpushed commits aren't there, and work that needs something only your machine has stays local. ([Overprompting][overprompting-post])
 - **Read a plugin before installing it.** Its code runs with your privileges and its hooks stack with your own. ([Claude Code plugins][cc-plugins], [Claude Code hooks guide][cc-hooks-guide], [Equipping agents with Agent Skills][anth-agent-skills-eng])
 
 ## 10. Judgment about data and access
@@ -172,6 +175,7 @@ A brief is a message to a capable colleague who just walked in and lacks your co
 [felix-ambitious]: https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/
 [pstack-sequence-units]: https://github.com/michael-denyer/pstack-claude/blob/HEAD/plugins/pstack/skills/principle-sequence-verifiable-units/SKILL.md
 [pstack-encode-lessons]: https://github.com/michael-denyer/pstack-claude/blob/HEAD/plugins/pstack/skills/principle-encode-lessons-in-structure/SKILL.md
+[overprompting-post]: https://x.com/addyosmani/status/2115688494865465370
 [prs-at-scale-talk]: https://www.youtube.com/watch?v=MN9dGgmLyso
 [oai-harness-eng]: https://openai.com/index/harness-engineering/
 [paper-trace2skill]: https://www.1kpapers.com/papers/trace2skill-distill-trajectory-local-lessons-into-transferable-agent-skills

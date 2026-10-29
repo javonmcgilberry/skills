@@ -280,5 +280,11 @@
     "title": "OpenComputer: Verifiable Software Worlds for Computer-Use Agents",
     "publisher": "1kpapers (paper summary)",
     "url": "https://www.1kpapers.com/papers/opencomputer-verifiable-software-worlds-for-computer-use-agents"
+  },
+  {
+    "id": "overprompting-post",
+    "title": "You're probably overprompting Claude",
+    "publisher": "Addy Osmani (X)",
+    "url": "https://x.com/addyosmani/status/2115688494865465370"
   }
 ]

@@ -7,6 +7,7 @@ Read this when the user calls the skill with nothing else to go on, as in "know 
 Reason from the `context` output. There is no score to follow.
 
 - **No mirror yet** (`latest_reports.mirror` is null): a mirror first, since every other command builds on knowing how they work.
+- **They mention a new model:** a fresh mirror, since habits built for an older model are what to look for.
 - **A mirror older than 30 days:** a fresh mirror, which will also say what changed since that one.
 - **A recent mirror and no check-in in the last 14 days:** a check-in on what moved lately.
 - **A recent mirror and no coaching since:** coaching on the friction that mirror named, quoting its heading so they can see why.
