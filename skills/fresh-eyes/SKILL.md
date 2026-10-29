@@ -13,8 +13,8 @@ Choose the branch first. A repository whose tracked docs check exists (`scripts/
 
 ## Steps
 
-1. **Set up.** Read each repository's `AGENTS.md`, `CLAUDE.md`, `README.md` and its PR conventions. Make a worktree per repository from the default branch, never the operator's checkout. Link `node_modules` if checks need it. Add `.audit/` to `$(git rev-parse --git-common-dir)/info/exclude`, so the trail stays local. Run the repository's full check and record that it was green. Copy the steps of this skill into `.audit/docs.todo.md`, with `skip: <reason>` for any you drop.
-   Done when each worktree is green, excluded, and has its trail.
+1. **Set up.** Read each repository's `AGENTS.md`, `CLAUDE.md`, `README.md` and its PR conventions. Work where the operator says: their checkout, a branch, or a worktree. Ask once if they haven't said, and leave uncommitted or overlapping work to them. Link `node_modules` if checks need it. Add `.audit/` to `$(git rev-parse --git-common-dir)/info/exclude`, so the trail stays local. Run the repository's full check and record that it was green. Copy the steps of this skill into `.audit/docs.todo.md`, with `skip: <reason>` for any you drop.
+   Done when each checkout is green, excluded, and has its trail.
 
 2. **Fix the questions.** Write 10 to 12 newcomer questions now, before anyone rewrites, so the test cannot be shaped around the new pages. Start from [questions.md](questions.md). For sibling repositories, write one set with a provider placeholder.
    Done when `.audit/questions.md` exists and nothing is rewritten yet.
@@ -25,7 +25,7 @@ Choose the branch first. A repository whose tracked docs check exists (`scripts/
 4. **Design the information architecture.** Write `.audit/docs.ia.md` from [ia.md](ia.md): readers, one owner page per fact, the README shape, and each existing file's fate (keep, rewrite, merge into X, delete). Decide a fate with evidence, for example a page naming test files that no longer exist is deleted. Design once for sibling repositories, and keep every page path and section order the same unless a provider truly differs.
    Done when every tracked `.md` has a fate.
 
-5. **Audit and rewrite.** One writer per worktree, never two writers on one filesystem. The writer logs every factual claim in `.audit/docs.audit.tsv` (file, line, claim, verdict, evidence, fix) and then rewrites to the IA. Rules in agent files (`AGENTS.md`, `CLAUDE.md`, personas) keep their meaning unless code disproves them, and every change goes into `.audit/docs.rule-changes.md`.
+5. **Audit and rewrite.** One writer at a time in each checkout. The writer logs every factual claim in `.audit/docs.audit.tsv` (file, line, claim, verdict, evidence, fix) and then rewrites to the IA. Rules in agent files (`AGENTS.md`, `CLAUDE.md`, personas) keep their meaning unless code disproves them, and every change goes into `.audit/docs.rule-changes.md`.
    Done when every claim has a verdict with a code path and the check passes.
 
 6. **Review the writer, not its summary.** Run `git status` and `git log` yourself. Writers' editor hooks leave uncommitted reformatting of Markdown the repository never formats, so discard that churn. Read the README. Verify in code any security or data claim the writer raised, and check the counterpart repository for the same defect.
@@ -34,17 +34,17 @@ Choose the branch first. A repository whose tracked docs check exists (`scripts/
 7. **Cold read.** Export only the tracked Markdown into a scratch directory, so the reader cannot open code. A fresh reader answers the questions from that export. A separate checker grades each answer against the code (correct 1, partly 0.5, wrong 0), says whether the docs or the reader caused each error, and returns a fix list of real doc defects only.
    Done when you have a score and a fix list per repository.
 
-8. **Fix and read again.** Give both fix lists to one fresh writer. For siblings, that one writer owns both worktrees, so shared tables stay byte-identical. Then export again and run a second cold read. Repeat while the score rises and real defects remain.
+8. **Fix and read again.** Give both fix lists to one fresh writer. For siblings, that one writer owns both checkouts, so shared tables stay byte-identical. Then export again and run a second cold read. Repeat while the score rises and real defects remain.
    Done when the last checker's fix list is applied and the score is recorded before and after.
 
 9. **Stress-test the design.** As coordinator, read the whole set as a newcomer and write `.audit/design-stress-test.md`. Say where the architecture is the right tradeoff, where it is not ("this does X, maybe it should have done Y"), and what to change. Cover parity between siblings. Check each claim in code before you write it, because a read-back confidently states things the code contradicts.
    Done when every item names its evidence.
 
-10. **Hand back.** Run the full check in every worktree, confirm the operator's checkouts are unchanged, and confirm no commit credits an agent. Push and open draft PRs only with the operator's go-ahead, in the repository's PR shape. Name security gaps there by category only, and give the details to the operator for Security. Report the counts, the files merged or deleted, the rule changes, the scores, the lever's result, and the stress test's decisions for the operator. Write the audited commit to `.audit/docs.baseline` and keep `.audit/questions.md`, so a later refresh starts from them.
+10. **Hand back.** Run the full check in every checkout and confirm no commit credits an agent. Push and open draft PRs only with the operator's go-ahead, in the repository's PR shape. Name security gaps there by category only, and give the details to the operator for Security. Report the counts, the files merged or deleted, the rule changes, the scores, the lever's result, and the stress test's decisions for the operator. Write the audited commit to `.audit/docs.baseline` and keep `.audit/questions.md`, so a later refresh starts from them.
 
 ## Refresh
 
-A refresh keeps the layout and audits only what the code changed since the last pass. Set up as in step 1, in a worktree with the trail excluded.
+A refresh keeps the layout and audits only what the code changed since the last pass. Set up as in step 1, with the trail excluded.
 
 1. **Find the baseline.** Use the commit in `.audit/docs.baseline`. Without one, use the last commit that changed a tracked `.md` file, and tell the operator that is the baseline you chose.
    Done when you have one commit and `git diff --name-only <baseline>..origin/<default>` lists the changed files.

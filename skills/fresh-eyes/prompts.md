@@ -4,7 +4,7 @@ Give each subagent paths, not pasted content. Fill the bracketed parts.
 
 ## Writer (step 5)
 
-> You are the single writer for a docs overhaul of [repository]. Work only in the worktree [path] on branch [branch]. You may read [sibling worktree] for parity and never write to it.
+> You are the single writer for a docs overhaul of [repository]. Work only in [path] on branch [branch]. You may read [sibling checkout] for parity and never write to it.
 >
 > Read first: [the operator's brief, if any], `.audit/docs.ia.md` (binding, adjust only with code evidence and log why), `.audit/docs.todo.md`, every tracked `.md`, and the repository's agent files.
 >
@@ -26,7 +26,7 @@ Make the export with `git ls-files '*.md'`, copying each file to the same relati
 
 ## Checker (step 7)
 
-> You check a cold read. The answers are [location]. The questions are [file]. Check every answer against the code in [worktree], read-only, and never print secrets.
+> You check a cold read. The answers are [location]. The questions are [file]. Check every answer against the code in [path], read-only, and never print secrets.
 >
 > Per question, give a verdict (correct 1, partly 0.5, wrong 0), each material error or omission with `path:line` evidence, and whether the docs caused it (name the file and heading) or the reader misread correct docs. Then judge each item in the reader's confusion list as a real defect or not, with evidence.
 >
@@ -34,4 +34,4 @@ Make the export with `git ls-files '*.md'`, copying each file to the same relati
 
 ## Fix writer (step 8)
 
-> You are the single writer for the fix round in [worktrees]. Apply the fix lists in [locations], verifying each against code first and skipping any that is wrong, with the reason. [Coordinator items.] Docs only. Keep shared tables byte-identical across siblings and check with `diff`. Same rules and done criteria as the writer. Reply with each item applied or skipped, the commits and the check results.
+> You are the single writer for the fix round in [paths]. Apply the fix lists in [locations], verifying each against code first and skipping any that is wrong, with the reason. [Coordinator items.] Docs only. Keep shared tables byte-identical across siblings and check with `diff`. Same rules and done criteria as the writer. Reply with each item applied or skipped, the commits and the check results.

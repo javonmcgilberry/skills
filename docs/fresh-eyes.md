@@ -36,13 +36,13 @@ flowchart LR
     Q -->|no| S["Full steps, from questions to cold reads"]
 ```
 
-A repository that already tracks a docs check, at `<repo>/scripts/docs-check.mts` or the path and language an earlier pass adapted it to, such as this repository's `scripts/docs_check.py`, has had an overhaul, so it gets a refresh. Every other repository gets the full steps. In both, the work happens in a separate worktree, never in your checkout, and the audit trail lives in a `.audit/` directory that's added to Git's local exclude file so it never gets committed.
+A repository that already tracks a docs check, at `<repo>/scripts/docs-check.mts` or the path and language an earlier pass adapted it to, such as this repository's `scripts/docs_check.py`, has had an overhaul, so it gets a refresh. Every other repository gets the full steps. In both, the work happens where you say, in your checkout, a branch, or a worktree, and you decide how to handle any uncommitted or overlapping work. The audit trail lives in a `.audit/` directory that's added to Git's local exclude file so it never gets committed.
 
 ### Full steps
 
 The full overhaul runs ten steps. Steps 1 to 9 each end on a "Done when" condition the agent has to meet before moving on, and step 10 hands the result back.
 
-1. **Set up.** It reads the repository's agent files, README, and PR conventions, makes a worktree from the default branch, records that the full check was green, and copies the steps into `.audit/docs.todo.md`.
+1. **Set up.** It reads the repository's agent files, README, and PR conventions, works where you said, records that the full check was green, and copies the steps into `.audit/docs.todo.md`.
 2. **Fix the questions.** It writes 10 to 12 newcomer questions from [questions.md](../skills/fresh-eyes/questions.md) into `.audit/questions.md` before anyone rewrites a page, so the test can't be bent around the new docs.
 3. **Build the lever.** It copies the docs check and its test into the target repository, adapts them, wires them into the check script, and adds a CI workflow with no path filters, because renaming a code file breaks docs as surely as editing a doc does. The check's first findings on the untouched docs become the audit's first leads, and the lever lands in its own commit.
 4. **Design the information architecture.** It fills [ia.md](../skills/fresh-eyes/ia.md) into `.audit/docs.ia.md`, naming the readers, one owner page per fact, the README's shape, and a fate for every tracked Markdown file (keep, rewrite, merge, or delete), each decided with evidence.
@@ -51,7 +51,7 @@ The full overhaul runs ten steps. Steps 1 to 9 each end on a "Done when" conditi
 7. **Cold read.** It exports only the tracked Markdown to a scratch directory, a fresh reader answers the questions from that export, and a separate checker grades each answer against the code and returns a list of real doc defects.
 8. **Fix and read again.** One fresh writer applies the fix list, then a new cold read runs, and the loop repeats while the score rises and real defects remain.
 9. **Stress-test the design.** The coordinator reads the whole set as a newcomer and writes `.audit/design-stress-test.md`, saying where the architecture is the right tradeoff and where it isn't, with evidence for every item.
-10. **Hand back.** It runs the full check, confirms your checkouts are untouched and no commit credits an agent, writes the audited commit to `.audit/docs.baseline`, and reports the counts, scores, rule changes, and the lever's result. It pushes or opens draft PRs only when you say so, and names security gaps there by category only.
+10. **Hand back.** It runs the full check, confirms no commit credits an agent, writes the audited commit to `.audit/docs.baseline`, and reports the counts, scores, rule changes, and the lever's result. It pushes or opens draft PRs only when you say so, and names security gaps there by category only.
 
 ### Refresh
 
@@ -78,11 +78,11 @@ This repository's docs check, [scripts/docs_check.py](../scripts/docs_check.py),
 
 ## Subagent roles
 
-The main agent is the coordinator. It sets up the worktrees, fixes the questions, reviews every writer's work in Git, and writes the stress test, and it briefs each subagent from [prompts.md](../skills/fresh-eyes/prompts.md), passing paths rather than pasted content, and routes a strong model to writing and checking and a small one to the cold reader, because a newcomer's view is the point.
+The main agent is the coordinator. It sets up each checkout, fixes the questions, reviews every writer's work in Git, and writes the stress test, and it briefs each subagent from [prompts.md](../skills/fresh-eyes/prompts.md), passing paths rather than pasted content, and routes a strong model to writing and checking and a small one to the cold reader, because a newcomer's view is the point.
 
 | Role | Step | Job |
 | --- | --- | --- |
-| Writer | 5 | The only writer in a worktree. Logs every claim with a verdict and evidence, rewrites to the architecture, and commits in small one-line commits without pushing. |
+| Writer | 5 | The only writer in its checkout. Logs every claim with a verdict and evidence, rewrites to the architecture, and commits in small one-line commits without pushing. |
 | Cold reader | 7 | Reads only the exported Markdown, answers each question with the files and headings it used and a confidence, writes "NOT IN DOCS" where the docs fall short, and lists every confusing or contradictory spot. |
 | Checker | 7 | Grades each answer against the code (correct 1, partly 0.5, wrong 0), says whether the docs or the reader caused each error, and ends with a numbered fix list of real doc defects only. |
 | Fix writer | 8 | Applies the fix lists after verifying each item in code, skips any that's wrong with a reason, and keeps shared tables byte-identical across sibling repositories. |
