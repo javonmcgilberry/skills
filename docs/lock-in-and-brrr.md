@@ -1,6 +1,6 @@
 # Lock In and Brrr
 
-Lock In figures out what you're actually building. Brrr builds it.
+You're about to hand a coding task to an agent and want to know whether to settle its decisions first or start building, and what each skill will do once you pick. Lock In figures out what you're actually building, and Brrr builds it.
 
 They work well together, but you don't have to use both every time. If the request is already clear, start with Brrr. If a product or technical decision could send the work in a different direction, start with Lock In.
 
@@ -8,14 +8,16 @@ They work well together, but you don't have to use both every time. If the reque
 
 Start with Lock In when the request still leaves room for different product behavior, architecture, scope, or definitions of done. It reads the relevant code and evidence, then asks about one meaningful decision at a time. Even when the answer looks obvious, it checks its interpretation with you before writing the final brief.
 
-```text
-uncertain request -> Lock In -> approved brief -> Brrr -> verified implementation
-```
-
 Start with Brrr when the request, ticket, plan, or specification already says what needs to change and how you'll know it works.
 
-```text
-clear request -> Brrr -> verified implementation
+```mermaid
+flowchart LR
+    U["Uncertain request"] --> L["Lock In"]
+    L --> B["Approved brief"]
+    B --> R["Brrr"]
+    C["Clear request"] --> R
+    R --> V["Verified implementation"]
+    R -.->|"a discovery changes the contract"| L
 ```
 
 Sometimes a clear task stops being clear once the code is open. Brrr can make routine implementation decisions, but it pauses and returns to Lock In if a discovery would change the approved scope, architecture, behavior, or definition of done.
@@ -26,7 +28,7 @@ Lock In keeps the resulting brief in draft until you approve the whole thing. An
 
 The Lock In eval runs the same four requests against the version before mandatory checkpoints and the current skill. The cases cover a fully specified edit, an ambiguous cleanup request, a request whose facts are already available, and a publication decision with real safety consequences.
 
-The current skill scored 100 out of 100 on all four cases. The earlier version averaged 85. The grader checks for one direct question, an explicit recommendation, evidence from the case, and the absence of a completed brief before confirmation.
+The current skill scored 100 out of 100 on all four cases. The earlier version averaged 85. The grader checks for one direct question, an explicit recommendation, evidence from the case, and the absence of a completed brief before confirmation, and it takes points off a reply that asks for a fact the case already gives.
 
 ```sh
 cd evals/lock-in
