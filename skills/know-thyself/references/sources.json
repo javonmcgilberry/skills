@@ -256,5 +256,29 @@
     "title": "Attack the Premise",
     "publisher": "pstack-claude (GitHub)",
     "url": "https://github.com/michael-denyer/pstack-claude/blob/HEAD/plugins/pstack/skills/principle-attack-the-premise/SKILL.md"
+  },
+  {
+    "id": "prs-at-scale-talk",
+    "title": "LIVE: Poteto (creator of pstack) on shipping 1,000s of PRs a month at SpaceX",
+    "publisher": "Matt Pocock (YouTube)",
+    "url": "https://www.youtube.com/watch?v=MN9dGgmLyso"
+  },
+  {
+    "id": "oai-harness-eng",
+    "title": "Harness engineering: leveraging Codex in an agent-first world",
+    "publisher": "OpenAI",
+    "url": "https://openai.com/index/harness-engineering/"
+  },
+  {
+    "id": "paper-trace2skill",
+    "title": "Trace2Skill: Distill Trajectory-Local Lessons into Transferable Agent Skills",
+    "publisher": "1kpapers (paper summary)",
+    "url": "https://www.1kpapers.com/papers/trace2skill-distill-trajectory-local-lessons-into-transferable-agent-skills"
+  },
+  {
+    "id": "paper-opencomputer",
+    "title": "OpenComputer: Verifiable Software Worlds for Computer-Use Agents",
+    "publisher": "1kpapers (paper summary)",
+    "url": "https://www.1kpapers.com/papers/opencomputer-verifiable-software-worlds-for-computer-use-agents"
   }
 ]
