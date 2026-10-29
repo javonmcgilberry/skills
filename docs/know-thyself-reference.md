@@ -10,7 +10,7 @@ python3 skills/know-thyself/scripts/convo.py <command> [flags]
 
 ## Commands
 
-Only `setup`, `mine`, `context`, and `export` write anything, and `context` writes only by running `mine` when the corpus is over a day old. The others read the corpus and print, so they're safe to run as often as you like. The one exception is the first command to open a data directory an older version left behind, which converts it to `corpus.db` as [Moving from older files](#moving-from-older-files) describes.
+Only `setup`, `mine`, `context`, and `export` write anything, and `context` writes only by running `mine` when the corpus is over a day old or was built under older rules. The others read the corpus and print, so they're safe to run as often as you like. The one exception is the first command to open a data directory an older version left behind, which converts it to `corpus.db` as [Moving from older files](#moving-from-older-files) describes.
 
 | Command | What it does | Writes |
 | --- | --- | --- |
@@ -24,8 +24,8 @@ Only `setup`, `mine`, `context`, and `export` write anything, and `context` writ
 | `check` | Runs every labeled fixture against the signal rules and exits 1 on any mismatch. Until a mine has built the vocabulary, it skips the `caps_emphasis` fixtures and says how many it skipped. | Nothing |
 | `coverage` | Prints the summary the last `mine` stored, with files found per source, what was parsed or reused, redactions, and when it ran | Nothing |
 | `export` | Writes every turn, in every origin, to the file `--jsonl` names, one JSON object per line, and prints the count and the path | The named file |
-| `context` | The first command of every run. Runs `mine` when the corpus is over a day old or was built under older rules, unless `--no-mine` is given, then prints JSON with `directives` (`NO_CORPUS`, `STALE_CORPUS`, `MINE_FAILED`, `NO_PROFILE`), the `profile` path and text, the newest `mirror`, `coach`, `share`, and `lead` report with its date, and the corpus summary | `corpus.db`, through `mine` |
-| `lint` | Checks a report and a draft reply before the reply goes out, and prints JSON with what failed. It exits 1 on any failure. `--mode` picks the checks: long dashes and the profile's Keep out words for every mode, the report's sections in order for `mirror`, `coach`, `share`, and `lead`, dated quotes found in what you typed that day except in `share` and `lead`, which may hold no quote, path, or link, no advice or links and three to five offers in a mirror, and links only in a final Sources section in coaching. `--reply` names the draft reply's file and `--profile` another profile. | Nothing |
+| `context` | The first command of every run. Mines a stale corpus, then prints the directives, your profile, the newest report of each kind, and the corpus summary as JSON, as [`context`](#context) describes | `corpus.db`, through `mine` |
+| `lint` | Checks a report, a draft reply, or both before the reply goes out, prints JSON with what failed, and exits 1 on any failure, as [`lint`](#lint) describes | Nothing |
 | `paths` | Prints where data, reports, config, and `corpus.db` live, and which setting chose the data and reports locations | Nothing |
 
 When the signal rules in `convo.py` differ from the ones the last mine stored, as after an update that changes them, `stats`, `score`, `compare`, and `search` print `signal rules changed since the last mine; recomputing (slow). Run: convo.py mine` to stderr and recompute signals in memory on every run until a mine stores them.
@@ -62,6 +62,8 @@ The JSON has `sessions`, `first_session`, `windows`, `dimensions`, `teach_once`,
 
 A card from `--cards` has three paragraphs under the line's label. **What it is** quotes the example phrases, **Why it should help** gives the line's `why`, and **For you** gives the Lately and Before counts with the Change verdict and, for lines that look at the first message, the payoff. Cards print no sources. The line's `sources` stay in the JSON, so a coaching reply can list the ones its suggestions used in a Sources section at the end.
 
+A check-in runs `score --recent-days 14 --baseline-days 180`, or `--recent-days 30` when the last 14 days hold fewer than 10 sessions, which is also the fewest a window needs before a line gets a test.
+
 `skills/know-thyself/references/sources.json` lists every public guide the skill cites, each with `id`, `title`, `publisher`, and `url`. Scorecard lines name them by id in `sources`, `skills/know-thyself/references/practices.md` links them by the same ids, and [the guide](know-thyself.md#where-the-advice-comes-from) lists them all. `convo.py` reads the file once when it starts.
 
 ### `compare`
@@ -93,6 +95,39 @@ The first line counts the matches and the sessions they fall in, over every matc
 {"matches": 41, "sessions": 17, "shown": 1}
 {"source": "codex", "session": "a1b2c3", "timestamp": "2025-03-04T15:20:11Z", "cwd": "/home/dev/shop", "text": "Fix the flaky cart test. Done when it passes ten runs in a row.", "match": "Done when"}
 ```
+
+### `context`
+
+| Flag | Default | Meaning |
+| --- | --- | --- |
+| `--no-mine` | off | Report a stale corpus with `STALE_CORPUS` instead of mining it |
+
+The corpus counts as stale when its last mine is over 24 hours old or has no time, or when the signal rules or cleaning rules have changed since. Without `--no-mine`, `context` runs `mine` in a fresh process and waits for it. With no corpus at all it mines nothing. It prints one JSON object with these keys.
+
+- `directives` lists what the agent does first, each a code and an instruction: `NO_CORPUS` (run `setup`, then `context` again), `STALE_CORPUS` (run `mine`, printed only under `--no-mine`), `MINE_FAILED` (tell the user when the corpus was last mined and why the mine failed, with the end of its stderr), and `NO_PROFILE` (do what was asked, then offer `init` once at the end of the reply).
+- `mined` is null when no mine ran, or holds `ok` and `why`, which is `over a day old` or `rules changed`.
+- `corpus` holds the `path`, `mined_at`, `turns`, and `by_origin` from the last mine's coverage, or is null when there's no corpus.
+- `reports_dir` is the reports directory.
+- `latest_reports` has one key per report kind, `mirror`, `checkin`, `coach`, `share`, and `lead`, each holding the newest report's `path`, `date`, and `days_ago`, or null. A kind is matched by file name, `YYYY-MM-DD-mirror.md` (or `-profile.md`, which older versions wrote), `-checkin.md`, `-coach.md`, `-shareable.md`, or `-lead.md`, each with an optional `-2`, `-3` suffix, and the newest is the latest date and then the highest suffix. `days_ago` counts from today's local date.
+- `profile` holds the `path` of `ME.md` in the data directory, whether it `exists`, and its `text`, which is null when there's no profile.
+
+### `lint`
+
+| Argument | Default | Meaning |
+| --- | --- | --- |
+| `--mode` | required | One of `mirror`, `checkin`, `coach`, `share`, `lead`, `trend`, `recall`, `lessons`, `init`, or `menu`, which picks the checks |
+| report | none | The report file this run wrote |
+| `--reply` | none | A file holding the draft chat reply |
+| `--profile` | `ME.md` in the data directory | The profile whose Keep out list to enforce. A missing file means no Keep out terms. |
+
+It needs a report, a `--reply` file, or both, and stops with an error otherwise. It prints `mode`, `passed`, `failed` (each failed check with its evidence), and `checked` (every check it ran), and exits 1 when anything failed. These are the checks, by mode.
+
+- **Every mode.** No en or em dashes in the reply and report, and no Keep out term from the profile, matched as a whole word and ignoring case, outside backticked absolute paths, so a report's own path can hold your name. The Keep out terms are the bullets under a `## Keep out` or `### Keep out` heading, each cut before any ` (` and kept when it's at least three characters. With a reply, its first line that isn't a heading mustn't open with a persona such as "I'm your coach" or "I read".
+- **Report sections.** For `mirror`, `checkin`, `coach`, `share`, and `lead`, the report holds that mode's section headings in order, matched ignoring case, curly apostrophes, and a leading number.
+- **`mirror` and `checkin`.** No advice heading such as "What to try" or "Next steps", and no links. A mirror reply also ends with a list of three to five quoted requests, one of them a deeper read worded in six or more words, and gives the report's absolute path in backticks before them.
+- **`coach`.** In both the reply and the report, links only after a final Sources heading and at most five listed there, no "Where this comes from" line, and a reply with bold Before, After, and What changed labels.
+- **`share` and `lead`.** The report holds no quote of three or more words, no path under `/Users/`, `/home/`, or `~/`, and no link.
+- **Every mode but `share` and `lead`.** Every quote written as `"…" (YYYY-MM-DD)` is found, fragment by fragment between ellipses, by `convo.py search` among your human turns from the day before its date to the day after.
 
 ### `mine`, `setup`, and `export`
 
@@ -147,7 +182,8 @@ The config file is JSON. If it isn't valid JSON, or doesn't hold an object, ever
 | --- | --- | --- |
 | `corpus.db` | `mine` | The SQLite corpus, holding every turn, the signals found in each, what the last mine saw, and the stored vocabulary |
 | `*.migrated` | The first command that opens the corpus after an upgrade | An older version's files, renamed once their contents are in `corpus.db` and never read again |
-| `reports/` | your agent | Reports, which the skill's instructions name `YYYY-MM-DD-<mode>.md`, such as `-mirror.md`, `-coach.md`, or `-shareable.md`, adding `-2` when that name is taken so no report is overwritten, unless the reports directory is set elsewhere |
+| `ME.md` | your agent, through `init` | Your profile: who you are at work, what you want from the skill, who reads what it writes, the Keep out terms `lint` enforces, and how to talk to you. `context` prints it at the start of every run. |
+| `reports/` | your agent | Reports, which the skill's instructions name `YYYY-MM-DD-mirror.md`, `-checkin.md`, `-coach.md`, `-shareable.md`, or `-lead.md`, adding `-2` when that name is taken so no report is overwritten, unless the reports directory is set elsewhere |
 
 `mine` applies all its changes in one SQLite transaction, so an interrupted run leaves the previous corpus whole. It takes the corpus's write lock before it reads anything, so a second `mine`, or the one a `setup` starts, waits up to an hour for the first to finish and then runs on what it wrote, and fails with a database-locked error if the wait runs out.
 
