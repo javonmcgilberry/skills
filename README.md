@@ -68,7 +68,7 @@ npx skills@latest add javonmcgilberry/skills --skill fresh-eyes
 
 ### Know Thyself
 
-Reach for it when you want to see how you work with AI coding agents. Ask and it also coaches you against public guidance, checks whether a habit changed since a date, or turns corrections you keep repeating into rules. Its script uses only Python's standard library and writes only to its own config file, data directory, and reports directory, plus any file you name when you export the corpus, so your history stays on your machine.
+Reach for it when you want to see how you work with AI coding agents. Ask and it also checks in on your last two weeks, coaches you against public guidance, checks whether a habit changed since a date, or turns corrections you keep repeating into rules. Its script uses only Python's standard library and writes only to its own config file, data directory, and reports directory, plus any file you name when you export the corpus, so your history stays on your machine.
 
 ```sh
 npx skills@latest add javonmcgilberry/skills --skill know-thyself

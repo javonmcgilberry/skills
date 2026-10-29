@@ -1,6 +1,6 @@
 # know-thyself
 
-You do much of your work through AI coding agents and want to see how you work with them, or you've installed know-thyself and want to know what it reads, what it keeps, and what to ask it. know-thyself is an agent skill that reads the conversations you've had with those agents and reflects back how you work, what you're good at, where friction shows up, and how that's changed, with every pattern backed by counts and short quotes from your own history. It describes rather than prescribes, and when you ask, it also coaches you against public guidance, checks whether a habit changed since a date, recalls what you decided, and turns corrections you keep repeating into rules.
+You do much of your work through AI coding agents and want to see how you work with them, or you've installed know-thyself and want to know what it reads, what it keeps, and what to ask it. know-thyself is an agent skill that reads the conversations you've had with those agents and reflects back how you work, what you're good at, where friction shows up, and how that's changed, with every pattern backed by counts and short quotes from your own history. It describes rather than prescribes, and when you ask, it also checks in on your last two weeks, coaches you against public guidance, checks whether a habit changed since a date, recalls what you decided, turns corrections you keep repeating into rules, and writes a version of how you work for your team or your lead.
 
 Everything stays on your machine. The script uses only Python's standard library, opens other tools' history read-only, replaces credentials before anything is stored, and writes only to its own config file, data directory, and reports directory, which by default sit outside every repository, plus any file you name when you export the corpus.
 
@@ -10,8 +10,8 @@ Everything stays on your machine. The script uses only Python's standard library
 | --- | --- | --- |
 | Skill | `skills/know-thyself/` | `SKILL.md` and `references/`, the instructions your agent follows |
 | CLI | `skills/know-thyself/scripts/convo.py` | The script that mines, measures, scores, and searches |
-| Data directory | `~/.local/share/know-thyself/` | `corpus.db`, a SQLite file holding your past turns, which survive even after a tool deletes its own copy |
-| Reports | `~/.local/share/know-thyself/reports/` | The mirror, coaching, and shareable reports your agent writes |
+| Data directory | `~/.local/share/know-thyself/` | `corpus.db`, a SQLite file holding your past turns, which survive even after a tool deletes its own copy, and `ME.md`, your profile |
+| Reports | `~/.local/share/know-thyself/reports/` | The mirror, check-in, coaching, team, and lead reports your agent writes |
 
 You need Python 3.11 or later. Install the skill with the skills CLI, a copied folder, or a linked clone, as [the README](../README.md#install) shows.
 
@@ -22,7 +22,7 @@ python3 skills/know-thyself/scripts/convo.py setup
 python3 skills/know-thyself/scripts/convo.py paths
 ```
 
-`setup` writes the config, mines every history it can find, bringing in an older version's files the first time, and runs the signal checks. It doesn't schedule anything, so run `convo.py mine` again whenever you want fresh numbers. You can also leave the first run to your agent, because `SKILL.md` tells it to run `setup` whenever `paths` reports no corpus. Start your agent and ask it something like "Let's do a run" or "How do I work with agents?" If it answers without using the skill, name the skill in your request.
+`setup` writes the config, mines every history it can find, bringing in an older version's files the first time, and runs the signal checks. It doesn't schedule anything, but every run of the skill starts with `convo.py context`, which mines again when the corpus is over a day old, and you can run `convo.py mine` yourself whenever you want fresh numbers. You can also leave the first run to your agent, because `context` tells it to run `setup` when there's no corpus yet. Start your agent and ask it something like "Let's do a run" or "How do I work with agents?" If it answers without using the skill, name the skill in your request.
 
 ## How it works
 
@@ -32,17 +32,19 @@ flowchart LR
     M --> D["corpus.db in the data directory"]
     D --> Q["convo.py stats, score, compare, and search"]
     K["SKILL.md and references"] --> A["Your agent"]
+    X["convo.py context: a fresh mine when needed, your profile, your latest reports"] --> A
     Q --> A
-    A --> R["Mirror report in the reports directory"]
-    A --> Y["Reply with what it found and three to five follow-ups you can ask for"]
-    Y -.->|on request| C["Coaching, a trend check, recall, lessons, or a version to share"]
+    A --> L["convo.py lint on the draft reply and report"]
+    L --> R["Mirror report in the reports directory"]
+    L --> Y["Reply with what it found and three to five follow-ups you can ask for"]
+    Y -.->|on request| C["A check-in, coaching, a trend check, recall, lessons, or a version for your team or lead"]
 ```
 
 **Mining.** `mine` reads each tool's history from its usual place under your home directory and keeps only the turns where a user spoke. It replaces credentials it recognizes, drops injected instructions and slash-command noise, and tags each turn `human`, `subagent`, or `harness`, so subagent threads and scripted prompts never count as yours, and you can add patterns for your own tools' prompts to the config file. Then it records which signals each human turn shows, after stripping code, logs, links, and paths, and merges the result into `corpus.db`. Later runs parse only new or changed files, and turns whose source file is gone stay in the corpus, so the corpus outlives any tool that prunes its history.
 
 **Querying.** `stats`, `score`, `compare`, and `search` read only the corpus and default to human turns. `score` builds the scorecard by comparing your last 60 days with the 180 days before, line by line, with a 95% range on every count and a correction for testing up to 30 habits at once, and `score --cards` turns chosen lines into short plain-language cards. `compare` checks whether one habit changed after a date you name. `search` returns the actual turns behind a number, which is how a rate gets checked before anyone trusts it.
 
-**Answering.** When you ask a question, your agent reads `SKILL.md`, whose first step runs `convo.py context`, which mines again when the corpus is over a day old and prints your profile, your latest reports, and anything to do first. Then it picks a mode, and loads the reference that mode needs, plus the shared voice file before it writes. Coaching also reads `references/practices.md` and takes titles and links from `references/sources.json`. A request without a clear other mode, such as "let's do a run" or "what am I good or bad at", gets the mirror. Your agent runs the commands, reads about 150 of your turns, most of them from the last 90 days, and writes a report on how you work, what you're good at, where friction shows up, the words you lean on when any stand out, and what's changed, with plain counts and short dated quotes and no advice. The reply opens with one sentence on how you work, then what you're good at and where friction shows up, then where the full report is saved, with its path and an offer to show any part of it in the chat, and closes with three to five follow-ups written from that run, which you can paste to go further, and one sentence on what the run covered. Before replying, your agent runs `convo.py lint` on the report and its draft reply, which checks that every dated quote is something you typed that day, that the sections are in order, and that nothing from your profile's Keep out list appears, and it fixes whatever that finds.
+**Answering.** When you ask a question, your agent reads `SKILL.md`, whose first step runs `convo.py context`, which mines again when the corpus is over a day old or was built under older rules and prints your profile, your latest reports, and anything to do first. Then it picks a mode, and loads the reference that mode needs, plus the shared voice file before it writes. Coaching also reads `references/practices.md` and takes titles and links from `references/sources.json`. A request without a clear other mode, such as "let's do a run" or "what am I good or bad at", gets the mirror. Your agent runs the commands, reads about 150 of your turns, most of them from the last 90 days, plus up to 40 that use compact terms such as "source of truth" or "blast radius", and writes a report on how you work, what you're good at, where friction shows up, the words you lean on when any stand out, and what's changed, with plain counts and short dated quotes and no advice. The reply opens with one sentence on how you work, then what you're good at and where friction shows up, then where the full report is saved, with its path and an offer to show any part of it in the chat, and closes with three to five follow-ups written from that run, which you can paste to go further, and one sentence on what the run covered. Before replying, your agent runs `convo.py lint` on the report and its draft reply, which checks that every dated quote is something you typed within a day of its date, that the sections are in order, and that nothing from your profile's Keep out list appears, and it fixes whatever that finds.
 
 **Your profile.** Say "set me up" and your agent asks, in one message, what your history can't show: your role, what you want from this, who will read what it writes, what it must never quote or name, and how to talk to you. It writes the answers to `ME.md` in the data directory, every later run reads it, and you can edit it any time. Until it exists, a run offers it once and never waits on it.
 
@@ -51,6 +53,7 @@ flowchart LR
 | Mode | Runs when you ask | What you get |
 | --- | --- | --- |
 | Mirror | "Let's do a run", "How do I work?", or anything without a clear other mode | A description of how you work, written to `YYYY-MM-DD-mirror.md`, meant to take under three minutes. Ask it to go deeper and it reads 300 or more turns across your whole history. |
+| Check-in | "How have I been doing the last two weeks?" | `YYYY-MM-DD-checkin.md`, a short look at the last 14 days against the 180 days before them, from `convo.py score --recent-days 14 --baseline-days 180`. With fewer than 10 sessions in 14 days it widens to 30 and says so, and with fewer than 10 in 30 it says there's too little recent work to compare. It names only the habits `score` marks up or down, each with counts on both sides and a dated quote, then what held from your latest mirror, two or three quotes from the window, and what held, slipped, or is new since your last check-in. Like a mirror it gives no advice, and the reply makes at most two offers. |
 | Coach | "Coach me on how I start tasks", "How can I get better at reviews?", "Score my prompts" | Coaching scoped to what you asked, with up to three habit cards from `convo.py score --cards`, one of your own recent prompts shown before and after a rewrite, each change checked against the guides, a few next steps with a short why, and the sources those steps relied on at the end. Ask to see all the habits for the full 30-line scorecard. |
 | Trend | "Has splitting work across agents changed since August?" | Whether a habit changed after a date, with counts on both sides |
 | Recall | "What did I decide about the cache?" | What you decided, when, and in which session |
@@ -59,7 +62,7 @@ flowchart LR
 | Lead | "My director asked how I work, help me answer" | `YYYY-MM-DD-lead.md`, a first-person answer covering how you work, where you're strongest, what you're working on (only what you agree to share), and how you work with AI agents |
 | Init | "Set me up" | Your profile, `ME.md`, as described above |
 
-Call the skill with nothing else, as in "know thyself", and it recommends two or three of these from what it knows, such as a first mirror, a fresh one when yours is over a month old, or coaching on the friction your last mirror found, and runs nothing until you pick. Read a version for others before anyone else does.
+Call the skill with nothing else, as in "know thyself", or ask what it can do, and it recommends two or three of these from what `context` printed, such as a first mirror, a fresh one when yours is over a month old, a check-in when you have a recent mirror and no check-in in the last 14 days, or coaching on the friction your last mirror found. Each pick comes as words you can paste, and after the picks it shows a What you can do list with one example request for every mode above. It runs nothing until you pick. Read a version for others before anyone else does.
 
 ## Limits
 
