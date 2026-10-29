@@ -27,6 +27,8 @@ import convo  # noqa: E402
 PROJECT = ROOT.parents[1]
 GUIDE = PROJECT / "docs" / "know-thyself.md"
 SKIP = {".git", ".cache", "reports", "__pycache__", ".ruff_cache"}
+# Third-party files copied in unchanged, whose own contents (gitleaks names hundreds of vendors) aren't the skill's words.
+VENDORED = {"gitleaks.toml", "GITLEAKS-LICENSE"}
 TEXT_SUFFIXES = {".md", ".py", ".json", ".jsonl", ".txt", ".toml", ".yml", ".yaml", ""}
 
 SKILL = ROOT / "SKILL.md"
@@ -46,7 +48,8 @@ def report(ok, message):
 
 def scanned_files():
     """The skill's own text files and its pages under docs/, which together are what gets published as know-thyself."""
-    skill = [p for p in ROOT.rglob("*") if p.is_file() and p.suffix in TEXT_SUFFIXES and not SKIP & set(p.relative_to(ROOT).parts)]
+    skill = [p for p in ROOT.rglob("*") if p.is_file() and p.suffix in TEXT_SUFFIXES and not SKIP & set(p.relative_to(ROOT).parts)
+             and p.name not in VENDORED]
     return skill + sorted((PROJECT / "docs").glob("know-thyself*.md"))
 
 
@@ -352,6 +355,50 @@ def context_directives():
             and [d.split(":")[0] for d in profiled["directives"]] == ["STALE_CORPUS"] and profiled["profile"]["text"] == "# Sam")
 
 
+import redaction  # noqa: E402
+import tomllib  # noqa: E402
+
+
+def vendored_rules():
+    config = tomllib.loads(redaction.RULES_FILE.read_text())
+    return len(redaction.RULES) == sum("regex" in rule for rule in config["rules"]) > 200 and not re.search(r"AIza[\w*-]{30,}", redaction.RULES_FILE.read_text())
+
+
+def scrubbed():
+    token = "ghp_" + "A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q7r8"
+    text = f"push {token}, mail ana@example.com, call 555-123-4567, ship Atlas on 2026-10-29 at 10:45, ts 1793026387.754229"
+    out = redaction.scrub(text, redaction.keep_out_pattern(["Atlas"]))
+    return (out == "push [REDACTED:github-pat], mail [EMAIL], call [PHONE], ship [KEPT OUT] on 2026-10-29 at 10:45, "
+                   "ts 1793026387.754229" and redaction.scrub(out, redaction.keep_out_pattern(["Atlas"])) == out
+            and "AKIAIOSFODNN7EXAMPLE" in redaction.scrub("key AKIAIOSFODNN7EXAMPLE")
+            and convo.redact("password=hunter22 ok") == "password=[REDACTED:assignment] ok"
+            and lint.fragments("mail [EMAIL] about the \u2026 key [REDACTED:github-pat] now") == ["mail", "about the", "key", "now"])
+
+
+def search_is_scrubbed():
+    row = {**session_row((TODAY - datetime.timedelta(days=1)).isoformat(), "s"), "cwd": "/work/atlas",
+           "text": "please ask ana@example.com about Atlas before we ship the parser change"}
+    with tempfile.TemporaryDirectory() as tmp:
+        saved = convo.PROFILE
+        convo.PROFILE = Path(tmp) / "ME.md"
+        convo.PROFILE.write_text("# Sam\n\n## Keep out\n- Atlas\n")
+        convo.keep_out.cache_clear()
+        try:
+            printed = run_on([row], convo.search, regex="ship", signal=None, limit=5, chars=600, max_words=2000,
+                             context=0, sample=False)[0]
+        finally:
+            convo.PROFILE = saved
+            convo.keep_out.cache_clear()
+    hit = json.loads(printed.splitlines()[1])
+    return (hit["text"] == "please ask [EMAIL] about [KEPT OUT] before we ship the parser change"
+            and hit["cwd"] == "/work/[KEPT OUT]")
+
+
+report(holds(vendored_rules), "every gitleaks rule in the vendored gitleaks.toml loads, Go-only syntax translated, and the "
+       "file holds no literal API key for a secret scanner to flag")
+report(holds(scrubbed), "scrub masks a token, an email, a phone number, and a Keep out term, keeps dates and allowlisted "
+       "examples, catches a low-entropy password, changes nothing on a second pass, and lint splits quotes at the masks")
+report(holds(search_is_scrubbed), "search prints turns and their workspace with emails and Keep out terms masked")
 report(holds(lint_catches), "lint passes a clean mirror report, curly apostrophes and a path holding a Keep out name included, "
        "and catches a dash, sections out of order, a link, and a Keep out word")
 report(holds(shared_versions), "lint keeps quotes and local paths out of a version for others")

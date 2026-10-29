@@ -40,6 +40,6 @@ Routing:
 1. **The profile wins.** Use the profile's name and framing, and never name anything under its Keep out heading.
 2. **Traced.** Every claim about the user carries a traced number, copied exactly, or a verbatim dated quote, or is labeled inference. Signals drift, so before a rate backs a claim, read `search --signal <id> --sample --limit 8` and drop it unless six of the eight `match` fields are real.
 3. **Verbatim.** Copy quotes character for character from search output, with their dates, cutting only with "…". Paraphrase outside quotation marks.
-4. **Privacy.** Quote short fragments without credentials or personal details, and keep the user's name and paths out of skill files.
-5. **Live configuration.** Propose edits to agent instructions and skills as diffs, applied after approval.
+4. **Privacy.** Read history only through `convo.py`, which masks secrets and personal details, and keep the user's name and paths out of skill files.
+5. **Live configuration.** Propose edits to instructions and skills as diffs.
 6. **Reports.** Write each report as a new file in the reports directory, adding `-2`, `-3` when its name is taken.

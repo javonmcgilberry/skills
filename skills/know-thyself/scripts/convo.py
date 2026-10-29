@@ -27,6 +27,7 @@ import collections
 import concurrent.futures
 import contextlib
 import datetime
+import functools
 import hashlib
 import inspect
 import json
@@ -40,6 +41,9 @@ import statistics
 import sys
 import zlib
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import redaction  # noqa: E402
 
 HOME = Path.home()
 CONFIG = Path(os.environ.get("XDG_CONFIG_HOME") or HOME / ".config") / "know-thyself" / "config.json"
@@ -516,20 +520,7 @@ def text_from_blocks(content):
     )
 
 
-# Credentials are replaced before anything reaches the corpus, so the cache never stores a pasted secret.
-SECRET_PATTERNS = [
-    ("private_key", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----.*?-----END [A-Z ]*PRIVATE KEY-----", re.S)),
-    ("api_key", re.compile(r"\bsk-(?:ant-|or-|proj-)?[A-Za-z0-9_-]{20,}")),
-    ("github_token", re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})\b")),
-    ("aws_key", re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b")),
-    ("slack_token", re.compile(r"\bxox[abprs]-[A-Za-z0-9-]{10,}")),
-    ("google_key", re.compile(r"\bAIza[0-9A-Za-z_-]{35}\b")),
-    ("jwt", re.compile(r"\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}")),
-    ("bearer", re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._~+/-]{20,}=*")),
-    ("assignment", re.compile(r"(?i)\b((?:api[_-]?key|secret|token|password|passwd|client[_-]?secret)\b\s*[:=]\s*)['\"]?[^\s'\"]{8,}['\"]?")),
-]
-REDACTIONS = [(pattern, r"\1[REDACTED:assignment]" if kind == "assignment" else f"[REDACTED:{kind}]")
-              for kind, pattern in SECRET_PATTERNS]
+# Secrets are replaced before anything reaches the corpus, so the cache never stores a pasted credential.
 SKILL_TAG = re.compile(r'<skill name="([^"]+)".*?</skill>', re.S)
 COMMAND_TAG = re.compile(r"<command-name>/?([^<]+)</command-name>")
 STRIP_TAG = re.compile(rf"<({'|'.join(map(re.escape, STRIP_TAGS))})\b.*?</\1>", re.S)
@@ -537,12 +528,11 @@ BLANK_LINES = re.compile(r"\n{3,}")
 
 
 def redact(text):
-    """Replace known credential shapes until nothing changes. One pass can stop at a quote inside a wrapped value,
+    """Replace secrets (see redaction.py) until nothing changes. One pass can stop at a quote inside a wrapped value,
     as in token=Some(\\"...\\"), and leave the secret after the marker; the next pass catches that tail."""
     while True:
         before = text
-        for pattern, replacement in REDACTIONS:
-            text = pattern.sub(replacement, text)
+        text = redaction.redact_secrets(text)
         if text == before:
             return text
 
@@ -917,7 +907,7 @@ def key_text(row):
 
 
 def redactions(texts):
-    return collections.Counter(kind for text in texts if "[REDACTED:" in text for kind in re.findall(r"\[REDACTED:(\w+)\]", text))
+    return collections.Counter(kind for text in texts if "[REDACTED:" in text for kind in re.findall(r"\[REDACTED:([\w-]+)\]", text))
 
 
 class Turn(dict):
@@ -1015,7 +1005,7 @@ def run_jobs(jobs, pool):
 
 
 CLEAN_HASH = hashlib.sha256(json.dumps(
-    [BLOCKED_STARTS, STRIP_TAGS, sorted(SLASH_NOISE), [pattern.pattern for _, pattern in SECRET_PATTERNS],
+    [BLOCKED_STARTS, STRIP_TAGS, sorted(SLASH_NOISE), redaction.DIGEST,
      *(p.pattern for p in (HARNESS_CWD, HARNESS_TEXT, TICKET_BRIEF, SKILL_TAG, COMMAND_TAG, STRIP_TAG, BLANK_LINES)),
      BUBBLE_TYPE.pattern.decode(), USER_HARNESS.pattern if USER_HARNESS else "",
      *(inspect.getsource(f) for f in (redact, unwrap, clean, admissible, to_iso, iter_jsonl, text_from_blocks, read_codex, read_claude,
@@ -1388,7 +1378,7 @@ def stats(args):
         "work_time": {"active_days": len(days), "late_night_10pm_4am_pct": pct(late, sum(hours.values())),
                       "weekend_pct": pct(weekend, sum(days.values())), "top_hours_local": hours.most_common(6)},
         "top_skills": collections.Counter(s for r in rows for s in skill_mentions(r["text"])).most_common(25),
-        "top_workspaces": workspaces.most_common(15),
+        "top_workspaces": [(shown(name), n) for name, n in workspaces.most_common(15)],
         "monthly_pct": {m: {"total": v["total"], **{k: pct(v[k], v["total"]) for k in ("scope_control", "evidence_demand", "agent_rework", "repeated_constraint", "agent_orchestration")}}
                         for m, v in sorted(monthly.items()) if m},
     }, indent=2, default=dict))
@@ -1423,16 +1413,16 @@ def search(args):
     print(json.dumps({"matches": len(hits), "sessions": sessions, "shown": min(len(hits), args.limit)}))
     for i in hits[: args.limit]:
         row = rows[i]
-        result = {k: row[k] for k in ("source", "session", "timestamp", "cwd")}
-        result["text"] = trim(row["text"])
+        result = {k: row[k] for k in ("source", "session", "timestamp")}
+        result["cwd"], result["text"] = shown(row["cwd"]), shown(trim(row["text"]))
         if args.signal in SIGNAL_RE:
             found = SIGNAL_RE[args.signal].search(prose(row["text"]))
-            result["match"] = found.group(0) if found else None
+            result["match"] = shown(found.group(0)) if found else None
         if args.context:
             ordered = by_session[(row["source"], row["session"])]
             at = ordered.index(i)
-            result["before"] = [trim(rows[j]["text"]) for j in ordered[max(0, at - args.context): at]]
-            result["after"] = [trim(rows[j]["text"]) for j in ordered[at + 1: at + 1 + args.context]]
+            result["before"] = [shown(trim(rows[j]["text"])) for j in ordered[max(0, at - args.context): at]]
+            result["after"] = [shown(trim(rows[j]["text"])) for j in ordered[at + 1: at + 1 + args.context]]
         print(json.dumps(result, ensure_ascii=False))
 
 
@@ -1521,7 +1511,7 @@ def score(args):
         return sum(name in unit["found"][level] for unit in group)
 
     def excerpt(turn):
-        return {"timestamp": turn["timestamp"], "session": turn["session"], "text": prose(turn["text"])[:400]}
+        return {"timestamp": turn["timestamp"], "session": turn["session"], "text": shown(prose(turn["text"])[:400])}
 
     def example_turns(name, level):
         for unit in sorted(units, key=started, reverse=True):
@@ -1730,6 +1720,17 @@ def show_coverage(_args):
     if not db:
         sys.exit(f"No corpus at {DB}. Run: convo.py mine")
     print(json.dumps(meta_value(db, "coverage", {}), indent=2))
+
+
+@functools.cache
+def keep_out():
+    """The profile's Keep out terms as one pattern, or None, for scrubbing everything the script prints."""
+    import lint
+    return redaction.keep_out_pattern(lint.keep_out_terms(PROFILE.read_text()) if PROFILE.exists() else [])
+
+
+def shown(text):
+    return redaction.scrub(text, keep_out())
 
 
 def latest_reports():

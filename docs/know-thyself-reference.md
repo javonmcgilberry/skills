@@ -214,7 +214,7 @@ Each line `export --jsonl` writes has `source`, `session`, `timestamp`, `cwd`, `
 
 - `codex_files`, `claude_files`, `pi_files`, and `opencode_message_files` count the files found per source.
 - `cursor_composers` counts Cursor conversations that aren't marked as subagents, and `chatgpt_encrypted_files_unread` counts ChatGPT desktop files that were found and not read.
-- `corpus_turns`, `by_origin`, and `redacted` describe the corpus, with `redacted` counting each kind of credential that was replaced.
+- `corpus_turns`, `by_origin`, and `redacted` describe the corpus, with `redacted` counting each kind of secret that was replaced, by gitleaks rule id or `assignment`.
 - `mode` is `incremental` or `full`, and `files_parsed`, `files_skipped`, `composers_parsed`, and `composers_skipped` say how much of it was reused.
 - `files_failed` counts the parsed Codex, Claude Code, Pi, and OpenCode files, and the Cursor reads, that raised an error. Each adds no turns and the mine carries on. Its signature isn't stored, so every later mine tries it again and counts it again until it parses.
 - `rules` is the hash of the signal rules, and `mined_at` is the UTC time of the run.

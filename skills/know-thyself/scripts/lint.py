@@ -41,8 +41,9 @@ def shift(day, days):
 
 
 def quote_found(quote, day):
-    """Whether every fragment of a dated quote, split at ellipses, appears in what the user typed that day."""
-    for part in re.split(r"\s*(?:\u2026|\.\.\.)\s*", quote):
+    """Whether every fragment of a dated quote, split at ellipses and at masks such as [EMAIL], appears in what the user typed
+    that day. The script masks secrets and personal details in what it shows, so a quote can hold a mask the corpus doesn't."""
+    for part in fragments(quote):
         if len(part) < 4:
             continue
         # Pasted terminal output wraps through box borders, which are layout, not words.
@@ -52,6 +53,10 @@ def quote_found(quote, day):
         if not out.strip() or json.loads(out.splitlines()[0]).get("matches", 0) == 0:
             return False
     return True
+
+
+def fragments(quote):
+    return [p for p in re.split(r"\s*(?:\u2026|\.\.\.|\[(?:REDACTED:[\w-]+|EMAIL|PHONE|KEPT OUT)\])\s*", quote) if p]
 
 
 def opening(text):
