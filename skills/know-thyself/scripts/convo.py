@@ -71,6 +71,10 @@ def resolve_dirs():
 DIRS = resolve_dirs()
 DATA, REPORTS = DIRS["data"][0], DIRS["reports"][0]
 DB = DATA / "corpus.db"
+PROFILE = DATA / "ME.md"
+STALE_HOURS = 24
+# Report kinds by filename suffix; older versions wrote the mirror as *-profile.md.
+REPORT_KINDS = {"mirror": ("mirror", "profile"), "coach": ("coach",), "share": ("shareable",), "lead": ("lead",)}
 # What older versions kept instead of DB; the first run imports them and renames each with a .migrated suffix.
 LEGACY_CORPUS, LEGACY_MANIFEST, LEGACY_VOCAB, LEGACY_COVERAGE = (
     DATA / name for name in ("corpus.jsonl", "manifest.json", "vocab.json", "coverage.json"))
@@ -1726,6 +1730,63 @@ def show_coverage(_args):
     print(json.dumps(meta_value(db, "coverage", {}), indent=2))
 
 
+def latest_reports():
+    """The newest report of each kind, by its date and then its -2, -3 suffix, as {kind: {path, date, days_ago}} or None."""
+    today = datetime.date.today()  # report names use the local date
+    latest = {}
+    for kind, suffixes in REPORT_KINDS.items():
+        found = []
+        for path in REPORTS.glob("*.md") if REPORTS.exists() else ():
+            named = re.fullmatch(rf"(\d{{4}}-\d{{2}}-\d{{2}})-(?:{'|'.join(suffixes)})(?:-(\d+))?\.md", path.name)
+            if named:
+                found.append((named.group(1), int(named.group(2) or 1), path))
+        if found:
+            day, _, path = max(found)
+            latest[kind] = {"path": str(path), "date": day, "days_ago": (today - datetime.date.fromisoformat(day)).days}
+        else:
+            latest[kind] = None
+    return latest
+
+
+def context(args):
+    """One start for every run: refresh a stale corpus, then print the profile, the latest reports, and what to do first."""
+    directives, mined = [], None
+    db = connect()
+    if not db:
+        directives.append("NO_CORPUS: run `convo.py setup` and tell the user the first mine reads their whole history, "
+                          "which can take a few minutes. Then run context again.")
+    else:
+        coverage = meta_value(db, "coverage", {})
+        mined_at = parse_time(coverage.get("mined_at"))
+        age = (datetime.datetime.now(datetime.UTC) - mined_at).total_seconds() / 3600 if mined_at else None
+        stale = age is None or age > STALE_HOURS or coverage.get("rules") != RULES_HASH or meta_value(db, "clean") != CLEAN_HASH
+        db.close()
+        if stale and not args.no_mine:
+            result = subprocess.run([sys.executable, str(Path(__file__).resolve()), "mine"], capture_output=True, text=True)
+            mined = {"ok": result.returncode == 0, "why": "over a day old" if age is None or age > STALE_HOURS else "rules changed"}
+            if result.returncode:
+                directives.append(f"MINE_FAILED: tell the user the corpus was last mined {coverage.get('mined_at') or 'at an unknown time'}, and why: "
+                                  f"{result.stderr.strip()[-300:]}")
+        elif stale:
+            directives.append("STALE_CORPUS: run `convo.py mine` before counting anything.")
+    profile = {"path": str(PROFILE), "exists": PROFILE.exists(), "text": PROFILE.read_text() if PROFILE.exists() else None}
+    if not profile["exists"]:
+        directives.append("NO_PROFILE: don't block on it. Do what was asked, then offer `init` once, at the end of the reply.")
+    db = connect()
+    coverage = meta_value(db, "coverage", {}) if db else {}
+    if db:
+        db.close()
+    print(json.dumps({"directives": directives, "mined": mined,
+                      "corpus": {"path": str(DB), "mined_at": coverage.get("mined_at"), "turns": coverage.get("corpus_turns"),
+                                 "by_origin": coverage.get("by_origin")} if db else None,
+                      "reports_dir": str(REPORTS), "latest_reports": latest_reports(), "profile": profile}, indent=2))
+
+
+def lint_reply(args):
+    import lint
+    lint.run(args, PROFILE)
+
+
 def export(args):
     """Write every turn, in every origin, as one JSON line, so the corpus can leave SQLite."""
     db = connect()
@@ -1861,6 +1922,14 @@ def main():
     commands.add_parser("signals").set_defaults(run=lambda _a: print(json.dumps({**SIGNALS, **DERIVED_SIGNALS}, indent=2)))
     commands.add_parser("check").set_defaults(run=check)
     commands.add_parser("paths").set_defaults(run=paths)
+    context_parser = commands.add_parser("context")
+    context_parser.set_defaults(run=context)
+    context_parser.add_argument("--no-mine", action="store_true", help="report a stale corpus instead of refreshing it")
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import lint
+    lint_parser = commands.add_parser("lint")
+    lint_parser.set_defaults(run=lint_reply)
+    lint.add_arguments(lint_parser)
     commands.add_parser("coverage").set_defaults(run=show_coverage)
     export_parser = commands.add_parser("export")
     export_parser.set_defaults(run=export)

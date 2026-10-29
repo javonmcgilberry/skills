@@ -30,9 +30,13 @@ The skill keeps each rule in one file, so changing a behavior is a one-file edit
 
 | File | Holds |
 | --- | --- |
-| `SKILL.md` | The corpus, the commands, the freshness step, the mode table with the one file each mode reads, and the guardrails every mode needs, which are traced numbers, verbatim quotes, privacy, approval before live configuration, and report naming |
-| `references/voice.md` | How every reply and report sounds, how to word what the numbers show, and what the coverage sentence says |
-| `references/mirror.md` | Gathering, the report's sections, the reply's shape, the offers, going deeper, and the version to share, which only a mirror needs |
+| `SKILL.md` | The router: the four Setup steps (context, playbook, floor, lint), the commands table with the one file each command reads, the routing rules, and the guardrails every command needs, which are the profile, traced numbers, verbatim quotes, privacy, approval before live configuration, and report naming |
+| `references/cli.md` | The `convo.py` commands and what `context` prints |
+| `references/routing.md` | The recommendations a bare call gets |
+| `references/init.md` | The interview and the shape of `ME.md` |
+| `references/audiences.md` | Who a write-up is for, and the team and lead versions |
+| `references/voice.md` | The floor read right before writing: how every reply and report sounds, how to word what the numbers show, what the coverage sentence says, and the Refuse list of defaults to rewrite |
+| `references/mirror.md` | Gathering, the report's sections, the reply's shape, the offers, and going deeper, which only a mirror needs |
 | `references/coach.md` | Gathering, the score JSON, choosing what to say, the before and after, the report and reply, the hand-over tools, and the Sources section, which only coaching needs |
 | `references/lookups.md` | The Trend and Recall steps |
 | `references/lessons.md` | The Lessons steps and the shape of its reply |
@@ -40,7 +44,7 @@ The skill keeps each rule in one file, so changing a behavior is a one-file edit
 | `references/sources.json` | Every source the skill cites |
 | `references/signal-fixtures.jsonl` | Labeled examples for the signal rules |
 
-The voice file and each mode's file end on a Done when list whose items a reader can answer yes or no. The lists cover what `skills/know-thyself/evals/grade.py` checks and what it can't, so a change to a behavior changes its Done when item in the same commit.
+The voice file and each mode's file end on a Done when list whose items a reader can answer yes or no. The lists cover what `skills/know-thyself/scripts/lint.py` checks, which the skill runs before every reply and `skills/know-thyself/evals/grade.py` reuses, and what it can't, so a change to a behavior changes its Done when item in the same commit.
 
 ## How rule changes reach stored data
 

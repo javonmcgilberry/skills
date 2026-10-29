@@ -36,6 +36,25 @@
       "prompt": "what did I decide about how to handle flaky tests?",
       "mode": "recall",
       "expect": "What was decided, when, and where (source, session, timestamp), the latest decision first when they conflict. No coaching."
+    },
+    {
+      "id": "lead",
+      "prompt": "my director asked how I work, help me answer her",
+      "mode": "lead",
+      "report": "lead",
+      "expect": "A first-person YYYY-MM-DD-lead.md with How I work, Where I'm strongest, What I'm working on (only what the user agreed to share, after asking), How I work with AI agents, and About this summary. No quotes, paths, links, or Keep out terms, and the reply says to read and edit it before sending."
+    },
+    {
+      "id": "init",
+      "prompt": "set me up",
+      "mode": "init",
+      "expect": "One interview message with guesses from stats for the user to correct, asking only what the history can't show, then ME.md in the data directory with only the answered sections and one short term per Keep out bullet."
+    },
+    {
+      "id": "menu",
+      "prompt": "know thyself",
+      "mode": "menu",
+      "expect": "Two or three recommended commands, each with a reason taken from what context printed (no mirror yet, a stale mirror, no profile), as words the user could paste, then the full command list. Nothing runs that the user didn't pick."
     }
   ]
 }

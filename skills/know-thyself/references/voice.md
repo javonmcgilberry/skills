@@ -2,11 +2,13 @@
 
 Write as someone reflecting back what the user's own conversations show, so they recognize themselves, feel seen rather than graded, and learn something about how they work. The picture is the story, and the numbers back it up.
 
+Read this right before writing a reply or report, after the gathering is done. `lint` checks the mechanical items below, such as dashes, dated quotes, sections, links, and Keep out terms, so act on its findings instead of re-checking those by eye, and spend your attention on the items no program can check.
+
 ## How it sounds
 
-- **Reflective second person, present tense.** "You tend to think through motion", "This shows up when the task is new to you".
+- **Reflective second person, present tense.** "You tend to think through motion", "This shows up when the task is new to you". A version for others is the exception, written in the first person with no quotes, as `references/audiences.md` says.
 - **Warm and curious.** Write the way a perceptive friend who read their conversations would talk about them. Strengths get the same specificity as friction, and friction is described plainly, as what happens and when.
-- **Open with a sentence about them.** The first sentence of every reply and report says something about how they work, or answers what they asked.
+- **Open with a sentence about them.** The first sentence of every reply and report says something about how they work, or answers what they asked. Make it a picture they'd happily repeat about themselves, true and specific without being pointed.
 - **Pattern, then proof.** The pattern comes from reading their turns, and the numbers confirm or bound it. Lead with the pattern in plain words, then give the evidence in the same paragraph, a traced count with its denominator woven into the sentence ("in 12 of your last 140 sessions") and a short verbatim quote with its date.
 - **What they do, in their words.** Speak to what they do rather than who they should be. Translate the script's terms into theirs, so a signal or dimension becomes a habit, an opener becomes "your first message", the corpus becomes "your conversations", origin becomes whether they typed it, and a score becomes a count, as in "the sessions where you…".
 - **Results, not method.** Checks you ran decide what goes in, and their workings stay out. Leave out a pattern that failed a check rather than explaining why, and keep how things were counted to the report's coverage section.
@@ -26,8 +28,22 @@ Write as someone reflecting back what the user's own conversations show, so they
 - **`teach_once`** counts the sessions that repeated a correction (`n`) and how many of those also asked for a lasting rule (`k`), with a 95% range.
 - **Coverage.** Take the date range and turns per tool from `stats` (`date_range`, `by_source`) and the files found and unread per tool from `coverage`. Name only tools `coverage` reports as read. Queries set aside `subagent` turns (Codex subagent threads and Claude Code sidechains) and `harness` turns (evals, smoke tests, scratch runs, and scheduled prompts), and `--origin` brings them back.
 
+## Refuse
+
+These are the defaults a write-up about a person drifts toward. Reaching for one means you weren't looking at this person, so rewrite the sentence from something they did.
+
+- **Statements true of anyone.** "You care about quality" or "you like to understand the why" flatters everyone equally. Name what this person does that shows it.
+- **Praise without a pattern.** "You're a strong engineer" is a grade, and a mirror doesn't grade.
+- **Advice in a mirror.** "Consider", "try", and "you might" belong to Coach.
+- **Never and always.** Say "rarely shows up" with the count, since one session disproves "never".
+- **The method on stage.** "I read 150 turns" and "the signal fired" describe the work, not the person.
+- **Restating the request.** Open with them, not with what they asked for.
+- **Ignoring the profile.** Use the name it gives, frame the work as it describes it, and leave out everything under Keep out.
+
 ## Done when
 
+- `lint` passes for the mode, on the draft reply and on the report when the command writes one.
+- No sentence does anything on the Refuse list.
 - The first sentence is about them.
 - Every count traces to a script output or a search's `sessions` field, copied exactly, with its denominator.
 - Every quote is verbatim, with the date its search line shows.

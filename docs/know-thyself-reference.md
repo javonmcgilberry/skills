@@ -10,7 +10,7 @@ python3 skills/know-thyself/scripts/convo.py <command> [flags]
 
 ## Commands
 
-Only `setup`, `mine`, and `export` write anything. The others read the corpus and print, so they're safe to run as often as you like. The one exception is the first command to open a data directory an older version left behind, which converts it to `corpus.db` as [Moving from older files](#moving-from-older-files) describes.
+Only `setup`, `mine`, `context`, and `export` write anything, and `context` writes only by running `mine` when the corpus is over a day old. The others read the corpus and print, so they're safe to run as often as you like. The one exception is the first command to open a data directory an older version left behind, which converts it to `corpus.db` as [Moving from older files](#moving-from-older-files) describes.
 
 | Command | What it does | Writes |
 | --- | --- | --- |
@@ -24,6 +24,8 @@ Only `setup`, `mine`, and `export` write anything. The others read the corpus an
 | `check` | Runs every labeled fixture against the signal rules and exits 1 on any mismatch. Until a mine has built the vocabulary, it skips the `caps_emphasis` fixtures and says how many it skipped. | Nothing |
 | `coverage` | Prints the summary the last `mine` stored, with files found per source, what was parsed or reused, redactions, and when it ran | Nothing |
 | `export` | Writes every turn, in every origin, to the file `--jsonl` names, one JSON object per line, and prints the count and the path | The named file |
+| `context` | The first command of every run. Runs `mine` when the corpus is over a day old or was built under older rules, unless `--no-mine` is given, then prints JSON with `directives` (`NO_CORPUS`, `STALE_CORPUS`, `MINE_FAILED`, `NO_PROFILE`), the `profile` path and text, the newest `mirror`, `coach`, `share`, and `lead` report with its date, and the corpus summary | `corpus.db`, through `mine` |
+| `lint` | Checks a report and a draft reply before the reply goes out, and prints JSON with what failed. It exits 1 on any failure. `--mode` picks the checks: long dashes and the profile's Keep out words for every mode, the report's sections in order for `mirror`, `coach`, `share`, and `lead`, dated quotes found in what you typed that day except in `share` and `lead`, which may hold no quote, path, or link, no advice or links and three to five offers in a mirror, and links only in a final Sources section in coaching. `--reply` names the draft reply's file and `--profile` another profile. | Nothing |
 | `paths` | Prints where data, reports, config, and `corpus.db` live, and which setting chose the data and reports locations | Nothing |
 
 When the signal rules in `convo.py` differ from the ones the last mine stored, as after an update that changes them, `stats`, `score`, `compare`, and `search` print `signal rules changed since the last mine; recomputing (slow). Run: convo.py mine` to stderr and recompute signals in memory on every run until a mine stores them.

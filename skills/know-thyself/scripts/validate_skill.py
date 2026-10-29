@@ -31,7 +31,7 @@ TEXT_SUFFIXES = {".md", ".py", ".json", ".jsonl", ".txt", ".toml", ".yml", ".yam
 
 SKILL = ROOT / "SKILL.md"
 SKILL_WORD_BUDGET = 500
-MODES = {"mirror", "coach", "trend", "recall", "lessons"}
+MODES = {"mirror", "coach", "trend", "recall", "lessons", "share", "lead", "init", "menu"}
 REQUIRED_MODES = {"mirror", "coach"}
 SAMPLE_AFTER_SIGNALS = {"altitude", "raw_material", "hard_target", "outside_judge", "aim_high",
                         "scope_control", "shipping_authority"}
@@ -97,7 +97,7 @@ report(words <= SKILL_WORD_BUDGET, f"SKILL.md is {words} words (budget {SKILL_WO
 routed = set(re.findall(r"`((?:references|scripts|evals|samples)/[\w./-]+)`", skill_text))
 for path in sorted(routed):
     report((ROOT / path).exists(), f"SKILL.md route {path} exists")
-for name in ("mirror", "coach", "lookups", "lessons", "voice"):
+for name in ("mirror", "coach", "lookups", "lessons", "voice", "init", "audiences", "routing"):
     path = ROOT / "references" / f"{name}.md"
     body = path.read_text() if path.exists() else ""
     last = re.findall(r"^#+ (.+)$", body, re.M)[-1:] or [""]
@@ -287,6 +287,77 @@ report(holds(lambda: "Run: convo.py mine" in run_on(RECENT, convo.score, clean="
 report(holds(lambda: scored(UNDATED)["first_session"] is None
              and "no session has a date" in run_on(UNDATED, convo.score, markdown=True)[0]),
        "the scorecard survives sessions that have no timestamps")
+
+import lint  # noqa: E402
+
+MIRROR_REPORT = "\n\n".join(f"## {heading}\n\nYou plan in small steps." for heading in lint.SECTIONS["mirror"])
+LEAD_REPORT = "\n\n".join(f"## {heading}\n\nI plan in small steps." for heading in lint.SECTIONS["lead"])
+
+
+def failed(mode, report_text, keep_out=()):
+    return {name for name, result in lint.checks(mode, report=report_text, keep_out=keep_out, verify_quotes=False).items()
+            if not result["pass"]}
+
+
+def lint_catches():
+    swapped = MIRROR_REPORT.replace("## How you work", "## Placeholder").replace("## The short version", "## How you work")
+    return (not failed("mirror", MIRROR_REPORT)
+            and failed("mirror", MIRROR_REPORT + "\nOne \u2014 two.") == {"no_long_dashes"}
+            and "report_sections_in_order" in failed("mirror", swapped)
+            and failed("mirror", MIRROR_REPORT + "\n[a](https://x.dev)") == {"mirror_has_no_links"}
+            and failed("mirror", MIRROR_REPORT + "\nWorked on Atlas.", keep_out=["atlas"]) == {"keep_out_terms_absent"}
+            and not failed("mirror", MIRROR_REPORT + "\nYou sample a lot. Saved at `/Users/sam/r.md`.", keep_out=["Sam"])
+            and not failed("mirror", MIRROR_REPORT.replace("What's changed", "What\u2019s changed")))
+
+
+def shared_versions():
+    leaky = LEAD_REPORT + '\nI said "ship it when green" in /Users/sam/repo.'
+    return not failed("lead", LEAD_REPORT) and failed("lead", leaky) == {"shared_version_has_no_quotes",
+                                                                     "shared_version_has_no_local_paths"}
+
+
+def keep_out_list():
+    profile = "# Sam\n\n## Keep out\n- Atlas (the customer)\n- `payments-svc`\n- ok\n\n## How to talk to you\nSam"
+    edited = profile.replace("## Keep out", "### Keep Out").replace("\n", "\r\n")
+    return (lint.keep_out_terms(profile) == lint.keep_out_terms(edited) == ["Atlas", "payments-svc"]
+            and lint.keep_out_terms("# Sam") == [])
+
+
+def latest_reports():
+    with tempfile.TemporaryDirectory() as tmp:
+        for name in ("2026-01-01-mirror.md", "2026-01-02-mirror-2.md", "2026-01-02-profile-3.md", "2026-01-03-coach.md", "notes.md"):
+            (Path(tmp) / name).write_text("x")
+        saved, convo.REPORTS = convo.REPORTS, Path(tmp)
+        try:
+            found = convo.latest_reports()
+        finally:
+            convo.REPORTS = saved
+    return (found["mirror"]["path"].endswith("2026-01-02-profile-3.md") and found["coach"]["date"] == "2026-01-03"
+            and found["share"] is None and found["lead"] is None)
+
+
+def context_directives():
+    with tempfile.TemporaryDirectory() as tmp:
+        saved = convo.PROFILE, convo.REPORTS
+        convo.PROFILE, convo.REPORTS = Path(tmp) / "ME.md", Path(tmp)
+        try:
+            fresh = json.loads(run_on(RECENT, convo.context, no_mine=True)[0])
+            convo.PROFILE.write_text("# Sam")
+            profiled = json.loads(run_on(RECENT, convo.context, no_mine=True)[0])
+        finally:
+            convo.PROFILE, convo.REPORTS = saved
+    codes = [d.split(":")[0] for d in fresh["directives"]]
+    return (codes == ["STALE_CORPUS", "NO_PROFILE"] and fresh["profile"]["exists"] is False
+            and [d.split(":")[0] for d in profiled["directives"]] == ["STALE_CORPUS"] and profiled["profile"]["text"] == "# Sam")
+
+
+report(holds(lint_catches), "lint passes a clean mirror report, curly apostrophes and a path holding a Keep out name included, "
+       "and catches a dash, sections out of order, a link, and a Keep out word")
+report(holds(shared_versions), "lint keeps quotes and local paths out of a version for others")
+report(holds(keep_out_list), "the profile's Keep out list reads one short term per bullet, under any heading case or line ending")
+report(holds(latest_reports), "context finds the newest report of each kind, counting -2 and -3 and older *-profile.md mirrors")
+report(holds(context_directives), "context reports a stale corpus and a missing profile, and prints the profile once it exists")
+report(set(lint.SECTIONS) <= MODES, "every mode lint knows report sections for is an eval mode")
 
 practices_text = (ROOT / "references" / "practices.md").read_text()
 tagged = set(re.findall(r"`([a-z_]+)`", practices_text)) & ({*convo.SIGNALS, *convo.DERIVED_SIGNALS} | {d["id"] for d in convo.SCORECARD})
