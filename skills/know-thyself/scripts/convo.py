@@ -74,7 +74,7 @@ DB = DATA / "corpus.db"
 PROFILE = DATA / "ME.md"
 STALE_HOURS = 24
 # Report kinds by filename suffix; older versions wrote the mirror as *-profile.md.
-REPORT_KINDS = {"mirror": ("mirror", "profile"), "coach": ("coach",), "share": ("shareable",), "lead": ("lead",)}
+REPORT_KINDS = {"mirror": ("mirror", "profile"), "checkin": ("checkin",), "coach": ("coach",), "share": ("shareable",), "lead": ("lead",)}
 # What older versions kept instead of DB; the first run imports them and renames each with a .migrated suffix.
 LEGACY_CORPUS, LEGACY_MANIFEST, LEGACY_VOCAB, LEGACY_COVERAGE = (
     DATA / name for name in ("corpus.jsonl", "manifest.json", "vocab.json", "coverage.json"))

@@ -19,6 +19,14 @@
       "expect": "Same as run: a mirror, not coaching, ending with tailored follow-ups."
     },
     {
+      "id": "checkin",
+      "prompt": "how have I been doing the last two weeks?",
+      "mode": "checkin",
+      "report": "checkin",
+      "max_seconds": 120,
+      "expect": "A short description of what moved in the last 14 days (or 30, said so, when 14 held under 10 sessions) against the user's own baseline, naming only habits score marks up or down with counts on both sides and a dated quote each, what held, and what changed since the last check-in. No advice, at most two offers."
+    },
+    {
       "id": "coach",
       "prompt": "coach me on how I start tasks",
       "mode": "coach",

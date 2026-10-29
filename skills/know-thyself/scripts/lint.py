@@ -14,10 +14,11 @@ import sys
 from pathlib import Path
 
 CONVO = Path(__file__).resolve().parent / "convo.py"
-MODES = ("mirror", "coach", "share", "lead", "trend", "recall", "lessons", "init", "menu")
+MODES = ("mirror", "checkin", "coach", "share", "lead", "trend", "recall", "lessons", "init", "menu")
 SECTIONS = {
     "mirror": ("The short version", "How you work", "What you're good at", "Where friction shows up", "What's changed",
                "What this covers", "Where you could go from here"),
+    "checkin": ("The short version", "What moved", "What held", "In your words", "Since your last check-in", "What this covers"),
     "coach": ("The short version", "What this covers", "What's working", "What gets in the way", "The habits that matter here",
               "Before and after", "What to try next", "Sources"),
     "share": ("How I work", "What I'm good at", "My tools and workflow", "What's changed", "About this summary"),
@@ -111,12 +112,12 @@ def checks(mode, reply="", report="", keep_out=(), verify_quotes=True):
         check("report_sections_in_order", not missing and order == sorted(order),
               f"missing: {', '.join(missing)}" if missing else "out of order" if order != sorted(order) else "")
 
-    if mode == "mirror":
+    if mode in ("mirror", "checkin"):
         heads = [m.group(0).strip() for m in ADVICE_HEADING.finditer(both)]
         check("mirror_has_no_advice_section", not heads, ", ".join(heads))
         links = len(LINK.findall(both))
         check("mirror_has_no_links", links == 0, f"{links} links")
-        if reply:
+        if reply and mode == "mirror":
             items = offers(reply)
             check("mirror_ends_with_3_to_5_offers", 3 <= len(items) <= 5, f"{len(items)} items in the last list")
             offers_at = reply.find(items[0].strip()) if items else len(reply)

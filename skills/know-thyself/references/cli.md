@@ -23,5 +23,5 @@ $S check       # references/signal-fixtures.jsonl against the signal rules
 
 - **`directives`** are what to do before anything else: `NO_CORPUS` (run `setup`), `STALE_CORPUS` (run `mine`; printed only under `--no-mine`, since otherwise `context` mines itself), `MINE_FAILED` (say the corpus is older than a day and why), and `NO_PROFILE` (offer `init` once at the end of the reply, never block on it).
 - **`profile`** holds the path of `ME.md` and its text, which every mode reads before writing.
-- **`latest_reports`** gives the newest `mirror`, `coach`, `share`, and `lead` report, each with its path, date, and days since, or null.
+- **`latest_reports`** gives the newest `mirror`, `checkin`, `coach`, `share`, and `lead` report, each with its path, date, and days since, or null.
 - **`corpus`** gives when it was mined and how many turns it holds by origin.

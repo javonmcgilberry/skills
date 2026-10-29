@@ -31,7 +31,7 @@ TEXT_SUFFIXES = {".md", ".py", ".json", ".jsonl", ".txt", ".toml", ".yml", ".yam
 
 SKILL = ROOT / "SKILL.md"
 SKILL_WORD_BUDGET = 500
-MODES = {"mirror", "coach", "trend", "recall", "lessons", "share", "lead", "init", "menu"}
+MODES = {"mirror", "checkin", "coach", "trend", "recall", "lessons", "share", "lead", "init", "menu"}
 REQUIRED_MODES = {"mirror", "coach"}
 SAMPLE_AFTER_SIGNALS = {"altitude", "raw_material", "hard_target", "outside_judge", "aim_high",
                         "scope_control", "shipping_authority"}
@@ -97,7 +97,7 @@ report(words <= SKILL_WORD_BUDGET, f"SKILL.md is {words} words (budget {SKILL_WO
 routed = set(re.findall(r"`((?:references|scripts|evals|samples)/[\w./-]+)`", skill_text))
 for path in sorted(routed):
     report((ROOT / path).exists(), f"SKILL.md route {path} exists")
-for name in ("mirror", "coach", "lookups", "lessons", "voice", "init", "audiences", "routing"):
+for name in ("mirror", "checkin", "coach", "lookups", "lessons", "voice", "init", "audiences", "routing"):
     path = ROOT / "references" / f"{name}.md"
     body = path.read_text() if path.exists() else ""
     last = re.findall(r"^#+ (.+)$", body, re.M)[-1:] or [""]
@@ -333,7 +333,7 @@ def latest_reports():
         finally:
             convo.REPORTS = saved
     return (found["mirror"]["path"].endswith("2026-01-02-profile-3.md") and found["coach"]["date"] == "2026-01-03"
-            and found["share"] is None and found["lead"] is None)
+            and found["checkin"] is None and found["share"] is None and found["lead"] is None)
 
 
 def context_directives():
