@@ -13,6 +13,8 @@
   convo.py coverage                  what the last mine read, skipped, and could not read
   convo.py export --jsonl PATH       write every turn as JSON lines
   convo.py paths                     where the database and reports live
+  convo.py context [--no-mine]       start of a run: mine when stale, then the profile, latest reports, and directives
+  convo.py lint --mode MODE [REPORT] [--reply FILE]   check a report and draft reply; exits 1 with what to fix
 
 Filters: --since YYYY-MM-DD --until YYYY-MM-DD --source codex,pi --cwd SUBSTRING --origin human,subagent,harness
 

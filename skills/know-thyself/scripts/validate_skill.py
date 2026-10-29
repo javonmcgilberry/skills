@@ -307,6 +307,7 @@ def lint_catches():
             and failed("mirror", MIRROR_REPORT + "\n[a](https://x.dev)") == {"mirror_has_no_links"}
             and failed("mirror", MIRROR_REPORT + "\nWorked on Atlas.", keep_out=["atlas"]) == {"keep_out_terms_absent"}
             and not failed("mirror", MIRROR_REPORT + "\nYou sample a lot. Saved at `/Users/sam/r.md`.", keep_out=["Sam"])
+            and failed("mirror", MIRROR_REPORT + "\nYou edited `/Users/x/atlas/app.py`.", keep_out=["atlas"]) == {"keep_out_terms_absent"}
             and not failed("mirror", MIRROR_REPORT.replace("What's changed", "What\u2019s changed")))
 
 

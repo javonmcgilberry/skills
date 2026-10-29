@@ -30,7 +30,7 @@ ADVICE_HEADING = re.compile(r"^#+\s*(what to try|try this|next steps|recommendat
 LINK = re.compile(r"\]\(https?://|<https?://")
 SOURCES_HEADING = re.compile(r"^#+\s*sources\b|^\*\*sources\*\*", re.I | re.M)
 ANY_QUOTE = re.compile(r'["\u201c]([^"\u201d\n]+)["\u201d]')
-REPORT_PATH = re.compile(r"`/[^`\n]+`")
+REPORT_PATH = re.compile(r"`/[^`\n]+\.md`")
 QUOTE = re.compile(r'["\u201c]([^"\u201d\n]{6,200})["\u201d],? \((\d{4}-\d{2}-\d{2})\)')
 HOME_PATH = re.compile(r"(?<![\w.])(?:/Users/|/home/|~/)\S+")
 
