@@ -32,17 +32,19 @@ The skill keeps each rule in one file, so changing a behavior is a one-file edit
 | --- | --- |
 | `SKILL.md` | The router: the four Setup steps (context, playbook, floor, lint), the commands table with the one file each command reads, the routing rules, and the guardrails every command needs, which are the profile, traced numbers, verbatim quotes, privacy, approval before live configuration, and report naming |
 | `references/cli.md` | The `convo.py` commands and what `context` prints |
-| `references/routing.md` | The recommendations a bare call gets |
+| `references/routing.md` | What a bare call or "what can you do?" gets: two or three picks reasoned from what `context` printed, then the What you can do list |
 | `references/init.md` | The interview and the shape of `ME.md` |
 | `references/audiences.md` | Who a write-up is for, and the team and lead versions |
 | `references/voice.md` | The floor read right before writing: how every reply and report sounds, how to word what the numbers show, what the coverage sentence says, and the Refuse list of defaults to rewrite |
 | `references/mirror.md` | Gathering, the report's sections, the reply's shape, the offers, and going deeper, which only a mirror needs |
+| `references/checkin.md` | The two-week check-in: the 14-day window and when it widens to 30, the `score` comparison, the report's six sections, and the reply |
 | `references/coach.md` | Gathering, the score JSON, choosing what to say, the before and after, the report and reply, the hand-over tools, and the Sources section, which only coaching needs |
 | `references/lookups.md` | The Trend and Recall steps |
 | `references/lessons.md` | The Lessons steps and the shape of its reply |
 | `references/practices.md` | The practices coaching draws on, each with its sources |
 | `references/sources.json` | Every source the skill cites |
 | `references/signal-fixtures.jsonl` | Labeled examples for the signal rules |
+| `skills/know-thyself/scripts/lint.py` | The mechanical checks `convo.py lint` runs on a reply and its report, per mode, which the eval grader reuses |
 
 The voice file and each mode's file end on a Done when list whose items a reader can answer yes or no. The lists cover what `skills/know-thyself/scripts/lint.py` checks, which the skill runs before every reply and `skills/know-thyself/evals/grade.py` reuses, and what it can't, so a change to a behavior changes its Done when item in the same commit.
 
@@ -78,7 +80,7 @@ Adding a practice to `references/practices.md` needs a source as well. End the b
 | `SKILL.md` frontmatter has `name` and `description` | The skill's name and its trigger description can't go missing |
 | `SKILL.md` stays within 500 words | The entry file stays short, so detail lives in `references/`, which an agent reads only for the mode it needs |
 | Every backticked `references/`, `scripts/`, `evals/`, or `samples/` path in `SKILL.md` exists, and every file in `references/` is named somewhere | An agent never follows a dead route, and no reference is orphaned |
-| `mirror.md`, `coach.md`, `lookups.md`, `lessons.md`, and `voice.md` each end on a Done when heading | Every mode ends its work on a checklist, which is what keeps a run from stopping early |
+| `mirror.md`, `checkin.md`, `coach.md`, `lookups.md`, `lessons.md`, `voice.md`, `init.md`, `audiences.md`, and `routing.md` each end on a Done when heading | Every mode ends its work on a checklist, which is what keeps a run from stopping early |
 | Eval cases have unique ids, a known mode, a prompt, and an `expect`, any `report` they name is a known mode, and the cases cover the mirror and coach modes | The behavioral evals stay runnable, and the default mode and the opt-in coaching are always tested |
 | The rewritten sample opener hits seven expected signals and the plain one hits no ambition signal | The worked example in `samples/` really demonstrates what the scorecard measures |
 | Signal fixtures pass, with the `caps_emphasis` ones skipped when there's no vocabulary | Rule changes don't silently break labeled cases |
@@ -99,6 +101,12 @@ Adding a practice to `references/practices.md` needs a source as well. End the b
 | A harness pattern that fails to compile, isn't a string, or matches empty text is skipped with a warning, while a good one is kept | One bad config entry neither crashes every command nor tags every prompt as harness |
 | `score` warns on stderr, naming `mine`, when the stored cleaning hash is older than the code's | Stale turns after a cleaning or `harness_patterns` change don't pass silently |
 | `score`, `score --markdown`, and `stats` survive a corpus whose sessions have no timestamps | Undated history prints a null `first_session` or `date_range` and a note that the trend is empty instead of crashing |
+| `lint` passes a clean mirror report, including curly apostrophes and a Keep out name inside a backticked path, and catches a long dash, sections out of order, a link, and a Keep out word | The checks the skill runs before every reply neither miss what they guard nor fail a good report |
+| `lint` fails a lead report that holds a quote and a local path | A version for others can't carry your words or your paths |
+| The profile's Keep out list reads one short term per bullet, under any heading case or line ending | An edited `ME.md` still protects what it lists |
+| `context` finds the newest report of each kind, counting `-2` and `-3` suffixes and older `*-profile.md` mirrors | Routing and the check-in compare against the right earlier report |
+| `context` under `--no-mine` reports a stale corpus with `STALE_CORPUS` and a missing profile with `NO_PROFILE`, and prints the profile once it exists | A run always learns what to do first |
+| Every mode `lint` knows report sections for is an eval mode | The evals can grade every report the skill writes |
 | Every scorecard line has a tagged practice, and every practice tag names a scorecard line | Coaching advice and measurement stay linked both ways |
 | No text file in `skills/know-thyself/` and no `docs/know-thyself*.md` page contains the home directory name (unless it's a generic account such as `runner` or `root`), a word from `git config user.name`, or a term from `.private-terms`, except the repository's slug from its origin remote inside an install command | The skill and its docs can be published without naming their owner |
 | `docs/know-thyself.md` has a Credits section with bold names | The credit for the article behind the ambition lines stays in place |
@@ -113,18 +121,18 @@ Adding a practice to `references/practices.md` needs a source as well. End the b
 
 ### Docs check
 
-`scripts/docs_check.py` checks every tracked Markdown file in the repository, so it covers these pages and the skill's own files too. Among its rules, it runs `convo.py <command> --help` to fail any command or flag a page names that the CLI doesn't define. [The README](../README.md#checks) owns its full rule list and its tests.
+`scripts/docs_check.py` checks every tracked Markdown file in the repository except recorded eval results under `evals/*/results/`, so it covers these pages and the skill's own files too. Among its rules, it runs `convo.py <command> --help` to fail any command or flag a page names that the CLI doesn't define. [The README](../README.md#checks) owns its full rule list and its tests.
 
 ### Behavioral evals
 
-`skills/know-thyself/evals/cases.json` holds prompts users really type, for comparing one version of the skill against another or against no skill. Each case names its mode, a prompt, and what a good answer looks like in `expect`, the mirror and coach cases name the report they should write, and the mirror cases add a time limit. `skills/know-thyself/evals/grade.py` runs the yes-or-no checks on one reply and its report, such as no persona opening, no advice or links in a mirror, the report's path before three to five quoted offers at its end, a before and after in coaching with sources only in a final Sources section, and every dated quote found in what the user typed within a day of that date, and it lists each "k of n" count the scorecard doesn't hold, all against the frozen corpus that `KNOW_THYSELF_DATA_DIR` points at. `skills/know-thyself/evals/JUDGE.md` is the protocol around them, with the hard gates, the grader, and a pairwise judge that compares old and new chat replies in both orders, checked for position bias, on questions of taste only. They need a live agent and a real corpus, so they run by hand and never in `scripts/check.sh` or CI.
+`skills/know-thyself/evals/cases.json` holds prompts users really type, for comparing one version of the skill against another or against no skill. Each case names its mode, a prompt, and what a good answer looks like in `expect`, the mirror, check-in, coach, and lead cases name the report they should write, and the mirror and check-in cases add a time limit. `skills/know-thyself/evals/grade.py` runs the same checks `convo.py lint` runs for the case's mode, with the Keep out list from the profile in that data directory, so the yes-or-no checks are no persona opening, no advice or links in a mirror or check-in, the report's path before three to five quoted offers at a mirror's end, a before and after in coaching with sources only in a final Sources section, and every dated quote found in what the user typed within a day of that date, as [the reference](know-thyself-reference.md#lint) lists. It adds what only an eval can check, that the report was written and the run stayed within its time limit, and it lists each "k of n" count the scorecard doesn't hold, all against the frozen corpus that `KNOW_THYSELF_DATA_DIR` points at. `skills/know-thyself/evals/JUDGE.md` is the protocol around them, with the hard gates, the grader, and a pairwise judge that compares old and new chat replies in both orders, checked for position bias, on questions of taste only. They need a live agent and a real corpus, so they run by hand and never in `scripts/check.sh` or CI.
 
 ## What none of these cover
 
 - **The source parsers on real formats.** Only one small Codex file and one OpenCode file, both written to test bad input, go through the readers. No test feeds well-formed Claude Code, Pi, or Cursor history, so a format change in one of those tools shows up only as fewer turns from that tool in the `by_source` counts of `stats`. A reader that raises is counted in `files_failed`, because `parse_file()` wraps the file readers and `parse_cursor()` wraps Cursor's.
 - **Mining logic.** Incremental reuse, retention of pruned turns, the merge that applies `row_key()` and `rank()`, imports, the mine lock, the move from older files to `corpus.db`, and `export` have no tests, so a regression there could lose history without failing a check. Only the key and the ranking themselves are checked, on fixed rows.
 - **Origin tagging and redaction.** The harness patterns have no fixtures, including for whether a personal `harness_patterns` entry tags the turns it should, and the credential patterns have only the one wrapped-value case, so a missed secret format or a misfiled human turn passes every check.
-- **Query output on real data.** `score` and `compare` run only on a few synthetic sessions built for the edge cases above, `stats` runs once, on an undated session, and `search` never runs, so a wrong number or a broken sentence on a real corpus passes. Beyond those cases, only two edge cases of the `compare` sentences and the card payoff text are rendered, on fixed inputs, along with the statistics helpers, the trend marks, and detection on fixed texts.
+- **Query output on real data.** `score` and `compare` run only on a few synthetic sessions built for the edge cases above, `stats` runs once, on an undated session, and `search` never runs, so a wrong number or a broken sentence on a real corpus passes. Beyond those cases, only two edge cases of the `compare` sentences and the card payoff text are rendered, on fixed inputs, along with the statistics helpers, the trend marks, and detection on fixed texts. The validator runs `lint` with its dated-quote check off and `context` only under `--no-mine`, so the quote search and the mine `context` starts never run in a test.
 - **`caps_emphasis` fixtures in CI.** CI never mines, so it has no vocabulary and skips them while running the rest. Run `scripts/check.sh` locally after a mine before merging a change to `caps_emphasis` or `prose()`.
 - **Whether a rule matches real habits.** Fixtures prove a rule does what its author intended on the cases written down. Only reading samples shows whether it fits how people really write.
 - **Whether the docs are true.** The docs check proves that named paths, links, commands, and flags exist, but not that the prose around them is correct.
